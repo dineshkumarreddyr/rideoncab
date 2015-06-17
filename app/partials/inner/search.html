@@ -1,0 +1,147 @@
+<div class="container-fluid homebg">
+    <div class="container home-filters">
+        <div class="row"><h1>Anytime,<br>Anywhere</h1></div>
+        <div class="row checks"></div>
+        <div class="row home-filters-main">
+            <div class='col-md-3 form-group required'>
+                <label class='control-label'>Type of Service</label>
+                <select class="minimal">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+            <div class='col-md-3 form-group required'>
+                <label class='control-label'>Departure Date &amp; Time</label>
+                <input id="datetimepicker" type="text">
+            </div>
+            <div class='col-md-3 form-group required'>
+                <label class='control-label'>Pickup Location</label>
+                <select class="minimal">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+            <div class='col-md-3 form-group required'>
+                <label class='control-label'>Destination</label>
+                <select class="minimal">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 pull-right book-btn-wrap">
+                <button class="bookbtn" ng-click="book()">get your cab</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--how it works-->
+<div class="container-fluid how-wrap">
+    <div class="container">
+        <h1><span>How</span><br> it works?</h1>
+        <div class="process">
+            <div class="process-row">
+                <div class="process-step">
+                    <button type="button" class="btn btn-default btn-circle">1</button>
+                    <h3>Set your destination</h3>
+                    <p>from the pickup place</p>
+                </div>
+                <div class="process-step">
+                    <button type="button" class="btn btn-default btn-circle">2</button>
+                    <h3>Select a cab which you like</h3>
+                    <p>from the list of results</p>
+                </div>
+                <div class="process-step">
+                    <button type="button" class="btn btn-default btn-circle">3</button>
+                    <h3>Send your details</h3>
+                    <p>for the security</p>
+                </div>
+                <div class="process-step">
+                    <button type="button" class="btn btn-default btn-circle">4</button>
+                    <h3>Confirm the cab &amp; enjoy</h3>
+                    <p>for the ride</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--testimonials-->
+<div class="container testimonials">
+    <div class="row">
+        <h1><span>client</span><br>testimonails</h1>
+        <div class="col-md-12 testimonials-main">
+            <div class="carousel slide" data-ride="carousel" id="quote-carousel" data-interval="6000">
+                <!-- Bottom Carousel Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#quote-carousel" data-slide-to="1"></li>
+                    <li data-target="#quote-carousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Carousel Slides / Quotes -->
+                <div class="carousel-inner">
+                    <!-- Quote 1 -->
+                    <div class="item active">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-sm-8">
+                                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit!</p>
+                                    <small>Someone famous</small>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- Quote 2 -->
+                    <div class="item">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/mijustin/128.jpg" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-sm-8">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam auctor nec lacus ut tempor. Mauris.</p>
+                                    <small>Someone famous</small>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- Quote 3 -->
+                    <div class="item">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/keizgoesboom/128.jpg" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-sm-8">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum elit in arcu blandit, eget pretium nisl accumsan. Sed ultricies commodo tortor, eu pretium mauris.</p>
+                                    <small>Someone famous</small>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Carousel Buttons Next/Prev -->
+                <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><img src="app/assets/images/left.png"></a>
+                <a data-slide="next" href="#quote-carousel" class="right carousel-control"><img src="app/assets/images/right.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--testimonials-->
+
+<script>
+	$('#datetimepicker').datetimepicker();
+</script>

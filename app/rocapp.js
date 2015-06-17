@@ -1,4 +1,4 @@
-var rocapp = angular.module('rocapp',['ui.router','ui.bootstrap']);
+var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap','roc.config']);
 
 rocapp.value('$anchorScroll', angular.noop);
 
@@ -9,11 +9,20 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
         $stateProvider.state('home', {
             url: "/home",
             templateUrl: "app/partials/common.html",
-        }).state('home.search',{
-		url:'/search',
-		templateUrl:"app/partials/inner/home.html"	
-		});
+            controller: 'homeController'
+        }).state('home.search', {
+            url: '/search',
+            templateUrl: "app/partials/inner/search.html",
+            controller: 'searchController'
+        }).state('home.results', {
+            url: '/results',
+            templateUrl: "app/partials/inner/results.html",
+            controller: 'resultsController'
+        }).state('home.address', {
+            url: '/address',
+            templateUrl: "app/partials/inner/address.html"
+        });
 
         $urlRouterProvider.otherwise("/home/search");
         $locationProvider.html5Mode(true).hashPrefix('!');
-	}]);
+    }]);

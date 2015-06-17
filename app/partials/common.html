@@ -1,9 +1,161 @@
 <!--Header and footer here which should be share common across the app-->
-<div>
-	Im Header
+  <!-- Signin -->
+<div class="modal fade signin-pop" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Signin</h4>
+            </div>
+            <div class="checks"></div>
+            <div class="modal-body clearfix">
+                <form>
+                    <div class='form-row'>
+                        <div class='col-xs-12 form-group required'>
+                            <label class='control-label'>Email address</label>
+                            <input class='form-control' ng-model="signemail" type='text'>
+                        </div>
+                    </div>
+                    <div class='form-row'>
+                        <div class='col-xs-12 form-group required'>
+                            <label class='control-label'>Password</label>
+                            <input class='form-control' ng-model="signpassword" type='password'>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6"><button type="button" ng-click="signin()" class="bookbtn">Sign In</button></div>
+                <div class="col-md-6"><a href="#">Forgot Password?</a></div>
+                <div class="clearfix"></div>
+                <div class="clearfix pop-foot">
+                    <div class="col-md-6 text-left">Don't have an Account!</div>
+                    <div class="col-md-6 text-right"><a href="#">Sign Up </a>Here</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signin -->
+<!-- Signup -->
+<div class="modal fade signin-pop" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Signup</h4>
+            </div>
+            <div class="checks"></div>
+            <div class="modal-body clearfix">
+                <div class="alert alert-success" ng-hide="hideSuccess" role="alert">{{successMsg}}</div>
+                <div class="alert alert-danger" ng-hide="hideError" role="alert">{{errorMsg}}</div>
+                <form name="signup">
+                    <div class='form-row'>
+                        <div class='col-xs-6 form-group required'>
+                            <label class='control-label'>First Name</label>
+                            <input class='form-control' ng-model="firstname" type='text'>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class='col-xs-6 form-group required'>
+                            <label class='control-label'>Last Name</label>
+                            <input class='form-control' ng-model="lastname" type='text'>
+                        </div>
+                    </div>
+                    <div class='form-row'>
+                        <div class='col-xs-12 form-group required'>
+                            <label class='control-label'>Email ID</label>
+                            <input class='form-control' ng-model="emailaddress" type='text'>
+                        </div>
+                    </div>
+                    <div class='form-row'>
+                        <div class='col-xs-12 form-group required'>
+                            <label class='control-label'>Mobile Number</label>
+                            <input class='form-control' ng-model="number" type='text'>
+                        </div>
+                    </div>
+                    <div class='form-row'>
+                        <div class='col-xs-6 form-group required'>
+                            <label class='control-label'>Password</label>
+                            <input class='form-control' type='password' ng-model="password">
+                        </div>
+                    </div>
+                    <div class='form-row'>
+                        <div class='col-xs-6 form-group required'>
+                            <label class='control-label'>Repeat Password</label>
+                            <input class='form-control' type='password' ng-model="confirmpassword">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12 checkbox text-left">
+                    <!--<span class="character-checkbox" onclick="showPassword()"></span>-->
+                    <!--<span class="label">I Agree Terms &amp; Conditions</span>-->
+                </div>
+                <div class="col-md-6 clearfix"><button type="button" ng-click="usersignup()" class="bookbtn">Sign up</button></div>
+                <div class="clearfix"></div>
+                <div class="clearfix pop-foot">
+                    <div class="col-md-6 text-left">Already have an Account!</div>
+                    <div class="col-md-6 text-right"><a href="#">Sign In </a>Here</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signup -->
+
+<div class="container-fluid top-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
+            <div class="col-md-6 menu-main">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="menuactive"><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
+                                <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
+                                <li><a href="#" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
 <!--Sub routing dont remove this line -->
 <div ui-view></div>
-<footer>
-	Im Footer
-</footer>
+  <!--footer-->
+<div class="gotop"><img src="app/assets/images/gotop.png"></div>
+<div class="container-fluid footer-wrap">
+    <div class="container footer-wrap-main">
+        <div class="clearfix">Home &bull; cities &bull; drive</div>
+        <div class="footer-wrap-links">
+            <a href="#">help center</a><a href="#">about us</a>
+            <a href="#">careers</a><a href="#">be a vendor</a>
+            <a href="#">reach us</a>
+        </div>
+        <div class="footer-wrap-links">
+            <a href="#"><img src="app/assets/images/fb.png"></a>
+            <a href="#"><img src="app/assets/images/twitter.png"></a>
+            <a href="#"><img src="app/assets/images/gplus.png"></a>
+        </div>
+    </div>
+</div>

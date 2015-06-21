@@ -76,144 +76,18 @@
             <!--filter bar ends -->
 
             <div class="list-main">
-                <div class="clearfix list-each">
+                <div class="clearfix list-each" ng-click="selectCab()" ng-repeat="result in cabresults">
                     <ul>
                         <li>
                             <div class="selection">
                                 <div class="unselected"></div>
-                                <div class="sedan"></div>
+                                <div ng-class="{'hatchbac':result.cabtype=='MINI','sedan':result.cabtype=='BUSINESS'}"></div>
                             </div>
                             <div class="cab-details dotted">
-                                <h2>Sedan AC</h2>
-                                <p>Ratan Travels </p>
+                                <h2>{{result.cabmodel}}</h2>
+                                <p>{{result.vendorname}}</p>
                             </div>
-                            <div class="location">Dilsukhnagar</div>
-                            <div class="reviews dotted">
-                                <p>User Reviews</p>
-                                <div id="star" class="starrr"></div>
-                            </div>
-                            <div class="pricing">12.00/Km</div>
-                            <div class="col-md-12 terms-wrap">
-                                <ul>
-                                    <li>Maximum of 4 passengers allowed for Indica & Sedan.</li>
-                                    <li>
-                                        No waiting charges up to 15 mins after scheduled pickup
-                                        time. Rs. 50/30 min beyond 15 min after that.
-                                    </li>
-                                    <li>Any Toll Charges as applicable.</li>
-                                    <li>Any Parking Charges as applicable.</li>
-                                    <li>
-                                        Cancellation charges of Rs.100 applicable if cancelled
-                                        within 30 mins of pickup time.
-                                    </li>
-                                    <li>Final fare payable will include Service Tax.</li>
-                                    <div class="clearfix bookcab">
-                                        <a ui-sref="home.address">
-                                            Book your cab
-                                        </a>
-                                    </div>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="clearfix list-each">
-                    <ul>
-                        <li>
-                            <div class="selection">
-                                <div class="unselected"></div>
-                                <div class="hatchbac"></div>
-                            </div>
-                            <div class="cab-details dotted">
-                                <h2>Hatchbac AC</h2>
-                                <p>Uber Cabs</p>
-                            </div>
-                            <div class="location">Begumpet</div>
-                            <div class="reviews dotted">
-                                <p>User Reviews</p>
-                                <div id="star" class="starrr"></div>
-                            </div>
-                            <div class="pricing">12.00/Km</div>
-                            <div class="col-md-12 terms-wrap">
-                                <ul>
-                                    <li>Maximum of 4 passengers allowed for Indica & Sedan.</li>
-                                    <li>
-                                        No waiting charges up to 15 mins after scheduled pickup
-                                        time. Rs. 50/30 min beyond 15 min after that.
-                                    </li>
-                                    <li>Any Toll Charges as applicable.</li>
-                                    <li>Any Parking Charges as applicable.</li>
-                                    <li>
-                                        Cancellation charges of Rs.100 applicable if cancelled
-                                        within 30 mins of pickup time.
-                                    </li>
-                                    <li>Final fare payable will include Service Tax.</li>
-                                    <div class="clearfix bookcab">
-                                        <a ui-sref="home.address">
-                                            Book your cab
-                                        </a>
-                                    </div>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="clearfix list-each">
-                    <ul>
-                        <li>
-                            <div class="selection">
-                                <div class="unselected"></div>
-                                <div class="sedan"></div>
-                            </div>
-                            <div class="cab-details dotted">
-                                <h2>Sedan AC</h2>
-                                <p>Ratan Travels </p>
-                            </div>
-                            <div class="location">Dilsukhnagar</div>
-                            <div class="reviews dotted">
-                                <p>User Reviews</p>
-                                <div id="star" class="starrr"></div>
-                            </div>
-                            <div class="pricing">12.00/Km</div>
-                            <div class="col-md-12 terms-wrap">
-                                <ul>
-                                    <li>Maximum of 4 passengers allowed for Indica & Sedan.</li>
-                                    <li>
-                                        No waiting charges up to 15 mins after scheduled pickup
-                                        time. Rs. 50/30 min beyond 15 min after that.
-                                    </li>
-                                    <li>Any Toll Charges as applicable.</li>
-                                    <li>Any Parking Charges as applicable.</li>
-                                    <li>
-                                        Cancellation charges of Rs.100 applicable if cancelled
-                                        within 30 mins of pickup time.
-                                    </li>
-                                    <li>Final fare payable will include Service Tax.</li>
-                                    <div class="clearfix bookcab">
-                                        <a ui-sref="home.address">
-                                            Book your cab
-                                        </a>
-                                    </div>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="clearfix list-each">
-                    <ul>
-                        <li>
-                            <div class="selection">
-                                <div class="unselected"></div>
-                                <div class="hatchbac"></div>
-                            </div>
-                            <div class="cab-details dotted">
-                                <h2>Hatchbac AC</h2>
-                                <p>Uber Cabs</p>
-                            </div>
-                            <div class="location">Begumpet</div>
+                            <div class="location">{{result.vendoraddress}}</div>
                             <div class="reviews dotted">
                                 <p>User Reviews</p>
                                 <div id="star" class="starrr"></div>
@@ -380,14 +254,5 @@
     $(document).ready(function () {
         $(".terms-wrap").hide();
         $(".list-each").show();
-
-        $('.list-each').click(function () {
-            $(".terms-wrap").hide();
-            $('.unselected').removeClass('selected');
-            $('.list-each').removeClass('selectedcab');
-            $(this).find('.unselected').addClass('selected');
-            $(this).find(".terms-wrap").slideToggle();
-            $(this).addClass('selectedcab');
-        });
     });
 </script>

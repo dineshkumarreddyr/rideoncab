@@ -15,7 +15,7 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             templateUrl: "app/partials/inner/search.html",
             controller: 'searchController'
         }).state('home.results', {
-            url: '/results',
+            url: '/results/:stype',
             templateUrl: "app/partials/inner/results.html",
             controller: 'resultsController'
         }).state('home.address', {

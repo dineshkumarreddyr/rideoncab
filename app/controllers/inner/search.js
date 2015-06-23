@@ -19,7 +19,7 @@
         $scope.book = function () {
             try {
                 if (isSearchFormValid()) {
-                    $state.go('home.results', { stype: 'MINI' });
+                    $state.go('home.results', { stype: 'MINI', from: $scope.fromaddress, to: $scope.toaddress });
                 }
             }
             catch (e) {

@@ -6,6 +6,11 @@
             //Default array
             $scope.cabresults = [];
 
+
+            $scope.fromaddress = $stateParams.from;
+            $scope.toaddress = $stateParams.to;
+            $scope.estdistance = '';
+            $scope.esttime = '';
             //Search results page
             var getResults = function () {
                 var data = {};
@@ -16,6 +21,24 @@
                             $scope.cabresults = res.results;
                         }).error(function (res, status, headers, conf) {
                             $log.error(res);
+                        });
+
+                        var distanceService = new google.maps.DistanceMatrixService();
+                        distanceService.getDistanceMatrix({
+                            origins: [$stateParams.from],
+                            destinations: [$stateParams.to],
+                            travelMode: google.maps.TravelMode.DRIVING,
+                            unitSystem: google.maps.UnitSystem.METRIC,
+                            durationInTraffic: true,
+                            avoidHighways: false,
+                            avoidTolls: false
+                        },
+                        function (response, status) {
+                            if (status !== google.maps.DistanceMatrixStatus.OK) {
+                            } else {
+                                $scope.estdistance = response.rows[0].elements[0].distance.text;
+                                $scope.esttime = response.rows[0].elements[0].duration.text;
+                            }
                         });
                     }
                 }

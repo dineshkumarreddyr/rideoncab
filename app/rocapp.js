@@ -21,10 +21,29 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
         }).state('home.address', {
             url: '/address',
             templateUrl: "app/partials/inner/address.html"
-        });
+        }).state('vendorhome',{
+            url:'/vendor',
+            templateUrl:'app/partials/vendorcommon.html'
+        }).state('vendorhome.signin',{
+            url:'/signin',
+            templateUrl:'app/partials/vendor/signin.html',
+            controller:'vendorhomeController'
+        }).state('vendorhome.signup',{
+            url:'/signup',
+            templateUrl:'app/partials/vendor/signup.html',
+            controller:'vendorhomeController'
+        })
 
         $urlRouterProvider.otherwise("/home/search");
         $locationProvider.html5Mode(true).hashPrefix('!');
+    }]);
+
+rocapp.run(['$rootScope','$location', '$state', '$timeout',
+    function($rootScope, $location, $state, $timeout){
+
+        $rootScope.$on('$stateChangeSuccess', function () {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+        });
     }]);
 
 //Directives

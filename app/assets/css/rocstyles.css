@@ -222,7 +222,7 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
 
                   .vendor{padding-top:30px;padding-bottom:30px;min-height:500px;
                     background:url(../images/vendor.jpg);background-size:cover}
-                    .vendor-main{padding:150px 0}
+                    .vendor-main{padding:60px 0}
                     .vendor-main h2{color:#fff;text-transform:uppercase;font-size:28px;}
                     .vendor-main-wrap{width:500px;margin:20px auto;}
                     .form-main{background:#fff;padding:12px}
@@ -248,10 +248,10 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
 
    @font-face {
     font-family: 'Conv_Track';
-    src: url('http://www.cosmicweb.co/Track.eot');
-    src: local('☺'), url('http://www.cosmicweb.co/Track.woff') format('woff'),
-    url('http://www.cosmicweb.co/Track.ttf') format('truetype'),
-    url('http://www.cosmicweb.co/Track.svg') format('svg');
+    src: url('http://www.cosmicweb.co/rocbeta/Track.eot');
+    src: local('☺'), url('http://www.cosmicweb.co/rocbeta/Track.woff') format('woff'),
+    url('http://www.cosmicweb.co/rocbeta/Track.ttf') format('truetype'),
+    url('http://www.cosmicweb.co/rocbeta/Track.svg') format('svg');
     font-weight: normal;
     font-style: normal;
   }

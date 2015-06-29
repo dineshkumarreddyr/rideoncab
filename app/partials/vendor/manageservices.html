@@ -42,6 +42,42 @@
 											<input autocomplete='off' class='form-control' size='20' type='text'>
 										</div>
 									</div>
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label class="control-label">Experience</label>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label class="control-label">No. of cabs in fleet</label>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label class="control-label">Founder Name</label>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label class="control-label">Founder email address</label>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label class="control-label">Service Location</label>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label class="control-label">Vendor phone number</label>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
+										</div>
+									</div>
 									<div class='form-row'>
 										<div class='col-md-3 form-group'>
 											<button class="bookbtn">Update &amp; Save</button>
@@ -126,53 +162,69 @@
 									<form>
 										<div class="col-md-3">
 											<select class="minimal">
-												<option value="">Cab Model</option>
-												<option value="">Indica</option>
-												<option value="">Swift</option>
-												<option value="">XUV</option>
-												<option value="">Innova</option>
-											</select></div>
-											<div class="col-md-3">
-												<select class="minimal">
-													<option value="">Cab Type</option>
-													<option value="">Economic Class</option>
-													<option value="">Premium Class</option>
-												</select>
-											</div>
-											<div class="col-md-3">
-												<select class="minimal">
-													<option value="">Service Type</option>
-													<option value="">Point to Point</option>
-													<option value="">Out Station</option>
-													<option value="">Hourly Packages</option>
-													<option value="">Cab Here</option>
-												</select>
-											</div>
-											<div class="col-md-2">
-												<input type="text" value="" class="form-control" placeholder="Enter Price"/>
-											</div>
-											<div class="col-md-1">
-												
-											</div>
-										</form>				
-									</div>
+												<option value="">Cab Type</option>
+												<option value="">Economic Class</option>
+												<option value="">Premium Class</option>
+											</select>
+										</div>
+										<div class="col-md-3">
+											<input type="text" class="form-control" placeholder="Cab Model (Eg. Indica)" />
+										</div>
+										<div class="col-md-3">
+											<select class="minimal">
+												<option value="">Service Type</option>
+												<option value="">Point to Point</option>
+												<option value="">Out Station</option>
+												<option value="">Hourly Packages</option>
+												<option value="">Cab Here</option>
+											</select>
+										</div>
+										<div class="col-md-2">
+										<input type="text" value="" class="form-control" placeholder="Price /km"/>
+										</div>
+										<div class="col-md-1">
+
+										</div>
+									</form>				
 								</div>
 							</div>
-							<div class="loadmore"></div>
 						</div>
+						<div class="loadmore"></div>
 					</div>
 				</div>
-				
-				<div class="col-md-3">
-					<nav class="nav-sidebar">
-						<ul class="nav tabs">
-							<li class="active"><a href="#tab1" data-toggle="tab">Manage Account</a></li>
-							<li class=""><a href="#tab2" data-toggle="tab">Manage Bookings</a></li>
-							<li class=""><a href="#tab3" data-toggle="tab">Manage Services</a></li> 
-							<li class=""><a href="#tab4" data-toggle="tab">Change Password</a></li>				  
-						</ul>
-					</nav>
-				</div>
-			</div> 
-		</div>
+			</div>
+
+			<div class="col-md-3">
+				<nav class="nav-sidebar">
+					<ul class="nav tabs">
+						<li class="active"><a href="#tab1" data-toggle="tab">Manage Account</a></li>
+						<li class=""><a href="#tab2" data-toggle="tab">Manage Bookings</a></li>
+						<li class=""><a href="#tab3" data-toggle="tab">Manage Services</a></li> 
+						<li class=""><a href="#tab4" data-toggle="tab">Change Password</a></li>				  
+					</ul>
+				</nav>
+			</div>
+		</div> 
 	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+    var max_fields      = 1000; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+    	e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div><form><div class="col-md-3"><select class="minimal"><option value="">Cab type</option><option value="">Economic Class</option><option value="">Premium Class</option></select></div><div class="col-md-3"><input type="text" class="form-control" placeholder="Cab Model (Eg. Indica)" /></div><div class="col-md-3"><select class="minimal"><option value="">Service Type</option><option value="">Point to Point</option><option value="">Out Station</option><option value="">Hourly Packages</option><option value="">Cab Here</option></select></div><div class="col-md-2"><input type="text" value="" class="form-control" placeholder="Price /km"/></div></form><a href="#" class="remove_field"><img src="app/assets/images/delete.png"></a></div>');
+        }
+    });
+
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+    	e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
+</script>

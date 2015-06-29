@@ -52,7 +52,7 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 
 					$http.post($roconfig.apiUrl+'vendor/login',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
-							i(res!=undefined){
+							if(res!=undefined){
 								$roconfig.vendordetail = res;
 								$state.go('vendorhome.manageaccount');
 							}

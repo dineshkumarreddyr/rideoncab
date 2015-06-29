@@ -1,7 +1,8 @@
 ﻿(function () {
-    "use strict";
+	"use strict";
 
-    angular.module('roc.config', []).value('$roconfig', {
-        apiUrl: 'http://crestdzines.com/RideonCab/'
-    });
+	angular.module('roc.config', []).value('$roconfig', {
+		apiUrl: 'http://crestdzines.com/RideonCab/',
+		vendordetail:{}
+	});
 })();

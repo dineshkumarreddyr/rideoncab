@@ -3,10 +3,11 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 		(function(){
 			"use strict";
 
-			$scope.vendordetails=  {};
 			var fngetVendorDetail = function(){
 				if($roconfig.vendordetail!=undefined){
-					$scope.vendordetails = $roconfig.vendordetail;
+					$scope.vname = $roconfig.vendordetail.name;
+					$scope.vemailaddress = $roconfig.vendordetail.email;
+					$scope.vnumber = $roconfig.vendordetail.number1;
 				}
 			}
 			fngetVendorDetail();

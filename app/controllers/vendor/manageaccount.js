@@ -27,7 +27,6 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					$scope.vfname = $roconfig.vendordetail.fname;
 					$scope.vfemail = $roconfig.vendordetail.femail;
 
-
 					$http.get($roconfig.apiUrl+'cabservices').success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
 							$scope.cabservices = res;

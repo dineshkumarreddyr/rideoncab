@@ -53,13 +53,13 @@
                 $state.go('home.address');
             }
 
-            $scope.selectCab = function () {
+            $scope.selectCab = function (e) {
                 $(".terms-wrap").hide();
                 $('.unselected').removeClass('selected');
                 $('.list-each').removeClass('selectedcab');
-                $('.list-each').find('.unselected').addClass('selected');
-                $('.list-each').find(".terms-wrap").slideToggle();
-                $('.list-each').addClass('selectedcab');
+                $(e.currentTarget).find('.unselected').addClass('selected');
+                $(e.currentTarget).find(".terms-wrap").slideToggle();
+                $(e.currentTarget).addClass('selectedcab');
             }
 
         })();

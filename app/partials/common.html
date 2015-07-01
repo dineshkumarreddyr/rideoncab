@@ -1,6 +1,6 @@
 <!--Header and footer here which should be share common across the app-->
   <!-- Signin -->
-<div class="modal fade signin-pop" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade signin-pop" rocmodal-actions id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,7 +30,7 @@
                 <div class="clearfix"></div>
                 <div class="clearfix pop-foot">
                     <div class="col-md-6 text-left">Don't have an Account!</div>
-                    <div class="col-md-6 text-right"><a href="#">Sign Up </a>Here</div>
+                    <div class="col-md-6 text-right"><a href="#" data-toggle='modal' data-target='#myModal1' data-dismiss='modal'>Sign Up </a>Here</div>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 <div class="clearfix"></div>
                 <div class="clearfix pop-foot">
                     <div class="col-md-6 text-left">Already have an Account!</div>
-                    <div class="col-md-6 text-right"><a href="#">Sign In </a>Here</div>
+                    <div class="col-md-6 text-right"><a href="#" data-toggle='modal' data-target='#myModal' data-dismiss='modal'>Sign In </a>Here</div>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="menuactive"><a href="#">Home</a></li>
+                                <li class="menuactive"><a ui-sref='home.search'>Home</a></li>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Services</a></li>
                                 <li><a href="#">Contact</a></li>

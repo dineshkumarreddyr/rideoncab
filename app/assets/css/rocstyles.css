@@ -286,3 +286,6 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
         height: 20px;
       }
     }
+
+    .dropdown-menu{background: #000}
+    .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{background: none}

@@ -135,5 +135,11 @@
                 return true;
             return false;
         }
+
+        // Sign Out
+        $scope.signoutuser = function(){
+            $managecookies.remove();
+            $scope.userlogeedin = false;
+        }
     })();
 }]);

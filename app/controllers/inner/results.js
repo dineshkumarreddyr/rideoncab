@@ -16,7 +16,7 @@
                 var data = {};
                 try {
                     if ($stateParams.stype != undefined && $stateParams.stype != null) {
-                        data.cabtype = $stateParams.stype;
+                        data.servicetype = $stateParams.stype;
                         $http.post($roconfig.apiUrl + 'search', data).success(function (res, status, headers, conf) {
                             $scope.cabresults = res.results;
                         }).error(function (res, status, headers, conf) {
@@ -53,13 +53,13 @@
                 $state.go('home.address');
             }
 
-            $scope.selectCab = function () {
+            $scope.selectCab = function (e) {
                 $(".terms-wrap").hide();
                 $('.unselected').removeClass('selected');
                 $('.list-each').removeClass('selectedcab');
-                $('.list-each').find('.unselected').addClass('selected');
-                $('.list-each').find(".terms-wrap").slideToggle();
-                $('.list-each').addClass('selectedcab');
+                $(e.currentTarget).find('.unselected').addClass('selected');
+                $(e.currentTarget).find(".terms-wrap").slideToggle();
+                $(e.currentTarget).addClass('selectedcab');
             }
 
         })();

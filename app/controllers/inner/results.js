@@ -16,7 +16,7 @@
                 var data = {};
                 try {
                     if ($stateParams.stype != undefined && $stateParams.stype != null) {
-                        data.cabtype = $stateParams.stype;
+                        data.servicetype = $stateParams.stype;
                         $http.post($roconfig.apiUrl + 'search', data).success(function (res, status, headers, conf) {
                             $scope.cabresults = res.results;
                         }).error(function (res, status, headers, conf) {

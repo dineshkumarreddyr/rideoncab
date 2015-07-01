@@ -23,64 +23,64 @@
 									<div class='form-row'>
 										<div class='col-md-6 form-group'>
 											<label class='control-label'>Mobile Number</label>
-											<input class='form-control' type='text'>
+											<input class='form-control' type='text' ng-model="vcnumber">
 										</div>
 										<div class='col-md-6 form-group'>
 											<label class='control-label'>Alternate Contact Number</label>
-											<input class='form-control' type='text'>
+											<input class='form-control' type='text' ng-model="vcnumber2">
 										</div>
 									</div>
 									<div class='form-row'>
 										<div class='col-md-12 form-group'>
 											<label class='control-label'>Email Address</label>
-											<input autocomplete='off' class='form-control' size='20' type='text' ng-model="vemailaddress">
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model="vemailaddress" />
 										</div>
 									</div>
 									<div class='form-row'>
 										<div class='col-md-12 form-group'>
 											<label class='control-label'>Address</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model="vaddress" />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Experience</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vexp' />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">No. of cabs in fleet</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vcabs' />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Founder Name</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vfname'>
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Founder email address</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vfemail' />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Service Location</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vlocation' />
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Vendor phone number</label>
-											<input autocomplete='off' class='form-control' size='20' ng-model="vnumber" type='text'>
+											<input autocomplete='off' class='form-control' size='20' type='text'>
 										</div>
 									</div>
 									<div class='form-row'>
 										<div class='col-md-3 form-group'>
-											<button class="bookbtn">Update &amp; Save</button>
+											<button class="bookbtn" ng-click="updatevendor()">Update &amp; Save</button>
 										</div>
 									</div>
 								</div>
@@ -158,35 +158,40 @@
 								<div class="col-md-2"><button class="add_field_button">Add Service</button></div>
 							</div> 
 							<div class="row">
-								<div class="input_fields_wrap">
-									<form>
-										<div class="col-md-3">
-											<select class="minimal">
-												<option value="">Cab Type</option>
-												<option value="">Economic Class</option>
-												<option value="">Premium Class</option>
-											</select>
-										</div>
-										<div class="col-md-3">
-											<input type="text" class="form-control" placeholder="Cab Model (Eg. Indica)" />
-										</div>
-										<div class="col-md-3">
-											<select class="minimal">
-												<option value="">Service Type</option>
-												<option value="">Point to Point</option>
-												<option value="">Out Station</option>
-												<option value="">Hourly Packages</option>
-												<option value="">Cab Here</option>
-											</select>
-										</div>
-										<div class="col-md-2">
-										<input type="text" value="" class="form-control" placeholder="Price /km"/>
-										</div>
-										<div class="col-md-1">
-
-										</div>
-									</form>				
-								</div>
+								<table datatble='ng' class="table table-responsive">
+									<thead>
+										<tr>
+											<th>Cab Type</th>
+											<th>Cab Model</th>
+											<th>Cab Service</th>
+											<th>Price /km</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tfoot>
+										<tr>
+											<td>
+												<select class="minimal" ng-model="vcabtypes" ng-options='item.mid as item.type for item in cabtypes'>
+													<option value="">Cab Type</option>
+												</select>
+											</td>
+											<td>
+												<input type="text" class="form-control" ng-model="vcabmodel" placeholder="Cab Model (Eg. Indica)" />
+											</td>
+											<td>
+												<select class="minimal" ng-model='vendorcabservices' ng-options='item.sid as item.service for item in cabservices'>
+													<option value="">Service Type</option>
+												</select>
+											</td>
+											<td>
+												<input type="text" value="" class="form-control" ng-model='vcabprice' placeholder="Price /km"/>
+											</td>
+											<td>
+												<button class="btn btn-default" ng-click='savecabprice()'>Add</button> 
+											</td>
+										</tr>
+									</tfoot>
+								</table>
 							</div>
 						</div>
 						<div class="loadmore"></div>
@@ -219,7 +224,7 @@
     	e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div><form><div class="col-md-3"><select class="minimal"><option value="">Cab type</option><option value="">Economic Class</option><option value="">Premium Class</option></select></div><div class="col-md-3"><input type="text" class="form-control" placeholder="Cab Model (Eg. Indica)" /></div><div class="col-md-3"><select class="minimal"><option value="">Service Type</option><option value="">Point to Point</option><option value="">Out Station</option><option value="">Hourly Packages</option><option value="">Cab Here</option></select></div><div class="col-md-2"><input type="text" value="" class="form-control" placeholder="Price /km"/></div></form><a href="#" class="remove_field"><img src="app/assets/images/delete.png"></a></div>');
+            $(wrapper).append('<div><form><div class="col-md-3"><select class="minimal"><option value="">Cab type</option><option value="">Economic Class</option><option value="">Premium Class</option></select></div><div class="col-md-3"><input type="text" class="form-control" placeholder="Cab Model (Eg. Indica)" /></div><div class="col-md-3"><select class="minimal" ng-model=\'vendorcabservices\' ng-options=\'item.sid as item.service for item in cabservices\'><option value="">Service Type</option></select></div><div class="col-md-2"><input type="text" value="" class="form-control" placeholder="Price /km"/></div></form><a href="#" class="remove_field"><img src="app/assets/images/delete.png"></a></div>');
         }
     });
 

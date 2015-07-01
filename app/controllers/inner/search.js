@@ -2,24 +2,23 @@
     (function () {
         "use strict";
 
-        $scope.cabservicetype = [{
-            id: 1,
-            type: 'Point to Point'
-        }, {
-            id: 2,
-            type: 'Outstation'
-        }, {
-            id: 3,
-            type: 'Hourly Packages'
-        }, {
-            id: 4,
-            type: 'Cab Here'
-        }]
+        $scope.cabservicetype = [];
+
+        var init = function(){
+            $http.get($roconfig.apiUrl+'cabservices').success(function(res,status,headers,conf){
+                if(status!=undefined && status===200){
+                    $scope.cabservicetype = res;
+                }
+            }).error(function(res,status,headers,conf){
+                $log.error(res);
+            });
+        }
+        init();
 
         $scope.book = function () {
             try {
                 if (isSearchFormValid()) {
-                    $state.go('home.results', { stype: 'MINI', from: $scope.fromaddress, to: $scope.toaddress });
+                    $state.go('home.results', { stype: $scope.servicetype , from: $scope.fromaddress, to: $scope.toaddress });
                 }
             }
             catch (e) {

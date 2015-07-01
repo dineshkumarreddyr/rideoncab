@@ -6,6 +6,8 @@
             //Default array
             $scope.cabresults = [];
 
+            $scope.approxTotal = '--';
+
 
             $scope.fromaddress = $stateParams.from;
             $scope.toaddress = $stateParams.to;
@@ -60,6 +62,9 @@
                 $(e.currentTarget).find('.unselected').addClass('selected');
                 $(e.currentTarget).find(".terms-wrap").slideToggle();
                 $(e.currentTarget).addClass('selectedcab');
+
+                var price = parseInt($(e.currentTarget).find('.pricing').text());
+                $scope.approxTotal = price * parseInt($scope.estdistance);
             }
 
         })();

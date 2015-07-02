@@ -13,7 +13,33 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 
 			$scope.cabprices = [];
 
-			var init = function(){
+			$scope.termscond = [];
+
+			function init(){
+				this.getTerms = function(){
+					$http.get($roconfig.apiUrl+'vendor/terms/'+$roconfig.vendordetail.vid)
+					.success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.termscond = res;
+							$scope.termsinstance = $scope.termscond;
+						}
+					})
+					.error(function(res,status,headers,conf){
+
+					});	
+				}
+				this.getCabpirces = function(){
+					$http.get($roconfig.apiUrl+'vendor/services/'+$roconfig.vendordetail.vid)
+					.success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.cabprices = res.results;
+							$scope.dtInstance = $scope.cabprices;
+						}
+					})
+					.error(function(res,status,headers,conf){
+
+					});
+				}
 				if($roconfig.vendordetail!=undefined){
 					$scope.vname = $roconfig.vendordetail.name;
 					$scope.vemailaddress = $roconfig.vendordetail.email;
@@ -43,37 +69,6 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					}).error(function(res,status,headers,conf){
 						$log.error(res);
 					});
-
-					function getCabpirces(){
-						$http.get($roconfig.apiUrl+'vendor/services/'+$roconfig.vendordetail.vid)
-						.success(function(res,status,headers,conf){
-							if(status!=undefined && status===200){
-								if(res!=undefined && res.results!=undefined){
-									_.each(res.results,function(v,i){
-										if($scope.cabservices!=undefined && $scope.cabservices.length>0){
-											var cs = _.filter($scope.cabservices,function(r){
-												return v.csid==r.sid;
-											});
-
-											v.cservice = cs[0].service;
-										}
-										if($scope.cabtypes!=undefined && $scope.cabtypes.length>0){
-											var ct = _.filter($scope.cabtypes,function(r){
-												return v.vctype==r.ctid;
-											});
-											v.vcabtype = ct[0].ctype;
-										}
-									});
-								}
-								$scope.cabprices = res.results;
-								$scope.dtInstance = $scope.cabprices;
-							}
-						})
-						.error(function(res,status,headers,conf){
-
-						});	
-					}
-					getCabpirces();
 				}
 
 				$scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
@@ -82,7 +77,8 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 				.withOption('bLengthChange',false)
 				.withOption('bInfo',false)
 			}
-			init();
+			(new init()).getCabpirces();
+			(new init()).getTerms();
 
 
 
@@ -131,8 +127,12 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 
 					$http.post($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
-							init();
+							(new init()).getCabpirces();
 							alert('price inserted successfully');
+							$scope.vcabtypes = null;
+							$scope.vcabmodel = null;
+							$scope.vcabprice = null;
+							$scope.vendorcabservices = null;
 						}
 					}).error(function(res,status,headers,conf){
 						//$log.error(res);
@@ -154,7 +154,9 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 
 					$http.post($roconfig.apiUrl+'vendor/terms',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
+							(new init()).getTerms();
 							alert('Terms and conditions added successfully');
+							$scope.vterms = null;
 						}
 					}).error(function(res,status,headers,conf){
 						$log.error(res);
@@ -204,6 +206,19 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					if($scope.cabprices!=undefined){
 						$scope.vcabprice = $scope.cabprices[index].cpkm;
 						$scope.vcabmodel = $scope.cabprices[index].vcmid;
+					}
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			// Update terms and conditions
+			$scope.updateterms = function(index){
+				var data = {};
+				try{
+					if($scope.termscond!=undefined){
+						$scope.vterms = $scope.termscond[index].terms;
 					}
 				}
 				catch(e){

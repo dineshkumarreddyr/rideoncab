@@ -56,6 +56,7 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 					$http.post($roconfig.apiUrl+'vendor/login',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
 							if(res!=undefined){
+								debugger;
 								$cookies.put('vendordetail',res);
 								$managecookies.bindvendor();
 								$managecookies.remove();

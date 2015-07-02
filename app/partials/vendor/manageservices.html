@@ -75,7 +75,7 @@
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Vendor phone number</label>
-											<input autocomplete='off' class='form-control' size='20' type='text'>
+											<input autocomplete='off' class='form-control' ng-model='vofficenumber' size='20' type='text'>
 										</div>
 									</div>
 									<div class='form-row'>
@@ -155,43 +155,54 @@
 						<div class="tab-pane" id="tab3">
 							<div class="row">
 								<div class="col-md-10"><h2>Manage Services</h2></div>
-								<div class="col-md-2"><button class="add_field_button">Add Service</button></div>
+								<!-- <div class="col-md-2"><button class="add_field_button">Add Service</button></div> -->
 							</div> 
 							<div class="row">
-								<table datatble='ng' class="table table-responsive">
-									<thead>
-										<tr>
-											<th>Cab Type</th>
-											<th>Cab Model</th>
-											<th>Cab Service</th>
-											<th>Price /km</th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<td>
-												<select class="minimal" ng-model="vcabtypes" ng-options='item.mid as item.type for item in cabtypes'>
-													<option value="">Cab Type</option>
-												</select>
-											</td>
-											<td>
-												<input type="text" class="form-control" ng-model="vcabmodel" placeholder="Cab Model (Eg. Indica)" />
-											</td>
-											<td>
-												<select class="minimal" ng-model='vendorcabservices' ng-options='item.sid as item.service for item in cabservices'>
-													<option value="">Service Type</option>
-												</select>
-											</td>
-											<td>
-												<input type="text" value="" class="form-control" ng-model='vcabprice' placeholder="Price /km"/>
-											</td>
-											<td>
-												<button class="btn btn-default" ng-click='savecabprice()'>Add</button> 
-											</td>
-										</tr>
-									</tfoot>
-								</table>
+								<div class="col-md-12 col-xs-12">
+									<table datatble='ng' dt-options='dtOptions' dt-instance="dtInstance" class="table table-responsive">
+										<thead>
+											<tr>
+												<th>Cab Type</th>
+												<th>Cab Model</th>
+												<th>Cab Service</th>
+												<th>Price /km</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr scope='row' ng-repeat="item in cabprices">
+												<td>{{item.vcabtype}}</td>
+												<td>{{item.vcmid}}</td>
+												<td>{{item.cservice}}</td>
+												<td>{{item.cpkm}}</td>
+												<td>&nbsp;</td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<td>
+													<select class="minimal" ng-model="vcabtypes" ng-options='item.ctid as item.ctype for item in cabtypes'>
+														<option value="">Cab Type</option>
+													</select>
+												</td>
+												<td>
+													<input type="text" class="form-control" ng-model="vcabmodel" placeholder="Cab Model (Eg. Indica)" />
+												</td>
+												<td>
+													<select class="minimal" ng-model='vendorcabservices' ng-options='item.sid as item.service for item in cabservices'>
+														<option value="">Service Type</option>
+													</select>
+												</td>
+												<td>
+													<input type="text" value="" class="form-control" ng-model='vcabprice' placeholder="Price /km"/>
+												</td>
+												<td>
+													<button class="btn btn-default" ng-click='savecabprice()'>Add</button> 
+												</td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
 							</div>
 						</div>
 						<div class="loadmore"></div>

@@ -1,7 +1,10 @@
-rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$state',
-	function($scope,$http,$log,$roconfig,$state){
+rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$state','$cookieStore','managecookies',
+	function($scope,$http,$log,$roconfig,$state,$cookies,$managecookies){
 		(function(){
 			"use strict";
+
+			$scope.$parent.vendorloggedin = $roconfig.vendordetail.hasOwnProperty('vid') ? true : false;
+			$scope.$parent.vendorfullname = $roconfig.vendordetail.name;
 
 			$scope.signup = function(){
 				var data = {};
@@ -53,8 +56,12 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 					$http.post($roconfig.apiUrl+'vendor/login',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
 							if(res!=undefined){
-								$roconfig.vendordetail = res;
+								$cookies.put('vendordetail',res);
+								$managecookies.bindvendor();
+								$managecookies.remove();
 								$state.go('vendorhome.manageaccount');
+								$scope.vendorloggedin = true;
+								$scope.vendorfullname = $roconfig.vendordetail.name;
 							}
 						}
 					}).error(function(res,status,headers,conf){
@@ -70,6 +77,12 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 				catch(e){
 					$log.error(e.message);
 				}
+			}
+
+			// Signout User
+			$scope.vsignoutuser = function(){
+				$managecookies.removevendor();
+				$state.go('vendorhome.signin');
 			}
 
 		})();

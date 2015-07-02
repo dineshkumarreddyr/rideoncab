@@ -1,5 +1,5 @@
 <!--Header and footer here which should be share common across the app-->
-  <!-- Signin -->
+<!-- Signin -->
 <div class="modal fade signin-pop" rocmodal-actions id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -108,8 +108,8 @@
 <div class="container-fluid top-main">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
-            <div class="col-md-6 menu-main">
+            <div class="col-md-5 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
+            <div class="col-md-7 menu-main">
                 <nav class="navbar">
                     <div class="container-fluid">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -131,7 +131,12 @@
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
                                 <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
-                                <li><a href="#" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a></li>
+                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Manage Account</a></li>
+                                        <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
@@ -142,7 +147,7 @@
 </div>
 <!--Sub routing dont remove this line -->
 <div ui-view></div>
-  <!--footer-->
+<!--footer-->
 <div class="gotop"><img src="app/assets/images/gotop.png"></div>
 <div class="container-fluid footer-wrap">
     <div class="container footer-wrap-main">

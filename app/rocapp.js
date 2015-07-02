@@ -23,7 +23,8 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             templateUrl: "app/partials/inner/address.html"
         }).state('vendorhome',{
             url:'/vendor',
-            templateUrl:'app/partials/vendorcommon.html'
+            templateUrl:'app/partials/vendorcommon.html',
+            controller:'vendorhomeController'
         }).state('vendorhome.signin',{
             url:'/signin',
             templateUrl:'app/partials/vendor/signin.html',
@@ -51,6 +52,7 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies',
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
             $managecookies.bind();
+            $managecookies.bindvendor();
         });
     }]);
 
@@ -91,7 +93,7 @@ rocapp.directive('rocmodalActions', function () {
 });
 
 //Factory
-rocapp.factory('managecookies',['$cookieStore','$roconfig',function($cookie,$roconfig){
+rocapp.factory('managecookies',['$cookieStore','$roconfig','$state',function($cookie,$roconfig,$state){
     return{
         bind:function(){
             if($cookie.get('email')!=undefined && $cookie.get('email')!=null){
@@ -107,6 +109,15 @@ rocapp.factory('managecookies',['$cookieStore','$roconfig',function($cookie,$roc
             $cookie.remove('fullname');
             $cookie.remove('email');
             $cookie.remove('userid');
+        },
+        bindvendor:function(){
+            if($cookie.get('vendordetail')!=undefined && $cookie.get('vendordetail')!=null){
+                $roconfig.vendordetail = $cookie.get('vendordetail');
+            }
+        },
+        removevendor:function(){
+            $roconfig.vendordetail = {};
+            $cookie.remove('vendordetail');
         }
     }
 }]);

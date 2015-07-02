@@ -145,5 +145,70 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					$log.error(e.message);
 				}
 			}
+
+			$scope.addterms = function(){
+				var data = {};
+				try{
+					data.vid = $roconfig.vendordetail.vid;
+					data.content = $scope.vterms;
+
+					$http.post($roconfig.apiUrl+'vendor/terms',data).success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							alert('Terms and conditions added successfully');
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			$scope.changepassword = function(){
+				try{
+					if(isPasswordSame()){
+						$http.put($roconfig.apiUrl+'vendor/changepassword/'+$roconfig.vendordetail.vid,{
+							opassword:$scope.voldpassword,
+							password:$scope.vnewpassword
+						})
+						.success(function(res,status,headers,conf){
+							if(status!=undefined && status===200){
+								alert('password updated successfully');
+							}
+						})
+						.error(function(res,status,headers,conf){
+							if(status!=undefined && status===401)
+								alert('Old password not matching. Please check and enter again');
+							$log.error(res);
+						});
+					}
+					else
+						alert('Password and confirm password are not same');
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			var isPasswordSame = function(){
+				if($scope.vnewpassword===$scope.vcnewpassword)
+					return true;
+				return false;
+			}
+
+			// Update prices
+			$scope.updateprices = function(index){
+				var data = {};
+				try{
+					if($scope.cabprices!=undefined){
+						$scope.vcabprice = $scope.cabprices[index].cpkm;
+						$scope.vcabmodel = $scope.cabprices[index].vcmid;
+					}
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
 		})();
 	}]);

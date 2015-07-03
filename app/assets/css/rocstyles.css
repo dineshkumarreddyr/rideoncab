@@ -70,7 +70,7 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
                 padding: 6px 0;line-height: 1.428571429;font-weight:900;border:none;
                 border-radius:50%;background:#e38e00;color:#000;font-size:55px;}
                 .btn-circle:hover{background:#e38e00;color:#fff;border:none}
-
+                
                 .testimonials{padding-top:50px;padding-bottom:30px}
                 .testimonials-main{margin-top:30px;padding-bottom:40px}
                 #quote-carousel { padding: 0 10px 30px 10px;margin-top: 30px;}
@@ -130,7 +130,7 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
  *******************/
  .innerbg{background:url(../images/homebg.jpg);background-size:cover;height:245px;padding-top:120px}
  .innerbg h1{color:#fff;font-size:28px;margin-bottom:63px}
- .details-wrap{padding-top:115px;padding-bottom:50px}
+ .details-wrap{padding-top:30px;padding-bottom:50px}
  .details-wrap h2{color:#000;font-size:22px;}
  .details-left{padding-right:50px}
  .details-left p{color:#000;font-size:16px}
@@ -222,7 +222,7 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
 
                   .vendor{padding-top:30px;padding-bottom:30px;min-height:500px;
                     background:url(../images/vendor.jpg);background-size:cover}
-                    .vendor-main{padding:60px 0}
+                    .vendor-main{padding:150px 0}
                     .vendor-main h2{color:#fff;text-transform:uppercase;font-size:28px;}
                     .vendor-main-wrap{width:500px;margin:20px auto;}
                     .form-main{background:#fff;padding:12px}
@@ -237,10 +237,39 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
                         line-height:33px;font-size:16px;border-top:1px solid #ddd;padding-top:5px;}
                         #field {margin-bottom:20px}
 
-                        .vendormain-wrap{min-height:500px;padding-top:115px;padding-bottom:60px;}
+                        .vendormain-wrap{min-height:500px;padding-top:95px;padding-bottom:60px;}
                         .add_field_button{margin-top:20px}
                         .vendormain-wrap .minimal{border:1px solid #ddd;width:100%}
 
+/************************
+          ADMIN
+          ************************/
+
+          .tabbable-panel {border:none;}
+          .tabbable-line > .nav-tabs {border: none;margin: 0px;}
+          .tabbable-line > .nav-tabs > li {margin-right: 2px;}
+          .tabbable-line > .nav-tabs > li > a {border: 0;margin-right: 0;color: #737373;}
+          .tabbable-line > .nav-tabs > li > a > i {color: #a6a6a6;}
+          .tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+            border-bottom: 4px solid #000;}
+            .tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+              border: 0;background: none !important;color: #333333;}
+              .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+                color: #a6a6a6;}
+                .tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+                  margin-top: 0px;}
+                  .tabbable-line > .nav-tabs > li.active {border-bottom: 4px solid #000;position: relative;}
+                  .tabbable-line > .nav-tabs > li.active > a {border: 0;color: #333333;}
+                  .tabbable-line > .nav-tabs > li.active > a > i {color: #404040;}
+                  .tabbable-line > .tab-content {margin-top: -3px;background-color: #fff;
+                    border: 0;border-top: 1px solid #eee;padding: 15px 0}
+                    .portlet .tabbable-line > .tab-content {padding-bottom: 0;}
+
+                    .adminmain-wrap{margin:20px auto;}
+                    .adminmain-wrap th{background:#333;color:#fff}
+                    .adminmain-wrap ul{margin:0;padding:0}
+                    .adminmain-wrap ul li{list-style-type:none;}
+                    .adminmain-wrap select{border:1px solid #ddd;width:100%}
 
 /************************
    FONTS
@@ -248,10 +277,10 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
 
    @font-face {
     font-family: 'Conv_Track';
-    src: url('http://www.cosmicweb.co/rocbeta/Track.eot');
-    src: local('☺'), url('http://www.cosmicweb.co/rocbeta/Track.woff') format('woff'),
-    url('http://www.cosmicweb.co/rocbeta/Track.ttf') format('truetype'),
-    url('http://www.cosmicweb.co/rocbeta/Track.svg') format('svg');
+    src: url('http://www.cosmicweb.co/rocbeta/fonts/Track.eot');
+    src: local('☺'), url('http://www.cosmicweb.co/rocbeta/fonts/Track.woff') format('woff'),
+    url('http://www.cosmicweb.co/rocbeta/fonts/Track.ttf') format('truetype'),
+    url('http://www.cosmicweb.co/rocbeta/fonts/Track.svg') format('svg');
     font-weight: normal;
     font-style: normal;
   }

@@ -160,7 +160,7 @@
 																<td>{{item.cabservice}}</td>
 																<td>{{item.cpkm}}</td>
 																<td>
-																	<button class="btn btn-default" ng-click="updateprices($index)">Edit</button>
+																	<button class="btn btn-default" disabled="disabled" ng-click="updateprices($index)">Edit</button>
 																</td>
 															</tr>
 														</tbody>
@@ -200,7 +200,7 @@
 															<tr ng-repeat="item in termscond">
 																<td>{{item.terms}}</td>
 																<td>
-																	<button type="button" class="btn btn-default" ng-click="updateterms($index)">Edit</button>
+																	<button type="button" disabled="disabled" class="btn btn-default" ng-click="updateterms($index)">Edit</button>
 																</td>
 															</tr>
 														</tbody>

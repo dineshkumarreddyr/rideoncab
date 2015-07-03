@@ -37,6 +37,14 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             url:'/manageaccount',
             templateUrl:'app/partials/vendor/manageservices.html',
             controller:'vendoraccountController'
+        }).state('adminhome',{
+            url:'/admin',
+            templateUrl:'app/partials/admincommon.html',
+            controller:'adminController'
+        }).state('adminhome.manage',{
+            url:'/manageaccounts',
+            templateUrl:'app/partials/admin/adminoperations.html',
+            controller:'adminController'
         })
 
         $urlRouterProvider.otherwise("/home/search");

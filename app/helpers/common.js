@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    "use strict";
+	"use strict";
 
-    $('#datetimepicker').datetimepicker()
+	$('#datetimepicker').datetimepicker();
+
 });

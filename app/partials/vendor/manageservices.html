@@ -159,7 +159,7 @@
 							</div> 
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
-									<table datatble='ng' dt-options='dtOptions' dt-instance="dtInstance" class="table table-responsive">
+									<table datatable='ng' dt-options='dtOptions' dt-instance="dtInstance" class="table table-responsive">
 										<thead>
 											<tr>
 												<th>Cab Type</th>
@@ -171,9 +171,9 @@
 										</thead>
 										<tbody>
 											<tr scope='row' ng-repeat="item in cabprices">
-												<td>{{item.vcabtype}}</td>
+												<td>{{item.cabtype}}</td>
 												<td>{{item.vcmid}}</td>
-												<td>{{item.cservice}}</td>
+												<td>{{item.cabservice}}</td>
 												<td>{{item.cpkm}}</td>
 												<td>
 													<button class="btn btn-default" ng-click="updateprices($index)">Edit</button>
@@ -240,17 +240,19 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12 col-xs-6">
-									<table datatble='ng' dt-options='dtOptions' class="table table-responsive">
+									<table datatable='ng' dt-options='dtOptions' dt-instance="termsinstance" class="table table-responsive">
 										<thead>
 											<tr>
-												<th scope="col">Terms and Conditions</th>
-												<th scope="col">Action</th>
+												<th>Terms and Conditions</th>
+												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>&nbsp;</td>
-												<td>&nbsp;</td>
+											<tr ng-repeat="item in termscond">
+												<td>{{item.terms}}</td>
+												<td>
+													<button type="button" class="btn btn-default" ng-click="updateterms($index)">Edit</button>
+												</td>
 											</tr>
 										</tbody>
 										<tfoot>

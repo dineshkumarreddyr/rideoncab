@@ -21,7 +21,9 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 						"logo": ""
 					};
 					$http.post($roconfig.apiUrl+'vendor/signup',data).success(function(res,status,headers,conf){
-						debugger;
+						if(status!=undefined && status===200){
+							alert('Account created Successfully');
+						}
 					}).error(function(res,status,headers,conf){
 						if(status!=undefined){
 							switch(status){

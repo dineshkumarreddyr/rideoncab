@@ -6,6 +6,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 
 			$scope.$parent.vendorloggedin = $roconfig.vendordetail.hasOwnProperty('vid') ? true : false;
 			$scope.$parent.vendorfullname = $roconfig.vendordetail.name;
+			$scope.isedit = false;
 
 			$scope.cabservices = [];
 
@@ -14,6 +15,10 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 			$scope.cabprices = [];
 
 			$scope.termscond = [];
+
+			$scope.cabbooking = [];
+
+			$scope.cabmodel = [];
 
 			function init(){
 				this.getTerms = function(){
@@ -25,7 +30,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						}
 					})
 					.error(function(res,status,headers,conf){
-
+						$log.error(res);
 					});	
 				}
 				this.getCabpirces = function(){
@@ -37,9 +42,33 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						}
 					})
 					.error(function(res,status,headers,conf){
-
+						$log.error(res);
 					});
 				}
+				this.getcabbooking = function(){
+					$http.get($roconfig.apiUrl+'vendor/bookings/'+$roconfig.vendordetail.vid)
+					.success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							debugger;
+							$scope.cabbooking = res;
+							$scope.dtbookingInstace = $scope.cabbooking;
+						}
+					})
+					.error(function(res,status,headers,conf){
+						$log.error(res);
+					})
+				}
+				this.getcabmodel = function(){
+					$http.get($roconfig.apiUrl+'cabmodels').success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.cabmodel = res.results;
+						}
+
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				}
+
 				if($roconfig.vendordetail!=undefined){
 					$scope.vname = $roconfig.vendordetail.name;
 					$scope.vemailaddress = $roconfig.vendordetail.email;
@@ -79,6 +108,8 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 			}
 			(new init()).getCabpirces();
 			(new init()).getTerms();
+			(new init()).getcabbooking();
+			(new init()).getcabmodel();
 
 
 
@@ -129,10 +160,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						if(status!=undefined && status===200){
 							(new init()).getCabpirces();
 							alert('price inserted successfully');
-							$scope.vcabtypes = null;
-							$scope.vcabmodel = null;
-							$scope.vcabprice = null;
-							$scope.vendorcabservices = null;
+							$scope.clearprices();
 						}
 					}).error(function(res,status,headers,conf){
 						//$log.error(res);
@@ -199,14 +227,53 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 				return false;
 			}
 
-			// Update prices
+			// Edit prices
 			$scope.updateprices = function(index){
-				var data = {};
 				try{
 					if($scope.cabprices!=undefined){
 						$scope.vcabprice = $scope.cabprices[index].cpkm;
 						$scope.vcabmodel = $scope.cabprices[index].vcmid;
+						$roconfig.vendordetail.vendorpriceid = $scope.cabprices[index].vcid;
+						$scope.vcabtypes = $scope.cabprices[index].vctype;
+						$scope.vendorcabservices = $scope.cabprices[index].csid;
+						$scope.isedit = true;
 					}
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			$scope.clearprices = function(){
+				$scope.vcabprice = null;
+				$scope.vcabmodel = null;
+				$roconfig.vendordetail.vendorpriceid = null;
+				$scope.vcabtypes = '';
+				$scope.vendorcabservices = '';
+			}
+
+			// Update Prices
+			$scope.updatecabprice = function(){
+				var data = {};
+				try{
+					data.vid = $roconfig.vendordetail.vid;
+					data.prices = [{
+						ctype:$scope.vcabtypes,
+						vcmid:$scope.vcabmodel,
+						cpkm:$scope.vcabprice,
+						csid:$scope.vendorcabservices,
+						vcid:$roconfig.vendordetail.vendorpriceid	
+					}];
+
+					$http.put($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							(new init()).getCabpirces();
+							alert('price updated successfully');
+							$scope.clearprices();
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
 				}
 				catch(e){
 					$log.error(e.message);
@@ -220,6 +287,27 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					if($scope.termscond!=undefined){
 						$scope.vterms = $scope.termscond[index].terms;
 					}
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			// Delete cab prices
+			$scope.deletecabprice = function(index){
+				try{
+					var vendorpriceid = $scope.cabprices[index].vcid;
+
+					$http.delete($roconfig.apiUrl+'vendor/prices/'+$roconfig.vendordetail.vid+'/'+vendorpriceid)
+					.success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							(new init()).getCabpirces();
+							alert('Cab price deleted succesfully');
+						}
+					})
+					.error(function(res,status,headers,conf){
+						$log.error(res);
+					});
 				}
 				catch(e){
 					$log.error(e.message);

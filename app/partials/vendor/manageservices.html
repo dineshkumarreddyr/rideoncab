@@ -176,116 +176,129 @@
 												<td>{{item.cabservice}}</td>
 												<td>{{item.cpkm}}</td>
 												<td>
-													<button class="btn btn-default" ng-click="updateprices($index)" disabled="disabled">Edit</button>
-												</td>
-											</tr>
-										</tbody>
-										<tfoot>
-											<tr>
-												<td>
-													<select class="minimal" ng-model="vcabtypes" ng-options='item.ctid as item.ctype for item in cabtypes'>
-														<option value="">Cab Type</option>
-													</select>
-												</td>
-												<td>
-													<input type="text" class="form-control" ng-model="vcabmodel" placeholder="Cab Model (Eg. Indica)" />
-												</td>
-												<td>
-													<select class="minimal" ng-model='vendorcabservices' ng-options='item.sid as item.service for item in cabservices'>
-														<option value="">Service Type</option>
-													</select>
-												</td>
-												<td>
-													<input type="text" value="" class="form-control" ng-model='vcabprice' placeholder="Price /km"/>
-												</td>
-												<td>
-													<button class="btn btn-default" ng-click='savecabprice()'>Add</button> 
-												</td>
-											</tr>
-										</tfoot>
-									</table>
+													<div class="col-md-6">
+														<button class="btn btn-default" ng-click="updateprices($index)">Edit</button></div><div class="col-md-6">
+														<button class="btn btn-default" ng-click="deletecabprice($index)">Delete</button></div>
+													</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td>
+														<select class="minimal" ng-model="vcabtypes" ng-options='item.ctid as item.ctype for item in cabtypes'>
+															<option value="">Cab Type</option>
+														</select>
+													</td>
+													<td>
+														<input type="text" class="form-control" ng-model="vcabmodel" placeholder="Cab Model (Eg. Indica)" />
+													</td>
+													<td>
+														<select class="minimal" ng-model='vendorcabservices' ng-options='item.sid as item.service for item in cabservices'>
+															<option value="">Service Type</option>
+														</select>
+													</td>
+													<td>
+														<input type="text" value="" class="form-control" ng-model='vcabprice' placeholder="Price /km"/>
+													</td>
+													<td>
+														<button class="btn btn-default" ng-hide='isedit' ng-click='savecabprice()'>Add</button>
+														<button class="btn btn-default" ng-hide='!isedit' ng-click='updatecabprice()'>Update</button> 
+														<button class="btn btn-default" ng-click='clearprices()'>Clear</button>
+													</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="tab-pane" id="tab6">
-							<div class="row">
-								<div class="col-md-12"><h2>Change Password</h2></div>
-								<!-- <div class="col-md-2"><button class="add_field_button">Add Service</button></div> -->
-							</div> 
-							<div class="row">
-								<div class="col-md-12 col-xs-12">
-									<div class="form-group">
-										<label class="control-label">Old Password</label>
-										<input autocomplete='off' class='form-control' ng-model='voldpassword' size='20' type='password'>
-									</div>
-									<div class="form-group">
-										<label class="control-label">New Password</label>
-										<input autocomplete='off' class='form-control' ng-model='vnewpassword' size='20' type='password'>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Confirm new password</label>
-										<input autocomplete='off' class='form-control' ng-model='vcnewpassword' size='20' type='text'>
-									</div>
-									<div class='form-row'>
-										<div class='col-md-3 form-group'>
-											<button class="bookbtn" ng-click="changepassword()">Change Password</button>
+							<div class="tab-pane" id="tab6">
+								<div class="row">
+									<div class="col-md-12"><h2>Change Password</h2></div>
+									<!-- <div class="col-md-2"><button class="add_field_button">Add Service</button></div> -->
+								</div> 
+								<div class="row">
+									<div class="col-md-12 col-xs-12">
+										<div class="form-group">
+											<label class="control-label">Old Password</label>
+											<input autocomplete='off' class='form-control' ng-model='voldpassword' size='20' type='password'>
+										</div>
+										<div class="form-group">
+											<label class="control-label">New Password</label>
+											<input autocomplete='off' class='form-control' ng-model='vnewpassword' size='20' type='password'>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Confirm new password</label>
+											<input autocomplete='off' class='form-control' ng-model='vcnewpassword' size='20' type='text'>
+										</div>
+										<div class='form-row'>
+											<div class='col-md-3 form-group'>
+												<button class="bookbtn" ng-click="changepassword()">Change Password</button>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="tab-pane" id="tab5">
-							<div class="row">
-								<div class="col-md-12"><h2>Terms and Conditions</h2></div>
-							</div>
-							<div class="row">
-								<div class="col-md-12 col-xs-12">
-									<table datatable='ng' dt-options='dtOptions' dt-instance="termsinstance" class="table table-responsive">
-										<thead>
-											<tr>
-												<th>Terms and Conditions</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr ng-repeat="item in termscond">
-												<td>{{item.terms}}</td>
-												<td>
-													<button type="button" class="btn btn-default" disabled="disabled" ng-click="updateterms($index)">Edit</button>
-												</td>
-											</tr>
-										</tbody>
-										<tfoot>
-											<tr>
-												<td>
-													<input type="text" class="form-control" ng-model="vterms" placeholder='Terms and Conditions' />
-												</td>
-												<td>
-													<button type="button" class="btn btn-default" ng-click='addterms()'>Add</button>
-												</td>
-											</tr>
-										</tfoot>
-									</table>
+							<div class="tab-pane" id="tab5">
+								<div class="row">
+									<div class="col-md-12"><h2>Terms and Conditions</h2></div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-xs-12">
+										<table datatable='ng' dt-options='dtOptions' dt-instance="termsinstance" class="table table-responsive">
+											<thead>
+												<tr>
+													<th>Cab Model</th>
+													<th>Terms and Conditions</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="item in termscond">
+													<td>
+														{{item.cabmodel}}
+													</td>
+													<td>{{item.terms}}</td>
+													<td>
+														<button type="button" class="btn btn-default" disabled="disabled" ng-click="updateterms($index)">Edit</button>
+													</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td>
+														<select class="minimal" ng-model="termsselectedmodel" ng-options="item.cabmodel for item in cabmodel">
+															<option value="">Cab Model</option>
+														</select>
+													</td>
+													<td>
+														<input type="text" class="form-control" ng-model="vterms" placeholder='Terms and Conditions' />
+													</td>
+													<td>
+														<button type="button" class="btn btn-default" ng-click='addterms()'>Add</button>
+													</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
 								</div>
 							</div>
+
+							<div class="loadmore"></div>
 						</div>
-						
-						<div class="loadmore"></div>
 					</div>
 				</div>
-			</div>
 
-			<div class="col-md-3">
-				<nav class="nav-sidebar">
-					<ul class="nav tabs">
-						<li class="active"><a href="#tab1" data-toggle="tab">Manage Account</a></li>
-						<li class=""><a href="#tab2" data-toggle="tab">Manage Bookings</a></li>
-						<li class=""><a href="#tab3" data-toggle="tab">Manage Services</a></li>
-						<li class=""><a href="#tab5" data-toggle="tab">Terms and conditions </a></li>
-						<li class=""><a href="#tab6" data-toggle="tab">Change Password</a></li>				  
-					</ul>
-				</nav>
-			</div>
-		</div> 
+				<div class="col-md-3">
+					<nav class="nav-sidebar">
+						<ul class="nav tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">Manage Account</a></li>
+							<li class=""><a href="#tab2" data-toggle="tab">Manage Bookings</a></li>
+							<li class=""><a href="#tab3" data-toggle="tab">Manage Services</a></li>
+							<li class=""><a href="#tab5" data-toggle="tab">Terms and conditions </a></li>
+							<li class=""><a href="#tab6" data-toggle="tab">Change Password</a></li>				  
+						</ul>
+					</nav>
+				</div>
+			</div> 
+		</div>
 	</div>
-</div>

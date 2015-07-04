@@ -318,3 +318,58 @@ h1 span{color:#e38e00;font-family: 'Conv_Track';}
 
     .dropdown-menu{background: #000}
     .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{background: none}
+	
+/***********************************************
+        MEDIA QUERIES
+**********************************************/	
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 767px) {
+
+.signin-pop .modal-header .close{margin-top:20px;margin-right:20px}
+.listing-wrap{padding-top:0;}
+.innerbg{padding-top: 168px;height: 304px;}
+.listing-left{padding:0 30px;}
+.filter-bar select,.sort-bar select{height:35px}
+.list-each{margin-left:-15px !important;margin-right:-15px !important;}
+.selection{width:50px;}
+.cab-details{width:250px;}
+.terms-wrap{background:none;border-top:none;}
+.location{width:100%;}
+.reviews{padding-left:15px;width:50%;}
+.pricing{width:50%;padding-right:15px;}
+.dotted{background:none}
+.bookcab{margin-top:15px}
+.menu-main ul li{margin:0}
+.menu-main ul li a{width:50%;height:30px;}
+.menuactive a{border-bottom:none;}
+.details-left{padding-right:15px;}
+.vendor-main-wrap{width:100%}
+.myaccount-left{padding-top:50px;}
+.myaccount-left h2{margin-bottom:15px;}
+.dataTables_wrapper .dataTables_paginate{margin-bottom:20px}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter{text-align:left}
+.homebg{height:750px;}
+.navbar-toggle{background:url(../images/menu-icon.png);background-size:100% auto;position: relative;
+margin-top:0px;margin-right: 15px;margin-bottom: 8px;background-color:none;border: none;
+border-radius:0px;height: 23px;width:35px;}
+.home-filters h1{font-size:30px;margin-top:0;}
+h1{font-size:30px;padding-left:15px;}
+
+}
+	
+	
+@media only screen and (min-width: 768px){
+
+.list-each{margin-left:-15px;margin-right:-15px;}
+.selection{width:60px !important}
+.pricing{width:128px !important;}
+.reviews{width:100px !important;}
+.location{width: 235px !important;margin-right: 15px;}
+
+
+}
+	
+	
+	
+	

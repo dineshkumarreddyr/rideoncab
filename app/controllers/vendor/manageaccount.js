@@ -49,7 +49,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					$http.get($roconfig.apiUrl+'vendor/bookings/'+$roconfig.vendordetail.vid)
 					.success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){
-							$scope.cabbooking = res;
+							$scope.cabbooking = res.results;
 							$scope.dtbookingInstace = $scope.cabbooking;
 						}
 					})
@@ -152,7 +152,8 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						ctype:$scope.vcabtypes,
 						vcmid:$scope.vcabmodel,
 						cpkm:$scope.vcabprice,
-						csid:$scope.vendorcabservices	
+						csid:$scope.vendorcabservices,
+						cunitsph:$scope.vhours	
 					}];
 
 					$http.post($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
@@ -236,6 +237,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						$roconfig.vendordetail.vendorpriceid = $scope.cabprices[index].vcid;
 						$scope.vcabtypes = $scope.cabprices[index].vctype;
 						$scope.vendorcabservices = $scope.cabprices[index].csid;
+						$scope.vhours = $scope.cabprices[index].cunitsph;
 						$scope.isedit = true;
 					}
 				}
@@ -262,7 +264,8 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						vcmid:$scope.vcabmodel,
 						cpkm:$scope.vcabprice,
 						csid:$scope.vendorcabservices,
-						vcid:$roconfig.vendordetail.vendorpriceid	
+						vcid:$roconfig.vendordetail.vendorpriceid,
+						cunitsph:$scope.vhours	
 					}];
 
 					$http.put($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
@@ -336,7 +339,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 
 			// Edit terms 
 			$scope.editterms = function(index){
-				$scope.termsselectedmodel.cabmodel = $scope.termscond[index].cabmodel;
+				$scope.termsselectedmodel = $scope.termscond[index].cabmodel;
 				$scope.vterms = $scope.termscond[index].terms;
 				$scope.vtid = $scope.termscond[index].vtid;
 				$scope.istermsupdate = true;
@@ -354,12 +357,23 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 			$scope.updateterms = function(){
 				var data = {};
 				try{
+					data.vid = $roconfig.vendordetail.vid;
+					data.termid = $scope.vtid;
+					data.cabmodel = $scope.termsselectedmodel;
+					data.content = $scope.vterms;
 
+					$http.put($roconfig.apiUrl+'vendor/terms',data)
+					.success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							(new init()).getTerms();
+							alert('Data updated successfully');
+							$scope.clearterms();
+						}
+					})
 				}
 				catch(e){
 					$log.error(e.message);
 				}
 			}
-
 		})();
 	}]);

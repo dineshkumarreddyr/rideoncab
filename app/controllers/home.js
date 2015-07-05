@@ -1,13 +1,13 @@
-﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies',
- function ($scope, $http, $log, $roconfig,$cookie,$managecookies) {
+﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state',
+ function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state) {
     (function () {
         "use strict";
-
+        
         //Default display none for messages
         $scope.hideSuccess = true;
         $scope.hideError = true;
-        $scope.userlogeedin = $roconfig.userdetail.hasOwnProperty('userid');
-        $scope.fullname = $roconfig.userdetail.hasOwnProperty('fullname') ? $roconfig.userdetail.fullname:'';
+        $scope.userlogeedin = $roconfig.userdetail.hasOwnProperty('uid');
+        $scope.fullname = $roconfig.userdetail.hasOwnProperty('fname') ? $roconfig.userdetail.fname:'';
 
 
         //Sign in
@@ -24,6 +24,7 @@
                         if (status != undefined && status === 200) {
                             $scope.fullname = res.fname;
                             $scope.userlogeedin = true;
+                            $cookie.put('userdetail',res);
                             $cookie.put('fullname',res.fname);
                             $cookie.put('email',res.email);
                             $cookie.put('userid',res.uid);
@@ -139,7 +140,13 @@
         // Sign Out
         $scope.signoutuser = function(){
             $managecookies.remove();
+            $managecookies.removevendor();
+            $managecookies.removebooking();
             $scope.userlogeedin = false;
+            if($state.current.name!=='home.search')
+                $state.go('home.search');
+            else
+                $state.go($state.current, {}, {reload: true});
         }
     })();
 }]);

@@ -1,5 +1,5 @@
-﻿rocapp.controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig',
-    function ($scope, $http, $state, $log, $stateParams, $roconfig) {
+﻿rocapp.controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore',
+    function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie) {
         (function () {
             "use strict";
 
@@ -51,7 +51,19 @@
             getResults();
 
 
-            $scope.bookcab = function () {
+            $scope.continueaddress = function (index) {
+                $roconfig.bookingdetail.cabtype = $scope.cabresults[index].cabtype;
+                $roconfig.bookingdetail.cabmodel = $scope.cabresults[index].cabmodel;
+                $roconfig.bookingdetail.chargeperkm = $scope.cabresults[index].chargeperkm;
+                $roconfig.bookingdetail.vendorid = $scope.cabresults[index].vendorid;
+                $roconfig.bookingdetail.vendorname = $scope.cabresults[index].vendorname;
+                $roconfig.bookingdetail.vendoraddress = $scope.cabresults[index].vendoraddress;
+                $roconfig.bookingdetail.estdistance = $scope.estdistance;
+                $roconfig.bookingdetail.esttime = $scope.esttime;
+                $roconfig.bookingdetail.approxTotal = $scope.approxTotal;
+                $cookie.put('bookingdetail',$roconfig.bookingdetail);
+                debugger;
+                
                 $state.go('home.address');
             }
 

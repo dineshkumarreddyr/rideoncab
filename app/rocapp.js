@@ -20,7 +20,12 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             controller: 'resultsController'
         }).state('home.address', {
             url: '/address',
-            templateUrl: "app/partials/inner/address.html"
+            templateUrl: "app/partials/inner/address.html",
+            controller:'registerController'
+        }).state('home.confirm',{
+            url:'/confirm',
+            templateUrl:'app/partials/inner/confirm.html',
+            controller:'confirmController'
         }).state('vendorhome',{
             url:'/vendor',
             templateUrl:'app/partials/vendorcommon.html',
@@ -51,8 +56,8 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
         $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 
-rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies',
-    function($rootScope, $location, $state, $timeout,$managecookies){
+rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roconfig','$timeout',
+    function($rootScope, $location, $state, $timeout,$managecookies,$roconfig,$timeout){
 
         $rootScope.$on('$stateChangeSuccess', function () {
             document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -61,6 +66,23 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies',
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
             $managecookies.bind();
             $managecookies.bindvendor();
+            $managecookies.bindbooking();
+            if((toState.name==='home.address' || toState.name==='home.results' || 
+                toState.name==='home.address' || toState.name==='home.confirm')){
+                $managecookies.removevendor();
+                if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
+                    $timeout(function(){
+                        $state.go('home.search');
+                    });
+            }
+            else if(toState.name!=='vendorhome.signup' && toState.name!=='vendorhome.signin' && toState.name!=='home.search'){
+                $managecookies.removebooking();
+                if(!$roconfig.vendordetail.hasOwnProperty('vid')){
+                    $timeout(function(){
+                        $state.go('vendorhome.signin');
+                    });
+                }
+            }
         });
     }]);
 
@@ -104,19 +126,13 @@ rocapp.directive('rocmodalActions', function () {
 rocapp.factory('managecookies',['$cookieStore','$roconfig','$state',function($cookie,$roconfig,$state){
     return{
         bind:function(){
-            if($cookie.get('email')!=undefined && $cookie.get('email')!=null){
-                $roconfig.userdetail.fullname = $cookie.get('fullname');
-                $roconfig.userdetail.email = $cookie.get('email');
-                $roconfig.userdetail.userid = $cookie.get('userid');
+            if($cookie.get('userdetail')!=undefined && $cookie.get('userdetail')!=null){
+                $roconfig.userdetail = $cookie.get('userdetail');
             }
         },
         remove:function(){
-            $roconfig.userdetail.fullname = null;
-            $roconfig.userdetail.email = null;
-            $roconfig.userdetail.userid = null;
-            $cookie.remove('fullname');
-            $cookie.remove('email');
-            $cookie.remove('userid');
+            $roconfig.userdetail = {};
+            $cookie.remove('userdetail');
         },
         bindvendor:function(){
             if($cookie.get('vendordetail')!=undefined && $cookie.get('vendordetail')!=null){
@@ -126,6 +142,14 @@ rocapp.factory('managecookies',['$cookieStore','$roconfig','$state',function($co
         removevendor:function(){
             $roconfig.vendordetail = {};
             $cookie.remove('vendordetail');
+        },
+        bindbooking:function(){
+            if($cookie.get('bookingdetail')!=undefined && $cookie.get('bookingdetail')!=null)
+                $roconfig.bookingdetail = $cookie.get('bookingdetail');
+        },
+        removebooking:function(){
+            $roconfig.bookingdetail = {};
+            $cookie.remove('bookingdetail');
         }
     }
 }]);

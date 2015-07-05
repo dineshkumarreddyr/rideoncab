@@ -88,69 +88,26 @@
 						</div>
 						<div class="tab-pane" id="tab2">
 							<h2>Manage Bookings</h2>
-							<div class="clearfix rowhead">
-								<div class="col-md-2">Booking ID</div>
-								<div class="col-md-2">Type of Service</div>
-								<div class="col-md-2">Date &amp; Time</div>
-								<div class="col-md-3">Pickup Location</div>
-								<div class="col-md-3">Dropoff Location</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
-							<div class="clearfix mybookings">
-								<div class="col-md-2">ROC1234</div>
-								<div class="col-md-2">Economic AC</div>
-								<div class="col-md-2">12-05-2015<div>2:05 AM</div></div>
-								<div class="col-md-3">Hi-tech City,Image Gardens</div>
-								<div class="col-md-3">Dilsukhnagar,Chandana Bros</div>
-							</div>
+							<table class="table table-responsive" datatable='ng' dt-options='dtOptions'>
+								<thead>
+									<tr>
+										<th>Booking ID</th>
+										<th>Type of Service</th>
+										<th>Date &amp; time</th>
+										<th>Pickup Location</th>
+										<th>Drop Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cabbooking">
+										<td>{{item.transid}}</td>
+										<td>{{item.servicetype}}</td>
+										<td>{{item.bdatetime}}</td>
+										<td>{{item.bfl}}</td>
+										<td>{{item.btl}}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 						<div class="tab-pane" id="tab3">
 							<div class="row">
@@ -165,7 +122,8 @@
 												<th>Cab Type</th>
 												<th>Cab Model</th>
 												<th>Cab Service</th>
-												<th>Price /km</th>
+												<th>Price</th>
+												<th>Hrs (for Hourly Package)</th>
 												<th>Actions</th>
 											</tr>
 										</thead>
@@ -175,6 +133,9 @@
 												<td>{{item.vcmid}}</td>
 												<td>{{item.cabservice}}</td>
 												<td>{{item.cpkm}}</td>
+												<td>
+													<label ng-if="item.cunitsph!='0'">{{item.cunitsph}}</label>
+												</td>
 												<td>
 													<div class="col-md-6">
 														<button class="btn btn-default" ng-click="updateprices($index)">Edit</button></div><div class="col-md-6">
@@ -201,9 +162,12 @@
 														<input type="text" value="" class="form-control" ng-model='vcabprice' placeholder="Price /km"/>
 													</td>
 													<td>
-														<button class="btn btn-default" ng-hide='isedit' ng-click='savecabprice()'>Add</button>
-														<button class="btn btn-default" ng-hide='!isedit' ng-click='updatecabprice()'>Update</button> 
-														<button class="btn btn-default" ng-click='clearprices()'>Clear</button>
+														<input type="text" class="form-control" ng-model='vhours' placeholder="Hours" />
+													</td>
+													<td>
+														<button class="btn btn-default col-md-6" ng-hide='isedit' ng-click='savecabprice()'>Add</button>
+														<button class="btn btn-default col-md-6" ng-hide='!isedit' ng-click='updatecabprice()'>Update</button> 
+														<button class="btn btn-default col-md-6" ng-click='clearprices()'>Clear</button>
 													</td>
 												</tr>
 											</tfoot>
@@ -259,52 +223,52 @@
 													</td>
 													<td>{{item.terms}}</td>
 													<td>
-													<div class="col-md-6">
-														<button type="button" class="btn btn-default" ng-click="editterms($index)">Edit</button></div>
 														<div class="col-md-6">
-															<button class="btn btn-default" ng-click="deleteterms($index)">Delete</button>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td>
-														<select class="minimal" ng-model="termsselectedmodel" ng-options="item.cabmodel for item in cabmodel">
-															<option value="">Cab Model</option>
-														</select>
-													</td>
-													<td>
-														<input type="text" class="form-control" ng-model="vterms" placeholder='Terms and Conditions' />
-													</td>
-													<td>
-														<button type="button" class="btn btn-default" ng-hide="istermsupdate" ng-click='addterms()'>Add</button>
-														<button class="btn btn-default" ng-hide='!istermsupdate' ng-click='updateterms()'>Update</button>
-														<button class="btn btn-default" ng-click='clearterms()'>Clear</button>
-													</td>
-												</tr>
-											</tfoot>
-										</table>
+															<button type="button" class="btn btn-default" ng-click="editterms($index)">Edit</button></div>
+															<div class="col-md-6">
+																<button class="btn btn-default" ng-click="deleteterms($index)">Delete</button>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td>
+															<select class="minimal" ng-model="termsselectedmodel" ng-options="item.cabmodel as item.cabmodel for item in cabmodel">
+																<option value="">Cab Model</option>
+															</select>
+														</td>
+														<td>
+															<input type="text" class="form-control" ng-model="vterms" placeholder='Terms and Conditions' />
+														</td>
+														<td>
+															<button type="button" class="btn btn-default" ng-hide="istermsupdate" ng-click='addterms()'>Add</button>
+															<button class="btn btn-default" ng-hide='!istermsupdate' ng-click='updateterms()'>Update</button>
+															<button class="btn btn-default" ng-click='clearterms()'>Clear</button>
+														</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<div class="loadmore"></div>
+								<div class="loadmore"></div>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<nav class="nav-sidebar">
-						<ul class="nav tabs">
-							<li class="active"><a href="#tab1" data-toggle="tab">Manage Account</a></li>
-							<li class=""><a href="#tab2" data-toggle="tab">Manage Bookings</a></li>
-							<li class=""><a href="#tab3" data-toggle="tab">Manage Services</a></li>
-							<li class=""><a href="#tab5" data-toggle="tab">Terms and conditions </a></li>
-							<li class=""><a href="#tab6" data-toggle="tab">Change Password</a></li>				  
-						</ul>
-					</nav>
-				</div>
-			</div> 
+					<div class="col-md-3">
+						<nav class="nav-sidebar">
+							<ul class="nav tabs">
+								<li class="active"><a href="#tab1" data-toggle="tab">Manage Account</a></li>
+								<li class=""><a href="#tab2" data-toggle="tab">Manage Bookings</a></li>
+								<li class=""><a href="#tab3" data-toggle="tab">Manage Services</a></li>
+								<li class=""><a href="#tab5" data-toggle="tab">Terms and conditions </a></li>
+								<li class=""><a href="#tab6" data-toggle="tab">Change Password</a></li>				  
+							</ul>
+						</nav>
+					</div>
+				</div> 
+			</div>
 		</div>
-	</div>

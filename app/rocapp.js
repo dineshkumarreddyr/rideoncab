@@ -75,7 +75,8 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
                         $state.go('home.search');
                     });
             }
-            else if(toState.name!=='vendorhome.signup' && toState.name!=='vendorhome.signin' && toState.name!=='home.search'){
+            else if(toState.name!=='vendorhome.signup' && toState.name!=='vendorhome.signin' && toState.name!=='home.search' && 
+                toState.name!=='adminhome.manage'){
                 $managecookies.removebooking();
                 if(!$roconfig.vendordetail.hasOwnProperty('vid')){
                     $timeout(function(){

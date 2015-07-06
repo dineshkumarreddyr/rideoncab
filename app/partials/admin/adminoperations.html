@@ -150,6 +150,7 @@
 																<th>Cab Model</th>
 																<th>Cab Service</th>
 																<th>Price /km</th>
+																<th>Hrs (for Hourly Package)</th>
 																<th>Actions</th>
 															</tr>
 														</thead>
@@ -160,7 +161,11 @@
 																<td>{{item.cabservice}}</td>
 																<td>{{item.cpkm}}</td>
 																<td>
-																	<button class="btn btn-default" disabled="disabled" ng-click="updateprices($index)">Edit</button>
+																	<label ng-if="item.cunitsph!='0'">{{item.cunitsph}}</label>
+																</td>
+																<td>
+																	<button class="btn btn-default col-md-6" ng-click="updateprices($index)">Edit</button>
+																	<button class="btn btn-default col-md-6" ng-click="deletecabprice($index)">Delete</button>
 																</td>
 															</tr>
 														</tbody>
@@ -183,7 +188,12 @@
 																	<input type="text" value="" class="form-control" ng-model='evcabprice' placeholder="Price /km"/>
 																</td>
 																<td>
-																	<button class="btn btn-default" ng-click='savecabprice()'>Add</button> 
+																	<input type="text" class="form-control" ng-model='vhours' placeholder="Hours" />
+																</td>
+																<td>
+																	<button class="btn btn-default col-md-6" ng-hide='isedit' ng-click='savecabprice()'>Add</button>
+																	<button class="btn btn-default col-md-6" ng-hide='!isedit' ng-click='updatecabprice()'>Update</button>  
+																	<button class="btn btn-default col-md-6" ng-click='clearprices()'>Clear</button>
 																</td>
 															</tr>
 														</tfoot>
@@ -192,25 +202,37 @@
 													<table datatable='ng' dt-options='dtOptions' dt-instace='dttermsinstace' class="table table-responsive">
 														<thead>
 															<tr>
+																<th>Cab Model</th>
 																<th>Terms and Conditions</th>
 																<th>Action</th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr ng-repeat="item in termscond">
+																<td>{{item.cabmodel}}</td>
 																<td>{{item.terms}}</td>
 																<td>
-																	<button type="button" disabled="disabled" class="btn btn-default" ng-click="updateterms($index)">Edit</button>
+																	<button type="button" class="btn btn-default col-md-6" ng-click="editterms($index)">Edit</button>
+																	<div class="col-md-6">
+																		<button class="btn btn-default" ng-click="deleteterms($index)">Delete</button>
+																	</div>
 																</td>
 															</tr>
 														</tbody>
 														<tfoot>
 															<tr>
 																<td>
+																	<select class="minimal" ng-model="termsselectedmodel" ng-options="item.cabmodel as item.cabmodel for item in cabmodel">
+																		<option value="">Cab Model</option>
+																	</select>
+																</td>
+																<td>
 																	<input type="text" class="form-control" ng-model="evterms" placeholder='Terms and Conditions' />
 																</td>
 																<td>
-																	<button type="button" class="btn btn-default" ng-click='addterms()'>Add</button>
+																	<button type="button" class="btn btn-default" ng-hide="istermsupdate" ng-click='addterms()'>Add</button>
+																	<button class="btn btn-default" ng-hide='!istermsupdate' ng-click='updateterms()'>Update</button>
+																	<button class="btn btn-default" ng-click='clearterms()'>Clear</button>
 																</td>
 															</tr>
 														</tfoot>

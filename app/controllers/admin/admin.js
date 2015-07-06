@@ -8,6 +8,9 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 		$scope.cabservices = [];
 		$scope.cabtypes = [];
 		$scope.termscond = [];
+		$scope.isedit = false;
+		$scope.cabmodel = [];
+		$scope.vtid = null;
 
 		function init(){
 			this.getvendor = function(){
@@ -52,6 +55,7 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 			try{
 				data.vid = $scope.selectedvendor;
 				data.content = $scope.evterms;
+				data.cabmodel = $scope.termsselectedmodel;
 
 				$http.post($roconfig.apiUrl+'vendor/terms',data).success(function(res,status,headers,conf){
 					if(status!=undefined && status===200){
@@ -82,71 +86,179 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 			});	
 		}
 
-		// Update terms and conditions
-		$scope.updateterms = function(index){
-			var data = {};
-			try{
-				if($scope.termscond!=undefined){
-					$scope.evterms = $scope.termscond[index].terms;
+		$scope.editterms = function(index){
+			$scope.termsselectedmodel = $scope.termscond[index].cabmodel;
+			$scope.evterms = $scope.termscond[index].terms;
+			$scope.vtid = $scope.termscond[index].vtid;
+			$scope.istermsupdate = true;
+		}
+
+			// Clear terms
+			$scope.clearterms = function(){
+				$scope.termsselectedmodel.cabmodel = '';
+				$scope.evterms = null;
+				$scope.vtid = '';
+				$scope.istermsupdate = false;
+			}
+
+			$scope.updateterms = function(){
+				var data = {};
+				try{
+					data.vid = $scope.selectedvendor;
+					data.termid = $scope.vtid;
+					data.cabmodel = $scope.termsselectedmodel;
+					data.content = $scope.evterms;
+
+					$http.put($roconfig.apiUrl+'vendor/terms',data)
+					.success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							getTerms();
+							alert('Data updated successfully');
+							$scope.clearterms();
+						}
+					})
+				}
+				catch(e){
+					$log.error(e.message);
 				}
 			}
-			catch(e){
-				$log.error(e.message);
+
+			$scope.deleteterms = function(index){
+				var termid = $scope.termscond[index].vtid;
+				var vendorid = $scope.selectedvendor;
+				try{
+					$http.delete($roconfig.apiUrl+'vendor/terms/'+vendorid+'/'+termid).success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							getTerms();
+							alert('Data delete successfully');
+						}
+					})
+					.error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				}
+				catch(e){
+					$log.error(e.message);
+				}
 			}
-		}
-		/* ---------------------- End of terms and conditions -----------------------------*/
 
-		/* -------------------------- Start of Price section -------------------------------*/
-
-		$scope.savecabprice = function(){
-			var data = {};
-			try{
-				data.vid = $scope.selectedvendor;
-				data.prices = [{
-					ctype:$scope.evcabtypes,
-					vcmid:$scope.evcabmodel,
-					cpkm:$scope.evcabprice,
-					csid:$scope.evendorcabservices	
-				}];
-
-				$http.post($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
+			var getcabmodel = function(){
+				$http.get($roconfig.apiUrl+'cabmodels').success(function(res,status,headers,conf){
 					if(status!=undefined && status===200){
-						getCabpirces();
-						alert('price inserted successfully');
-						$scope.evcabtypes = null;
-						$scope.evcabmodel = null;
-						$scope.evcabprice = null;
-						$scope.evendorcabservices = null;
+						$scope.cabmodel = res.result;
 					}
+
 				}).error(function(res,status,headers,conf){
-						//$log.error(res);
-						init();
-						//alert('price inserted successfully');
+					$log.error(res);
+				});
+			}
+			getcabmodel();
+
+			/* ---------------------- End of terms and conditions -----------------------------*/
+
+			/* -------------------------- Start of Price section -------------------------------*/
+
+			$scope.clearprices = function(){
+				$scope.evcabprice = null;
+				$scope.evcabmodel = null;
+				$roconfig.vendordetail.vendorpriceid = null;
+				$scope.evcabtypes = '';
+				$scope.evendorcabservices = '';
+				$scope.isedit = false;
+			}
+			$scope.updatecabprice = function(){
+				var data = {};
+				try{
+					data.vid = $scope.selectedvendor;
+					data.prices = [{
+						ctype:$scope.evcabtypes,
+						vcmid:$scope.evcabmodel,
+						cpkm:$scope.evcabprice,
+						csid:$scope.evendorcabservices,
+						vcid:$roconfig.vendordetail.vendorpriceid,
+						cunitsph:$scope.vhours	
+					}];
+
+					$http.put($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							getCabpirces();
+							alert('price updated successfully');
+							$scope.clearprices();
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			$scope.updateprices = function(index){
+				try{
+					if($scope.cabprices!=undefined){
+						$scope.evcabprice = $scope.cabprices[index].cpkm;
+						$scope.evcabmodel = $scope.cabprices[index].vcmid;
+						$roconfig.vendordetail.vendorpriceid = $scope.cabprices[index].vcid;
+						$scope.evcabtypes = $scope.cabprices[index].vctype;
+						$scope.evendorcabservices = $scope.cabprices[index].csid;
+						$scope.vhours = $scope.cabprices[index].cunitsph;
+						$scope.isedit = true;
+					}
+				}
+				catch(e){
+					$log.error(e.message);
+				}
+			}
+
+			$scope.savecabprice = function(){
+				var data = {};
+				try{
+					data.vid = $scope.selectedvendor;
+					data.prices = [{
+						ctype:$scope.evcabtypes,
+						vcmid:$scope.evcabmodel,
+						cpkm:$scope.evcabprice,
+						csid:$scope.evendorcabservices,
+						cunitsph:$scope.vhours	
+					}];
+
+					$http.post($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							getCabpirces();
+							alert('price inserted successfully');
+							$scope.evcabtypes = null;
+							$scope.evcabmodel = null;
+							$scope.evcabprice = null;
+							$scope.evendorcabservices = null;
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
 					});
 
-			}
-			catch(e){
-				$log.error(e.message);
-			}
-		}
-
-
-		var getCabpirces = function(){
-			$http.get($roconfig.apiUrl+'vendor/services/'+$scope.selectedvendor)
-			.success(function(res,status,headers,conf){
-				if(status!=undefined && status===200){
-					$scope.cabprices = res.results;
-					$scope.dtInstance = $scope.cabprices;
 				}
-			})
-			.error(function(res,status,headers,conf){
+				catch(e){
+					$log.error(e.message);
+				}
+			}
 
-			});
-		}
 
-		/* -------------------------- End of Price -----------------------------------*/
+			var getCabpirces = function(){
+				$http.get($roconfig.apiUrl+'vendor/services/'+$scope.selectedvendor)
+				.success(function(res,status,headers,conf){
+					if(status!=undefined && status===200){
+						$scope.cabprices = res.results;
+						$scope.dtInstance = $scope.cabprices;
+					}
+				})
+				.error(function(res,status,headers,conf){
 
-		/* ---------------------------- Start of Vendor details  ----------------------------*/
+				});
+			}
+
+			/* -------------------------- End of Price -----------------------------------*/
+
+			/* ---------------------------- Start of Vendor details  ----------------------------*/
 		// Bind the vendor details based on selection of vendor
 
 		$scope.bindvendordetails = function(){

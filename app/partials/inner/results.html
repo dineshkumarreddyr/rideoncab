@@ -87,7 +87,7 @@
                                 <h2>{{result.cabmodel}}</h2>
                                 <p>{{result.vendorname}}</p>
                             </div>
-                            <div class="location">{{result.slocation}}</div>
+                            <div class="location">{{result.vendoraddress}}</div>
                             <div class="reviews dotted">
                                 <p>User Reviews</p>
                                 <div id="star" class="starrr"></div>
@@ -108,7 +108,7 @@
                                     </li>
                                     <li>Final fare payable will include Service Tax.</li>
                                     <div class="clearfix bookcab">
-                                        <a ui-sref="home.address">
+                                        <a href="#" ng-click="continueaddress($index)">
                                             Book your cab
                                         </a>
                                     </div>

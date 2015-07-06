@@ -1,4 +1,5 @@
-﻿rocapp.controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig', function ($scope, $http, $state, $log, $roconfig) {
+﻿rocapp.controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig','$cookieStore','managecookies',
+   function ($scope, $http, $state, $log, $roconfig,$cookie,$managecookies) {
     (function () {
         "use strict";
 
@@ -18,6 +19,11 @@
         $scope.book = function () {
             try {
                 if (isSearchFormValid()) {
+                    $roconfig.bookingdetail.servicetype = $scope.servicetype;
+                    $roconfig.bookingdetail.fromaddress = $scope.fromaddress;
+                    $roconfig.bookingdetail.toaddress = $scope.toaddress;
+                    $roconfig.bookingdetail.bookingdatetime = $scope.pickuptime;
+                    $cookie.put('bookingdetail',$roconfig.bookingdetail);
                     $state.go('home.results', { stype: $scope.servicetype , from: $scope.fromaddress, to: $scope.toaddress });
                 }
             }

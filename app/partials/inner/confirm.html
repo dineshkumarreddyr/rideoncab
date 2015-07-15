@@ -1,3 +1,4 @@
+
 <div class="container-fluid innerbg">
     <div class="container">
         <div class="row"><h1>Anytime, Anywhere</h1></div>
@@ -5,13 +6,17 @@
     <div class="row"><div class="checks"></div></div>
 </div>
 
-<div class="container details-wrap">
+<div class="container careers-wrap">
+<div class="row">
 	<div class="col-md-12">
-		Thanks for booking a cab. Our executives contact you for further details on confirmation.
+	    <h1><span>Thank you!</span></h1>
+		<p> for booking a cab. Our executives contact you for further details on confirmation.</p>
 	</div>
 	<div class="col-md-12">
-		<label>Booking reference id :</label><h3>{{referenceid}}</h3>
+		<label>Your Booking reference id :</label>
+		<div class="refid">{{referenceid}}</div>
+		<div class="clearfix"></div>
+		<a class="bookbtn" ui-sref="home.search">Continue booking</a>
 	</div>
-
-	<a class="btnblack" ui-sref="home.search">Continue booking</a>
+	</div>
 </div>

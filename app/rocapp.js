@@ -50,6 +50,21 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             url:'/manageaccounts',
             templateUrl:'app/partials/admin/adminoperations.html',
             controller:'adminController'
+        }).state('home.about',{
+            url:'/aboutus',
+            templateUrl:'app/partials/inner/about.html'
+        }).state('home.carrers',{
+            url:'/carrers',
+            templateUrl:'app/partials/inner/careers.html'
+        }).state('home.contact',{
+            url:'/contactus',
+            templateUrl:'app/partials/inner/contact.html'
+        }).state('home.terms',{
+            url:'/termsandconditions',
+            templateUrl:'app/partials/inner/terms.html'
+        }).state('home.services',{
+            url:'/services',
+            templateUrl:'app/partials/inner/services.html'
         })
 
         $urlRouterProvider.otherwise("/home/search");
@@ -67,23 +82,23 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
             $managecookies.bind();
             $managecookies.bindvendor();
             $managecookies.bindbooking();
-            if((toState.name==='home.address' || toState.name==='home.results' || 
-                toState.name==='home.address' || toState.name==='home.confirm')){
-                $managecookies.removevendor();
-                if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
-                    $timeout(function(){
-                        $state.go('home.search');
-                    });
-            }
-            else if(toState.name!=='vendorhome.signup' && toState.name!=='vendorhome.signin' && toState.name!=='home.search' && 
-                toState.name!=='adminhome.manage'){
-                $managecookies.removebooking();
-                if(!$roconfig.vendordetail.hasOwnProperty('vid')){
-                    $timeout(function(){
-                        $state.go('vendorhome.signin');
-                    });
-                }
-            }
+            // if((toState.name==='home.address' || toState.name==='home.results' || 
+            //     toState.name==='home.address' || toState.name==='home.confirm')){
+            //     $managecookies.removevendor();
+            //     if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
+            //         $timeout(function(){
+            //             $state.go('home.search');
+            //         });
+            // }
+            // else if(toState.name!=='vendorhome.signup' && toState.name!=='vendorhome.signin' && toState.name!=='home.search' && 
+            //     toState.name!=='adminhome.manage'){
+            //     $managecookies.removebooking();
+            //     if(!$roconfig.vendordetail.hasOwnProperty('vid')){
+            //         $timeout(function(){
+            //             $state.go('vendorhome.signin');
+            //         });
+            //     }
+            // }
         });
     }]);
 

@@ -1,4 +1,4 @@
-var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies']);
+var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies','roc.constants']);
 
 rocapp.value('$anchorScroll', angular.noop);
 
@@ -100,7 +100,7 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
             //     }
             // }
         });
-    }]);
+}]);
 
 //Directives
 rocapp.directive('gmapSearch', function () {
@@ -133,6 +133,24 @@ rocapp.directive('rocmodalActions', function () {
 
             scope.toggle = function () {
                 element.modal('show');
+            };
+        }
+    }
+});
+
+// Directive for Alert Messages
+rocapp.directive('rocAlert',function(){
+    return{
+        restrict:'A',
+        link:function(scope,element,attributes){
+            scope.success = function(){
+                element.removeClass('hide').addClass('alert-success show');
+            };
+            scope.danger = function(){
+                element.removeClass('hide').addClass('alert-danger show');
+            };
+            scope.errorhide = function(){
+                element.removeClass('show').addClass('hide');
             };
         }
     }

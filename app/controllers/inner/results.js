@@ -1,10 +1,11 @@
-﻿rocapp.controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore',
-    function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie) {
+﻿rocapp.controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','$commonsvc','$filter',
+    function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$commonsvc,$filter) {
         (function () {
             "use strict";
 
             //Default array
             $scope.cabresults = [];
+            $scope.tempCabresults = [];
 
             $scope.approxTotal = '--';
 
@@ -13,6 +14,19 @@
             $scope.toaddress = $stateParams.to;
             $scope.estdistance = '';
             $scope.esttime = '';
+            $scope.allcabmodels = [];
+
+            function init(){
+                this.getCabmodel = function(){
+                    $commonsvc.getCabmodel().then(function(response){
+                        if(response.status!=undefined && response.status===200){
+                            $scope.allcabmodels = response.data.result;
+                        }
+                    });
+                }
+            }
+            (new init()).getCabmodel();
+
             //Search results page
             var getResults = function () {
                 var data = {};
@@ -21,6 +35,7 @@
                         data.servicetype = $stateParams.stype;
                         $http.post($roconfig.apiUrl + 'search', data).success(function (res, status, headers, conf) {
                             $scope.cabresults = res.results;
+                            $scope.tempCabresults = res.results;
                         }).error(function (res, status, headers, conf) {
                             $log.error(res);
                         });
@@ -77,6 +92,35 @@
 
                 var price = parseInt($(e.currentTarget).find('.pricing').text());
                 $scope.approxTotal = price * parseInt($scope.estdistance);
+            }
+
+            // Filter for cab model change
+            $scope.cabmodelChange = function(){
+                var filteredItems =  [];
+                if($scope.filterVendor!=undefined)
+                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterCabmodel,vendorname:$scope.filterVendor});
+                else
+                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterCabmodel});
+                $scope.cabresults = filteredItems;
+            }
+            // Filter for vendor name
+            $scope.vendornameChange = function(){
+                var filteredItems =  [];
+                if($scope.filterCabmodel!=undefined)
+                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterCabmodel,vendorname:$scope.filterVendor});
+                else
+                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterVendor});
+                $scope.cabresults = filteredItems;
+            }
+
+            // Reset filters
+            $scope.resetall = function(){
+                angular.copy($scope.tempCabresults,$scope.cabresults);
+            }
+
+            // Sory by price
+            $scope.sortprice = function(){
+                $scope.cabresults = $filter('orderBy')($scope.cabresults,'-chargeperkm');
             }
 
         })();

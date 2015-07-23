@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-9 listing-left">
             <div class="row">
-                <div class="col-md-8 no-pad">
+                <div class="col-md-6 no-pad">
                     <h3>Filter By</h3>
                     <div class="filter-bar">
                         <div class="row">
@@ -30,15 +30,18 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 no-pad sorting-wrap">
+                <div class="col-md-6 no-pad sorting-wrap">
                     <h3>sort by</h3>
                     <div class="sort-bar">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <a href="#" ng-click="sortratings()">Ratings <i class="glyphicon glyphicon-chevron-down"></i></a>
                             </div>
-                            <div class="col-md-6">
-                                <a href="#" ng-click="sortprice()">Price <i class="glyphicon glyphicon-chevron-down"></i></a>
+                            <div class="col-md-4">
+                                <a href="#" ng-click="sortprice()">High to low <i class="glyphicon glyphicon-chevron-down"></i></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#" ng-click="sortlowprice()">Low to high <i class="glyphicon glyphicon-chevron-up"></i></a>
                             </div>
                         </div>
                     </div>

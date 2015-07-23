@@ -25,11 +25,14 @@
                     <label>{{userverify.email}},{{userverify.mobile}}</label>
                 </div>
                 <div class="row">
-                <div class="col-md-6 col-xs-6"><button id="btn-login" ng-click='editaddress()' class="blckbtn">Edit Address</button></div>
-                <div class="col-md-6 col-xs-6 no-pad"><button type="submit" id="btn-login" ng-click="confirmbooking()" class="bookbtn">Confirm Booking</button></div>
+                    <div class="col-md-6 col-xs-6"><button id="btn-login" ng-click='editaddress()' class="blckbtn">Edit Address</button></div>
+                    <div class="col-md-6 col-xs-6 no-pad"><button type="submit" id="btn-login" ng-click="confirmbooking()" class="bookbtn">Confirm Booking</button></div>
                 </div>
             </div>
             <div class="col-md-9 col-sm-12 no-pad" ng-show="!isuserloggedin">
+                <div class="row">
+                    <div class="alert alert-roc hide" roc-alert>{{addrerrMsg}}</div>
+                </div>
                 <div class="clearfix form-group">
                     <label for="firstname">First Name</label>
                     <input type="text" name="name" id="firstname" ng-model='ufname' class="form-control" placeholder="First Name">
@@ -44,7 +47,7 @@
                 </div>
                 <div class="clearfix form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" class="form-control" ng-model='uemail' placeholder="Email Address">
+                    <input type="text" name="email" id="email" class="form-control" ng-model='uemail' placeholder="Email Address">
                 </div>
                 <div class="clearfix form-group">
                     <label for="email">Street Address</label>

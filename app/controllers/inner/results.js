@@ -23,6 +23,13 @@
                             $scope.allcabmodels = response.data.result;
                         }
                     });
+                };
+                this.getTermsConditions = function(vid){
+                    $commonsvc.getTermsandCondition(vid).then(function(response){
+                        if(response.status!=undefined && response.status===200){
+                            // @@TODO -  Terms and Conditions
+                        }
+                    });
                 }
             }
             (new init()).getCabmodel();
@@ -120,7 +127,18 @@
 
             // Sory by price
             $scope.sortprice = function(){
+                _.each($scope.cabresults,function(v,i){
+                    v.chargeperkm = parseInt(v.chargeperkm);
+                });
                 $scope.cabresults = $filter('orderBy')($scope.cabresults,'-chargeperkm');
+            }
+
+            // Sort high to low
+            $scope.sortlowprice = function(){
+                _.each($scope.cabresults,function(v,i){
+                    v.chargeperkm = parseInt(v.chargeperkm);
+                });
+                $scope.cabresults = $filter('orderBy')($scope.cabresults,'+chargeperkm');
             }
 
         })();

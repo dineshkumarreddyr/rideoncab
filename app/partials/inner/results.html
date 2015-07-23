@@ -13,37 +13,18 @@
                     <h3>Filter By</h3>
                     <div class="filter-bar">
                         <div class="row">
-                            <div class="col-md-3">
-                                <select class="minimal">
-                                    <option value="volvo">Cab Model</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
+                            <div class="col-md-4">
+                                <select class="minimal" ng-model="filterCabmodel" ng-change="cabmodelChange()" ng-options="item.cabmodel as item.cabmodel for item in tempCabresults | unique:'cabmodel'">
+                                    <option value="" disabled="">Select cab model</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <select class="minimal">
-                                    <option value="volvo">Cab Type</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
+                            <div class="col-md-4">
+                                <select class="minimal" ng-model="filterVendor" ng-change="vendornameChange()" ng-options="item.vendorname as item.vendorname for item in tempCabresults | unique:'vendorname'">
+                                    <option value="" disabled="">Select Vendor</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <select class="minimal">
-                                    <option value="volvo">Vendor</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="minimal">
-                                    <option value="volvo">No.Of People</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                            <div class="col-md-4">
+                                <a href="#" ng-click="resetall()">Reset</a>
                             </div>
                         </div>
                     </div>
@@ -54,20 +35,10 @@
                     <div class="sort-bar">
                         <div class="row">
                             <div class="col-md-6">
-                                <select class="minimal">
-                                    <option value="volvo">Ratings</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                <a href="#" ng-click="sortratings()">Ratings <i class="glyphicon glyphicon-chevron-down"></i></a>
                             </div>
                             <div class="col-md-6">
-                                <select class="minimal">
-                                    <option value="volvo">Price</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                                <a href="#" ng-click="sortprice()">Price <i class="glyphicon glyphicon-chevron-down"></i></a>
                             </div>
                         </div>
                     </div>
@@ -150,7 +121,7 @@
 
             function Starrr($el, options) {
                 var i, _, _ref,
-                  _this = this;
+                _this = this;
 
                 this.options = $.extend({}, this.defaults, options);
                 this.$el = $el;

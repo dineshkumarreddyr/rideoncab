@@ -1,5 +1,5 @@
-rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','managecookies',
-	function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$managecookies) {
+rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','managecookies','$roconstants','$commonsvc',
+	function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$managecookies,$roconstants,$commonsvc) {
 
 
 		$scope.indianstates = [{
@@ -108,6 +108,17 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 		$scope.saveuserinfo = function(){
 			var data = {};
 			try{
+				if(!registerFormValid()){
+					$scope.danger();
+					$scope.addrerrMsg = $roconstants.mandatory;
+					return;
+				};
+
+				if(!$commonsvc.validateEmail($scope.uemail)){
+					$scope.danger();
+					$scope.addrerrMsg = $roconstants.invalidemail;
+					return;
+				}
 				if($roconfig.userdetail.hasOwnProperty('uid'))
 					data.uid = $roconfig.userdetail.uid;
 				data.fname = $scope.ufname;
@@ -122,7 +133,7 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 
 				$http.post($roconfig.apiUrl+'user/register',data).success(function(res,status,headers,conf){
 					if(status!=undefined && (status===200 || status===201)){
-						alert('Data updated successfully');
+						$scope.errorhide();
 						$cookie.put('userdetail',res);
 						$managecookies.bind();
 						$state.go($state.current, {}, {reload: true});
@@ -135,6 +146,15 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 			catch(e){
 				$log.error(e.message);
 			}
+		}
+
+		// Valiate user form
+		var registerFormValid = function(){
+			if($scope.ufname!=null && $scope.ufname!=undefined && $scope.ulname!=undefined && $scope.ulname!=null && $scope.umobilenumber!=undefined && $scope.umobilenumber!=null 
+				&& $scope.uemail!=undefined && $scope.uemail!=null && $scope.uaddress1!=undefined && $scope.uaddress1!=null && $scope.uselectedstate!=undefined && $scope.uselectedstate!=null && 
+				$scope.uselectedcity!=undefined && $scope.uselectedcity!=null && $scope.upostalcode!=null && $scope.upostalcode!=undefined)
+				return true;
+			return false;
 		}
 
 		$scope.editaddress = function(){
@@ -161,7 +181,6 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 
 				$http.post($roconfig.apiUrl+'bookcab',data).success(function(res,status,headers,conf){
 					if(status!=undefined && (status===200 || status===201)){
-						alert('Hay you booking made successfully');
 						$roconfig.bookingdetail.transid = res.transid;
 						$cookie.put('bookingdetail',$roconfig.bookingdetail);
 						$state.go('home.confirm');

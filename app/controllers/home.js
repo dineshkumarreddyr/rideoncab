@@ -1,5 +1,5 @@
-﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state',
- function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state) {
+﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state','$roconstants','$commonsvc',
+   function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state,$roconstants,$commonsvc) {
     (function () {
         "use strict";
         
@@ -15,12 +15,18 @@
             var data = {};
             try {
                 if (signinformValid()) {
+                    if(!validEmail($scope.signemail)){
+                        $scope.danger();
+                        $scope.signinerrMsg = $roconstants.invalidemail;
+                        return;
+                    }
                     data = {
                         "username": $scope.signemail,
                         "password": $scope.signpassword
                     }
 
                     $http.post($roconfig.apiUrl + 'user/login', data).success(function (res, status, headers, conf) {
+                        $scope.errorhide();
                         if (status != undefined && status === 200) {
                             $scope.fullname = res.fname;
                             $scope.userlogeedin = true;
@@ -32,24 +38,27 @@
                             $scope.dismiss();
                         }
                     }).error(function (res, status, headers, conf) {
+                        $scope.errorhide();
                         switch (status) {
                             case 401:
-                            $scope.hideError = false;
-                            $scope.hideSuccess = true;
-                            $scope.errorMsg = 'User does not exists. Please check your username or password';
+                            $scope.danger();
+                            $scope.signinerrMsg = $roconstants.usernotexist;
                             break;
                         }
                     });
                 }
                 else {
-                    $scope.hideError = false;
-                    $scope.hideSuccess = true;
-                    $scope.errorMsg = 'Please enter all mandatory fields';
+                    $scope.danger();
+                    $scope.signinerrMsg = $roconstants.mandatory;
                 }
             }
             catch (e) {
                 $log.error(e.message);
             }
+        }
+        // Validate Email
+        var validEmail = function(emailaddress){
+            return $commonsvc.validateEmail(emailaddress);
         }
 
         //Sign up
@@ -60,8 +69,14 @@
                     if (!verifyPasswords()) {
                         $scope.hideError = false;
                         $scope.hideSuccess = true;
-                        $scope.errorMsg = 'Password and confirm password does not match';
+                        $scope.errorMsg = $roconstants.passwordnotmatch;
                         return false;
+                    }
+
+                    if(!validEmail($scope.emailaddress)){
+                        $scope.hideError = false;
+                        $scope.hideSuccess = true;
+                        $scope.errorMsg = $roconstants.invalidemail;
                     }
 
                     data.fname = $scope.firstname;
@@ -86,19 +101,19 @@
                         if (status != undefined && status === 201) {
                             $scope.hideError = true;
                             $scope.hideSuccess = false;
-                            $scope.successMsg = 'Account created successfully. Enjoy our services.';
+                            $scope.successMsg = $roconstants.accountcreated;
                         }
                     }).error(function (res, status, headers, conf) {
                         switch (status) {
                             case 409:
                             $scope.hideError = false;
                             $scope.hideSuccess = true;
-                            $scope.errorMsg = 'User already registered with email address';
+                            $scope.errorMsg = $roconstants.userexists;
                             break;
                             case 200:
                             $scope.hideError = false;
                             $scope.hideSuccess = true;
-                            $scope.errorMsg = 'Sorry for incovenience. API Failed.';
+                            $scope.errorMsg = $roconstants.apiFailed;
                             break;
                         }
                     });

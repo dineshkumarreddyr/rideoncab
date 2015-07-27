@@ -9,6 +9,7 @@
             </div>
             <div class="checks"></div>
             <div class="modal-body clearfix">
+                <div class="alert alert-roc hide" roc-alert>{{signinerrMsg}}</div>
                 <form>
                     <div class='form-row'>
                         <div class='col-xs-12 form-group required'>
@@ -47,8 +48,8 @@
             </div>
             <div class="checks"></div>
             <div class="modal-body clearfix">
-                <div class="alert alert-success" ng-hide="hideSuccess" role="alert">{{successMsg}}</div>
-                <div class="alert alert-danger" ng-hide="hideError" role="alert">{{errorMsg}}</div>
+            <div class="alert alert-roc alert-success" ng-hide="hideSuccess" role="alert">{{successMsg}}</div>
+                <div class="alert alert-roc alert-danger" ng-hide="hideError" role="alert">{{errorMsg}}</div>
                 <form name="signup">
                     <div class='form-row'>
                         <div class='col-xs-6 form-group required'>
@@ -111,33 +112,33 @@
             <div class="col-md-5 col-sm-3 col-xs-5 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
             <div class="col-md-7 col-sm-9 menu-main">
                 <nav class="navbar">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="menuactive"><a ui-sref='home.search'>Home</a></li>
-                                <li><a ui-sref="home.about">About</a></li>
-                                <li><a ui-sref="home.services">Services</a></li>
-                                <li><a ui-sref="home.contact">Contact</a></li>
-                                <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
-                                <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
-                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Manage Account</a></li>
-                                        <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="menuactive"><a ui-sref='home.search'>Home</a></li>
+                            <li><a ui-sref="home.about">About</a></li>
+                            <li><a ui-sref="home.services">Services</a></li>
+                            <li><a ui-sref="home.contact">Contact</a></li>
+                            <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
+                            <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Manage Account</a></li>
+                                    <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
                 </nav>
             </div>
         </div>

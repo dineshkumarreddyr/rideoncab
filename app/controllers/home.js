@@ -1,11 +1,13 @@
-﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig', function ($scope, $http, $log, $roconfig) {
+﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state',
+ function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state) {
     (function () {
         "use strict";
-
+        
         //Default display none for messages
         $scope.hideSuccess = true;
         $scope.hideError = true;
-        $scope.userlogeedin = false;
+        $scope.userlogeedin = $roconfig.userdetail.hasOwnProperty('uid');
+        $scope.fullname = $roconfig.userdetail.hasOwnProperty('fname') ? $roconfig.userdetail.fname:'';
 
 
         //Sign in
@@ -20,16 +22,22 @@
 
                     $http.post($roconfig.apiUrl + 'user/login', data).success(function (res, status, headers, conf) {
                         if (status != undefined && status === 200) {
-                            $scope.userlogeedin = true;
                             $scope.fullname = res.fname;
+                            $scope.userlogeedin = true;
+                            $cookie.put('userdetail',res);
+                            $cookie.put('fullname',res.fname);
+                            $cookie.put('email',res.email);
+                            $cookie.put('userid',res.uid);
+                            $managecookies.bind();
+                            $scope.dismiss();
                         }
                     }).error(function (res, status, headers, conf) {
                         switch (status) {
                             case 401:
-                                $scope.hideError = false;
-                                $scope.hideSuccess = true;
-                                $scope.errorMsg = 'User does not exists. Please check your username or password';
-                                break;
+                            $scope.hideError = false;
+                            $scope.hideSuccess = true;
+                            $scope.errorMsg = 'User does not exists. Please check your username or password';
+                            break;
                         }
                     });
                 }
@@ -83,15 +91,15 @@
                     }).error(function (res, status, headers, conf) {
                         switch (status) {
                             case 409:
-                                $scope.hideError = false;
-                                $scope.hideSuccess = true;
-                                $scope.errorMsg = 'User already registered with email address';
-                                break;
+                            $scope.hideError = false;
+                            $scope.hideSuccess = true;
+                            $scope.errorMsg = 'User already registered with email address';
+                            break;
                             case 200:
-                                $scope.hideError = false;
-                                $scope.hideSuccess = true;
-                                $scope.errorMsg = 'Sorry for incovenience. API Failed.';
-                                break;
+                            $scope.hideError = false;
+                            $scope.hideSuccess = true;
+                            $scope.errorMsg = 'Sorry for incovenience. API Failed.';
+                            break;
                         }
                     });
                 }
@@ -127,6 +135,18 @@
             if ($scope.signemail != undefined && $scope.signemail != null && $scope.signpassword != undefined && $scope.signpassword != null)
                 return true;
             return false;
+        }
+
+        // Sign Out
+        $scope.signoutuser = function(){
+            $managecookies.remove();
+            $managecookies.removevendor();
+            $managecookies.removebooking();
+            $scope.userlogeedin = false;
+            if($state.current.name!=='home.search')
+                $state.go('home.search');
+            else
+                $state.go($state.current, {}, {reload: true});
         }
     })();
 }]);

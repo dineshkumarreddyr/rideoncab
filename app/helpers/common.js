@@ -1,5 +1,11 @@
-﻿$(document).ready(function () {
-    "use strict";
+﻿(function(){
+	"use strict";
 
-    $('#datetimepicker').datetimepicker()
-});
+	Date.prototype.addHours= function(h){
+		this.setHours(this.getHours()+h);
+		return this;
+	}
+	var fnMinutes = function(){
+		return (new Date().addHours(2));
+	}
+})();

@@ -1,46 +1,59 @@
 <!Doctype html>
 <html lang="en" ng-app="rocapp">
-	<head>
-		<title>Ride on Cab | Book your favourite service</title>
-		
-		<!--CSS References -->
-        <link type="text/css" rel="stylesheet" href="http://localhost:9676/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-		<link type="text/css" rel="stylesheet" href="http://localhost:9676/bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
-        <link type="text/css" rel="stylesheet" href="http://localhost:9676/app/assets/css/rocstyles.css" />
+<head>
+	<title>Ride on Cab | Book your favourite service</title>
+	
+	<!--CSS References -->
+	<link type="text/css" rel="stylesheet" href="http://crestdzines.com/rocbeta/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="http://crestdzines.com/rocbeta/bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
+	<link type="text/css" rel="stylesheet" href="http://www.crestdzines.com/rocbeta/app/assets/css/rocstyles.css" />
 
-        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,600italic,700italic,900,400italic,300italic,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,600italic,700italic,900,400italic,300italic,700' rel='stylesheet' type='text/css'>
 
-        <!--Other Libraries-->
-        <link type="text/css" rel="stylesheet" href="http://localhost:9676/app/assets/css/jquery.datetimepicker.css" />
-		
-		
-		<!--Setting base-->
-		<base href="/" />
-		
-	</head>
-	<body>
-		<div ui-view></div>
-		
-		<!--Script References--->
-		<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-		<script type="text/javascript" src="bower_components/angular/angular.js"></script>
-        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-		<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-		<script type="text/javascript" src="bower_components/less/dist/less.js"></script>
-		<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<!--Other Libraries-->
+	<link type="text/css" rel="stylesheet" href="http://crestdzines.com/rocbeta/app/assets/css/jquery.datetimepicker.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.crestdzines.com/xoombeta/bower_components/datatables/media/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.crestdzines.com/xoombeta/bower_components/components-font-awesome/css/font-awesome.min.css" />
+	
+	
+	<!--Setting base-->
+	<base href="/" />
+	
+</head>
+<body>
+	<div ui-view></div>
+	<!--Script References-->
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript" src="bower_components/less/dist/less.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<script type="text/javascript" src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 
-        <!--Other Libraries-->
-        <script type="text/javascript" src="app/assets/js/jquery.datetimepicker.js"></script>
-        <!--Common Javascript/Jquery functionalities-->
-        <script type="text/javascript" src="app/helpers/common.js"></script>
-		
-		<!--Angular components -->
-		<script type="text/javascript" src="app/rocapp.js"></script>
-        <script type="text/javascript" src="app/helpers/config.js"></script>
-        <!--Controllers-->
-        <script type="text/javascript" src="app/controllers/home.js"></script>
-        <script type="text/javascript" src="app/controllers/inner/search.js"></script>
-        <script type="text/javascript" src="app/controllers/inner/results.js"></script>
-	</body>
+	<!--Other Libraries-->
+	<script type="text/javascript" src="app/assets/js/jquery.datetimepicker.js"></script>
+	<!--Common Javascript/Jquery functionalities-->
+	<script type="text/javascript" src="app/helpers/common.js"></script>
+	
+	<!--Angular components -->
+	<script type="text/javascript" src="app/rocapp.js"></script>
+	<script type="text/javascript" src="app/helpers/config.js"></script>
+	<script type="text/javascript" src="app/helpers/constants.js"></script>
+	<script type="text/javascript" src="app/factory/roc.factory.js"></script>
+	<script type="text/javascript" src="app/filters/roc.filters.js"></script>
+	<!--Controllers-->
+	<script type="text/javascript" src="app/controllers/home.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/search.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/results.js"></script>
+	<script type="text/javascript" src="app/controllers/vendor/vendorhome.js"></script>
+	<script type="text/javascript" src="app/controllers/vendor/manageaccount.js"></script>
+	<script type="text/javascript" src="app/controllers/admin/admin.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/register.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/confirm.js"></script>
+</body>
 </html>

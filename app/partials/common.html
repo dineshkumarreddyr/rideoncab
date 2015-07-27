@@ -1,6 +1,6 @@
 <!--Header and footer here which should be share common across the app-->
-  <!-- Signin -->
-<div class="modal fade signin-pop" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Signin -->
+<div class="modal fade signin-pop" rocmodal-actions id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,7 +30,7 @@
                 <div class="clearfix"></div>
                 <div class="clearfix pop-foot">
                     <div class="col-md-6 text-left">Don't have an Account!</div>
-                    <div class="col-md-6 text-right"><a href="#">Sign Up </a>Here</div>
+                    <div class="col-md-6 text-right"><a href="#" data-toggle='modal' data-target='#myModal1' data-dismiss='modal'>Sign Up </a>Here</div>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 <div class="clearfix"></div>
                 <div class="clearfix pop-foot">
                     <div class="col-md-6 text-left">Already have an Account!</div>
-                    <div class="col-md-6 text-right"><a href="#">Sign In </a>Here</div>
+                    <div class="col-md-6 text-right"><a href="#" data-toggle='modal' data-target='#myModal' data-dismiss='modal'>Sign In </a>Here</div>
                 </div>
             </div>
         </div>
@@ -108,10 +108,9 @@
 <div class="container-fluid top-main">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
-            <div class="col-md-6 menu-main">
+            <div class="col-md-5 col-sm-3 col-xs-5 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
+            <div class="col-md-7 col-sm-9 menu-main">
                 <nav class="navbar">
-                    <div class="container-fluid">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -125,16 +124,20 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li class="menuactive"><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li class="menuactive"><a ui-sref='home.search'>Home</a></li>
+                                <li><a ui-sref="home.about">About</a></li>
+                                <li><a ui-sref="home.services">Services</a></li>
+                                <li><a ui-sref="home.contact">Contact</a></li>
                                 <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
                                 <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
-                                <li><a href="#" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a></li>
+                                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Manage Account</a></li>
+                                        <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
                 </nav>
             </div>
         </div>
@@ -142,19 +145,20 @@
 </div>
 <!--Sub routing dont remove this line -->
 <div ui-view></div>
-  <!--footer-->
+<!--footer-->
 <div class="gotop"><img src="app/assets/images/gotop.png"></div>
 <div class="container-fluid footer-wrap">
     <div class="container footer-wrap-main">
-        <div class="clearfix">Home &bull; cities &bull; drive</div>
+        <div class="clearfix">Search &bull; Compare &bull; Book</div>
         <div class="footer-wrap-links">
-            <a href="#">help center</a><a href="#">about us</a>
-            <a href="#">careers</a><a href="#">be a vendor</a>
-            <a href="#">reach us</a>
+            <a ui-sref="home.terms">Terms &amp; Conditions</a>
+            <a ui-sref="home.about">about us</a>
+            <a ui-sref="home.carrers">careers</a><a ui-sref="vendorhome.signin">be a vendor</a>
+            <a ui-sref="home.contact">reach us</a>
         </div>
         <div class="footer-wrap-links">
-            <a href="#"><img src="app/assets/images/fb.png"></a>
-            <a href="#"><img src="app/assets/images/twitter.png"></a>
+            <a href="https://www.facebook.com/rideoncab" target="_blank"><img src="app/assets/images/fb.png"></a>
+            <a href="https://twitter.com/rideoncab" target="_blank"><img src="app/assets/images/twitter.png"></a>
             <a href="#"><img src="app/assets/images/gplus.png"></a>
         </div>
     </div>

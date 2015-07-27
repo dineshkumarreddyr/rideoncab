@@ -1,0 +1,48 @@
+<div class="container-fluid vendor">
+	<div class="container vendor-main">
+		<div class="row">
+			<div class="vendor-main-wrap">
+				<h2>Create Account</h2>
+				<div class="checks"></div>
+				<div class="form-main clearfix">
+					<form>
+						<div class='form-row'>
+							<div class='col-xs-12 form-group required'>
+								<label class='control-label'>Full Name</label>
+								<input class='form-control' ng-model="vfullname" type='text'>
+							</div>    
+						</div>
+						<div class='form-row'>
+							<div class='col-xs-12 form-group required'>
+								<label class='control-label'>Email Address</label>
+								<input class='form-control' ng-model="vemailaddress" type='text'>
+							</div>    
+						</div>
+						<div class="form-row">
+							<div class="col-xs-12 form-group required">
+								<label class="control-label">Mobile Number</label>
+								<input class="form-control" ng-model="vmobilenumber" type="text">
+							</div>
+						</div>
+						<div class='form-row'>
+							<div class='col-xs-12 form-group required'>
+								<label class='control-label'>Password</label>
+								<input class='form-control' ng-model="vpassword" type='password'>
+							</div>
+						</div>
+					</form>
+					<div>
+						<div class="col-md-6"><button type="button" ng-click="signup()" class="bookbtn">Sign Up</button></div>
+						<div class="col-md-6 text-right"></div>
+						<div class="clearfix"></div>
+						<div class="clearfix pop-foot">
+							<div class="col-md-6 text-left">Already have an Account!</div>
+							<div class="col-md-6 text-right"><a ui-sref="vendorhome.signin">Sign In </a>Here</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- /.col-xs-12 -->
+		</div> <!-- /.row -->
+		<div class="car"><img src="app/assets/images/car.png"></div>
+	</div>
+</div>

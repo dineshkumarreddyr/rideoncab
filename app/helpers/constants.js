@@ -8,6 +8,7 @@
 		passwordnotmatch:'Password and confirm password does not match',
 		accountcreated:'Account created successfully. Enjoy our services.',
 		userexists:'User already registered with email address',
-		apiFailed:'Sorry for incovenience. API Failed.'
+		apiFailed:'Sorry for incovenience. API Failed.',
+		advancebook:'Please plan advance booking'
 	});
 })();

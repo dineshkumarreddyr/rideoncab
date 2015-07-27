@@ -1,5 +1,5 @@
 ﻿rocapp.controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig','$cookieStore','managecookies','$roconstants',
- function ($scope, $http, $state, $log, $roconfig,$cookie,$managecookies,$roconstants) {
+   function ($scope, $http, $state, $log, $roconfig,$cookie,$managecookies,$roconstants) {
     (function () {
         "use strict";
 
@@ -22,6 +22,12 @@
         $scope.book = function () {
             try {
                 if (isSearchFormValid()) {
+
+                    if(!validDateandTime()){
+                        $scope.danger();
+                        $scope.errMsg = $roconstants.advancebook;
+                        return;
+                    }
                     // Hide the error msg
                     $scope.errorhide();
                     $roconfig.bookingdetail.servicetype = $scope.servicetype;
@@ -39,6 +45,14 @@
             catch (e) {
                 $log.error(e.message);
             }
+        }
+
+        // Advance booking validation
+        var validDateandTime = function(){
+            if(new Date().addHours(2).getTime() <= new Date($scope.pickuptime).getTime()){
+                return true;
+            }
+            return false;
         }
 
         //Validate search form

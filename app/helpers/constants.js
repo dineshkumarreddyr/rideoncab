@@ -2,6 +2,7 @@
 	"use strict";
 
 	angular.module('roc.constants',[]).constant('$roconstants', {
-		mandatory:'Please fill all the below fields'
+		mandatory:'Please fill all the below fields',
+		advancebook:'Please plan advance booking'
 	});
 })();

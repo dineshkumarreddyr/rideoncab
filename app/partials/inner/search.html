@@ -3,7 +3,7 @@
         <div class="row"><h1>Anytime,<br>Anywhere</h1></div>
         <div class="row checks"></div>
         <div class="row home-filters-main">
-        <div class="alert alert-roc hide" roc-alert>{{errMsg}}</div>
+            <div class="alert alert-roc hide" roc-alert>{{errMsg}}</div>
             <div class='col-md-3 form-group required'>
                 <label class='control-label'>Type of Service</label>
                 <select class="minimal" ng-model="servicetype" ng-options="item.sid as item.service for item in cabservicetype">
@@ -144,7 +144,12 @@
         </div>
     </div>
 </div>
-<!--testimonials-->
-<script>
-    $('#datetimepicker').datetimepicker();
+
+<script type="text/javascript">
+    (function(){
+        $('#datetimepicker').datetimepicker({
+            step:30,
+            minDate:'-1970/01/01'
+        });
+    })();
 </script>

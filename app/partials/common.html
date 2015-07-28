@@ -133,7 +133,7 @@
                             <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
                             <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Manage Account</a></li>
+                                    <li><a ui-sref="home.manageaccount">Manage Account</a></li>
                                     <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>
                                 </ul>
                             </li>

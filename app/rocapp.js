@@ -28,7 +28,8 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             controller:'confirmController'
         }).state('home.manageaccount',{
             url:'/manageaccount',
-            templateUrl:'app/partials/inner/manageuser.html'
+            templateUrl:'app/partials/inner/manageuser.html',
+            controller:'manageuserController'
         }).state('vendorhome',{
             url:'/vendor',
             templateUrl:'app/partials/vendorcommon.html',

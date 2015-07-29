@@ -15,6 +15,7 @@
             $scope.estdistance = '';
             $scope.esttime = '';
             $scope.allcabmodels = [];
+            $scope.allterms = [];
 
             function init(){
                 this.getCabmodel = function(){
@@ -24,15 +25,16 @@
                         }
                     });
                 };
-                this.getTermsConditions = function(vid){
-                    $commonsvc.getTermsandCondition(vid).then(function(response){
+                this.getTermsConditions = function(){
+                    $commonsvc.getTermsandCondition().then(function(response){
                         if(response.status!=undefined && response.status===200){
-                            // @@TODO -  Terms and Conditions
+                            $scope.allterms = response.data;
                         }
                     });
                 }
             }
             (new init()).getCabmodel();
+            (new init()).getTermsConditions();
 
             //Search results page
             var getResults = function () {

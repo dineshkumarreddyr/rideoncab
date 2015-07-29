@@ -9,6 +9,7 @@
 		accountcreated:'Account created successfully. Enjoy our services.',
 		userexists:'User already registered with email address',
 		apiFailed:'Sorry for incovenience. API Failed.',
-		advancebook:'Please plan advance booking'
+		advancebook: 'Please plan advance booking',
+        passwordlink:'Your password has been sent to your email address'
 	});
 })();

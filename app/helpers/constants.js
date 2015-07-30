@@ -9,6 +9,6 @@
 		accountcreated:'Account created successfully. Enjoy our services.',
 		userexists:'User already registered with email address',
 		apiFailed:'Sorry for incovenience. API Failed.',
-		advancebook:'Please plan advance booking'
+		advancebook:'Please Book any cab service min 2 hrs in advance'
 	});
 })();

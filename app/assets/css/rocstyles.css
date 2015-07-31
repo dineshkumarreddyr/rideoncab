@@ -286,12 +286,12 @@ margin-top: 0px;}
     MEDIA QUERIES
 ************************************/
 
-@media (min-width: 768px) { 
+@media only screen and (min-width: 768px) { 
    #quote-carousel {margin-bottom: 0;padding: 0 40px 30px 40px;}
 }
 
 
-@media (max-width: 768px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
 
 .menu-main .navbar-nav{float:left !important;}
 #quote-carousel .carousel-indicators {bottom: -20px !important;}

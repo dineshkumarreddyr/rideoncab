@@ -164,3 +164,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+  $(function(){    
+   $('.menu-main ul li a').click(function(){
+      var item=$(this).parent();
+       $('.menu-main ul li').removeClass('menuactive');
+       item.addClass("menuactive")
+    });
+  });
+</script>

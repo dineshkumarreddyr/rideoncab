@@ -18,7 +18,8 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 						"landline": $scope.vmobilenumber,
 						"number2": "",
 						"contactperson": "",
-						"logo": ""
+						"logo": "",
+						"number1":""
 					};
 					$http.post($roconfig.apiUrl+'vendor/signup',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){

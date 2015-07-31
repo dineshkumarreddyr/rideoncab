@@ -86,23 +86,29 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
             $managecookies.bind();
             $managecookies.bindvendor();
             $managecookies.bindbooking();
-            // if((toState.name==='home.address' || toState.name==='home.results' || 
-            //     toState.name==='home.address' || toState.name==='home.confirm')){
-            //     $managecookies.removevendor();
-            //     if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
-            //         $timeout(function(){
-            //             $state.go('home.search');
-            //         });
-            // }
-            // else if(toState.name!=='vendorhome.signup' && toState.name!=='vendorhome.signin' && toState.name!=='home.search' && 
-            //     toState.name!=='adminhome.manage'){
-            //     $managecookies.removebooking();
-            //     if(!$roconfig.vendordetail.hasOwnProperty('vid')){
-            //         $timeout(function(){
-            //             $state.go('vendorhome.signin');
-            //         });
-            //     }
-            // }
+            if((toState.name==='home.address' || toState.name==='home.results' || 
+                toState.name==='home.address' || toState.name==='home.confirm')){
+                $managecookies.removevendor();
+                if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
+                    $timeout(function(){
+                        $state.go('home.search');
+                    });
+            }
+            else if(toState.name==='vendorhome.manageaccount'){
+                $managecookies.removebooking();
+                $managecookies.remove();
+                if(!$roconfig.vendordetail.hasOwnProperty('vid')){
+                    $timeout(function(){
+                        $state.go('vendorhome.signin');
+                    });
+                }
+            }
+            else if(toState.name==='vendorhome.signin' || toState.name==='vendorhome.signup'){
+                $managecookies.remove();
+            }
+            else if(toState.name==='home.search'){
+                $managecookies.removevendor();
+            }
         });
 }]);
 

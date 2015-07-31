@@ -1,5 +1,5 @@
-﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state','$roconstants','$commonsvc',
-   function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state,$roconstants,$commonsvc) {
+﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state','$roconstants','$commonsvc','$timeout',
+ function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state,$roconstants,$commonsvc,$timeout) {
     (function () {
         "use strict";
         
@@ -37,6 +37,10 @@
                             $cookie.put('userid',res.uid);
                             $managecookies.bind();
                             $scope.dismiss();
+                            $timeout(function(){
+                                if($state.current.name==='home.address')
+                                    $state.go($state.current, {}, {reload: true});
+                            },1000);
                         }
                     }).error(function (res, status, headers, conf) {
                         $scope.errorhide();

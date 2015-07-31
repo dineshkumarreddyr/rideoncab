@@ -13,13 +13,13 @@
                 <form>
                     <div class='form-row'>
                         <div class='col-xs-12 form-group required'>
-                            <label class='control-label'>Email address</label>
+                            <label class='control-label'>Email address <span class="req">*</span></label>
                             <input class='form-control' ng-model="signemail" type='text'>
                         </div>
                     </div>
                     <div class='form-row'>
                         <div class='col-xs-12 form-group required'>
-                            <label class='control-label'>Password</label>
+                            <label class='control-label'>Password <span class="req">*</span></label>
                             <input class='form-control' ng-model="signpassword" type='password'>
                         </div>
                     </div>
@@ -53,37 +53,37 @@
                 <form name="signup">
                     <div class='form-row'>
                         <div class='col-xs-6 form-group required'>
-                            <label class='control-label'>First Name</label>
+                            <label class='control-label'>First Name <span class="req">*</span></label>
                             <input class='form-control' ng-model="firstname" type='text'>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class='col-xs-6 form-group required'>
-                            <label class='control-label'>Last Name</label>
+                            <label class='control-label'>Last Name <span class="req">*</span></label>
                             <input class='form-control' ng-model="lastname" type='text'>
                         </div>
                     </div>
                     <div class='form-row'>
                         <div class='col-xs-12 form-group required'>
-                            <label class='control-label'>Email ID</label>
+                            <label class='control-label'>Email ID <span class="req">*</span></label>
                             <input class='form-control' ng-model="emailaddress" type='text'>
                         </div>
                     </div>
                     <div class='form-row'>
                         <div class='col-xs-12 form-group required'>
-                            <label class='control-label'>Mobile Number</label>
+                            <label class='control-label'>Mobile Number <span class="req">*</span></label>
                             <input class='form-control' ng-model="number" type='text'>
                         </div>
                     </div>
                     <div class='form-row'>
                         <div class='col-xs-6 form-group required'>
-                            <label class='control-label'>Password</label>
+                            <label class='control-label'>Password <span class="req">*</span></label>
                             <input class='form-control' type='password' ng-model="password">
                         </div>
                     </div>
                     <div class='form-row'>
                         <div class='col-xs-6 form-group required'>
-                            <label class='control-label'>Repeat Password</label>
+                            <label class='control-label'>Repeat Password <span class="req">*</span></label>
                             <input class='form-control' type='password' ng-model="confirmpassword">
                         </div>
                     </div>
@@ -94,6 +94,7 @@
                     <!--<span class="character-checkbox" onclick="showPassword()"></span>-->
                     <!--<span class="label">I Agree Terms &amp; Conditions</span>-->
                 </div>
+                <div class="col-md-6 clearfix"><button type="button" ng-click="usersignup()" class="blackbtn">Cancel</button></div>
                 <div class="col-md-6 clearfix"><button type="button" ng-click="usersignup()" class="bookbtn">Sign up</button></div>
                 <div class="clearfix"></div>
                 <div class="clearfix pop-foot">
@@ -119,7 +120,7 @@
                 <form>
                     <div class='form-row'>
                         <div class='col-xs-6 form-group required'>
-                            <label class='control-label'>Email Address</label>
+                            <label class='control-label'>Email Address <span class="req">*</span></label>
                             <input class='form-control' ng-model="email" type='text' />
                         </div>
                     </div>
@@ -157,17 +158,17 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="menuactive"><a ui-sref='home.search'>Home</a></li>
-                            <li><a ui-sref="home.about">About</a></li>
-                            <li><a ui-sref="home.services">Services</a></li>
-                            <li><a ui-sref="home.contact">Contact</a></li>
-                            <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
-                            <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
+                            <li class="links menuactive"><a ui-sref='home.search'>Home</a></li>
+                            <li class="links"><a ui-sref="home.about">About</a></li>
+                            <li class="links"><a ui-sref="home.services">Services</a></li>
+                            <li class="links"><a ui-sref="home.contact">Contact</a></li>
+                            <li class="links"><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
+                            <li class="links"><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a ui-sref="home.manageaccount">Manage Account</a></li>
-                                    <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>
+                                    <li class="clearfix"><a ui-sref="home.manageaccount">Manage Account</a></li>
+                                    <li class="clearfix"><a href="#" ng-click="signoutuser()">Sign Out</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -200,10 +201,29 @@
 
 <script type="text/javascript">
   $(function(){    
-   $('.menu-main ul li a').click(function(){
+   $('.links a').click(function(){
       var item=$(this).parent();
-       $('.menu-main ul li').removeClass('menuactive');
+       $('.links').removeClass('menuactive');
        item.addClass("menuactive")
     });
   });
-</script>
+  </script>
+
+  <script>
+        $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.gotop').fadeIn();
+            } else {
+                $('.gotop').fadeOut();
+            }
+        });
+
+        $('.gotop').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+    });
+  </script>

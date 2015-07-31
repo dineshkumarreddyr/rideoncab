@@ -1,7 +1,7 @@
 <div class="container-fluid top-main">
  <div class="container">
    <div class="row">
-    <div class="col-md-6 logo"><img src="app/assets/images/logo.png"></div>
+    <div class="col-md-6 logo"><a ui-sref="home.search"><img src="app/assets/images/logo.png"></a></div>
     <div class="col-md-6 menu-main"></div>
   </div>
 </div>
@@ -21,9 +21,11 @@
 <div class="container-fluid footer-wrap">
   <div class="container footer-wrap-main">
    <div class="clearfix">Home &bull; cities &bull; drive</div>
-   <div class="footer-wrap-links"><a href="#">help center</a><a href="#">about us</a>
-     <a href="#">careers</a><a href="#">be a vendor</a>
-     <a href="#">reach us</a></div>
+   <div class="footer-wrap-links"><a href="#">help center</a>
+     <a ui-sref="home.about">about us</a>
+     <a href="#">careers</a>
+     <a ui-sref="vendorhome.signin">be a vendor</a>
+     <a ui-sref="home.contact">reach us</a></div>
      <div class="footer-wrap-links">
        <a href="#"><img src="app/assets/images/fb.png"></a>
        <a href="#"><img src="app/assets/images/twitter.png"></a>
@@ -32,3 +34,32 @@
    </div>
  </div> 
  <!--footer-->
+
+<script type="text/javascript">
+  $(function(){    
+   $('.links a').click(function(){
+      var item=$(this).parent();
+       $('.links').removeClass('menuactive');
+       item.addClass("menuactive")
+    });
+  });
+  </script>
+
+  <script>
+        $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.gotop').fadeIn();
+            } else {
+                $('.gotop').fadeOut();
+            }
+        });
+
+        $('.gotop').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+    });
+  </script>

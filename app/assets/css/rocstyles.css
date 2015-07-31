@@ -1,8 +1,9 @@
 ﻿body{margin:0;padding:0;font-family: 'Titillium Web', sans-serif;}
-*{outline:none;}
+*{outline:none;}a{color:#000;}
 a:hover{text-decoration:none;}
 .no-pad{padding:0}
 .no-marg{margin:0}
+.form-control{box-shadow: none !important;}
 .form-control:focus{border-color:none;-webkit-box-shadow: none;box-shadow: none}
 
 h1{font-family: 'Conv_Track' !;color:#000;font-size:45px;text-transform:uppercase}
@@ -40,9 +41,13 @@ border-radius: 3px;border: 1px solid #ccc;vertical-align: middle;display: inline
 .menu-main ul li:first-child{margin-left:0px;}
 .menu-main ul li:last-child{margin-right:0px;}
 .menu-main ul li a{color:#fff;font-size:18px;font-weight:300;padding:0;float:left}
+.menu-main ul li a i{font-size:12px;}
 .menu-main ul li a:hover{background:none;color:#fff;}
 .menuactive a{color:#e38e00 !important;border-bottom:1px solid #e38e00;padding-bottom:7px !important}
 .nav > li > a:hover, .nav > li > a:focus{background:none}
+.navbar-nav > li > .dropdown-menu{padding:5px 10px;margin-top:10px;background: #505050;right: 0;}
+.navbar-nav > li > .dropdown-menu li{clear: both;text-align: left;margin:0;}
+.navbar-nav > li > .dropdown-menu li a{font-size:16px;}
 
 .homebg{background:url(../images/homebg.jpg);background-size:cover;height:670px;}
 .home-filters{position:relative;margin-top:210px}
@@ -53,6 +58,8 @@ border-radius: 3px;border: 1px solid #ccc;vertical-align: middle;display: inline
 .home-filters-main label{color:#fff;font-weight:300}
 .book-btn-wrap{background:url(../images/blackopq.png);padding:0px 10px 10px 10px}
 .bookbtn{background:#e38e00;border:none;width:100%;color:#000;text-transform:uppercase;
+font-weight:600;padding:7px 10px;font-size:15px}
+.blackbtn{background:#000;border:none;width:100%;color:#fff;text-transform:uppercase;
 font-weight:600;padding:7px 10px;font-size:15px}
 
 .how-wrap{background:url(../images/how.jpg) top;background-size:cover;padding-bottom: 30px;height:580px;}
@@ -123,9 +130,11 @@ width: 100%;margin-top: -25px;}
 
 .careers-wrap{min-height:600px;padding-top:30px;padding-bottom:50px;}
 .careers-wrap p{font-size: 17.5px;}
-.contact-wrap{max-width:60%;margin:0 auto;}
+.contact-wrap textarea{height: 100px !important;resize:none;}
 .refid{margin-bottom: 20px;font-size:20px}
-
+.form-area .form-control{border:1px solid #ddd;height:40px;}
+.req{color:#e38e00 !important;}
+.map{height:200px;overflow: hidden;}
 
 /*******************
  DETAILS FORM PAGE
@@ -149,7 +158,7 @@ width: 100%;margin-top: -25px;}
 .bookdetails-wrap{background:#f7f7f7;border-top:5px solid #e38e00;padding:10px 15px 30px 15px;}
 .bookdetails-wrap h3{font-size:18px;}
 .bookdetails-wrap p{font-size:16px;margin-bottom:0px}
-.total{background:#b8b8b8;color:#fff;font-size:22px;padding:10px 15px;}
+.total{background:#000;color:#fff;font-size:22px;padding:10px 15px;}
 
 .listing-wrap{padding-top:30px;padding-bottom:50px}
 .listing-wrap h3{color:#000;font-size:18px;text-transform:uppercase;margin-top:28px}
@@ -161,13 +170,13 @@ width: 100%;margin-top: -25px;}
 
 .sorting-wrap h3{padding-left:15px;}
 .sort-bar{border-top:1px solid #e38e00;border-bottom:1px solid #e38e00;padding-left:10px;
-padding-right:10px;background:#e38e00}
+padding-right:10px;background:#e38e00;height: 26px;line-height: 24px;}
 .sort-bar select {border:none;width:100%;padding:0;color:#fff}
 .sort-bar select.minimal{background:url(../images/witearow.png) right center no-repeat}
-
+.sort-bar a{color:#fff !important;}
 
 .list-each{border-bottom:2px solid #b8b8b8;padding-top:10px;padding-bottom:10px;background:#fff;
-transition:height 500ms ease;-moz-transition: height 500ms ease;
+transition:height 500ms ease;-moz-transition: height 500ms ease;cursor: pointer;
 -ms-transition: height 500ms ease;-o-transition: height 500ms ease;-webkit-transition: height 500ms ease;}
 .list-each:hover{background:#f7f7f7}
 .selectedcab{background:#f7f7f7}
@@ -302,6 +311,8 @@ width: 15px;height: 15px;}
 .menu-main ul li a{width:50%;height:30px;}
 .menu-main ul li{margin:0 !important;width:50% !important;float:left !important;}
 .menu-main .navbar-nav{float:left !important;}
+.menu-main .nav .open>li{border-bottom: none !important;}
+.menu-main .nav .open>a{color:#fff !important;}
 .signin-pop .modal-header .close{margin-top:20px;margin-right:20px;}
 .listing-wrap{padding-top:0;}
 .innerbg{padding-top: 168px;height: 304px;}

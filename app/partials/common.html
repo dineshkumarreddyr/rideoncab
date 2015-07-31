@@ -27,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <div class="col-md-6"><button type="button" ng-click="signin()" class="bookbtn">Sign In</button></div>
-                <div class="col-md-6"><a href="#">Forgot Password?</a></div>
+                <div class="col-md-6"><a href="#" data-toggle='modal' data-target='#myModal2' data-dismiss='modal'>Forgot Password?</a></div>
                 <div class="clearfix"></div>
                 <div class="clearfix pop-foot">
                     <div class="col-md-6 text-left">Don't have an Account!</div>
@@ -48,7 +48,7 @@
             </div>
             <div class="checks"></div>
             <div class="modal-body clearfix">
-            <div class="alert alert-roc alert-success" ng-hide="hideSuccess" role="alert">{{successMsg}}</div>
+                <div class="alert alert-roc alert-success" ng-hide="hideSuccess" role="alert">{{successMsg}}</div>
                 <div class="alert alert-roc alert-danger" ng-hide="hideError" role="alert">{{errorMsg}}</div>
                 <form name="signup">
                     <div class='form-row'>
@@ -105,6 +105,38 @@
     </div>
 </div>
 <!-- Signup -->
+<!--Forgot Password-->
+<div class="modal fade signin-pop" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabe2">Forgot Password</h4>
+            </div>
+            <div class="checks"></div>
+            <div class="modal-body clearfix">
+                <div class="alert alert-roc alert-{{fgtype}}" ng-hide="hidefgError">{{forgotMsg}}</div>
+                <form>
+                    <div class='form-row'>
+                        <div class='col-xs-6 form-group required'>
+                            <label class='control-label'>Email Address</label>
+                            <input class='form-control' ng-model="email" type='text' />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6 clearfix"><button type="button" ng-click="forgotpassword()" class="bookbtn">Get Password</button></div>
+                <div class="clearfix"></div>
+                <div class="clearfix pop-foot">
+                    <div class="col-md-6 text-left">Got password!</div>
+                    <div class="col-md-6 text-right"><a href="#" data-toggle='modal' data-target='#myModal' data-dismiss='modal'>Sign In </a>Here</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Forgot Password-->
 
 <div class="container-fluid top-main">
     <div class="container">
@@ -131,7 +163,8 @@
                             <li><a ui-sref="home.contact">Contact</a></li>
                             <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal">Signin</a></li>
                             <li><a href="#" type="button" data-toggle="modal" ng-hide="userlogeedin" data-target="#myModal1">Signup</a></li>
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide="!userlogeedin">Welcome, {{fullname}} &nbsp;<i class="fa fa-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a ui-sref="home.manageaccount">Manage Account</a></li>
                                     <li><a href="#" ng-click="signoutuser()">Sign Out</a></li>

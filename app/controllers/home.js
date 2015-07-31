@@ -7,7 +7,8 @@
         $scope.hideSuccess = true;
         $scope.hideError = true;
         $scope.userlogeedin = $roconfig.userdetail.hasOwnProperty('uid');
-        $scope.fullname = $roconfig.userdetail.hasOwnProperty('fname') ? $roconfig.userdetail.fname:'';
+        $scope.fullname = $roconfig.userdetail.hasOwnProperty('fname') ? $roconfig.userdetail.fname : '';
+        $scope.hidefgError = true;
 
 
         //Sign in
@@ -163,5 +164,39 @@
             else
                 $state.go($state.current, {}, {reload: true});
         }
+
+        //Forgot password
+        $scope.forgotpassword = function () {
+            var data = {};
+            try {
+                if ($scope.email != undefined && $scope.email != null) {
+                    data.email = $scope.email;
+                    $http.post($roconfig.apiUrl + 'user/forgotpassword', data).success(function (res, status, headers, conf) {
+                        if (res != undefined && res.result.indexOf('success') > -1) {
+                            $scope.hidefgError = false;
+                            $scope.fgtype = 'success';
+                            $scope.forgotMsg = $roconstants.passwordlink;
+                            $scope.email = null;
+                        }
+                    }).error(function (res, status, headers, conf) {
+                        $log.error(res);
+                    });
+                }
+                else {
+                    $scope.hidefgError = false;
+                    $scope.fgtype = 'danger';
+                    $scope.forgotMsg = $roconstants.mandatory;
+                }
+            }
+            catch (e) {
+                $log.error(e.message);
+            }
+        }
+
+        //Clearing error messages
+        angular.element('#myModal2').on('hidden.bs.modal', function () {
+            $scope.hidefgError = true;
+            $scope.$apply();
+        });
     })();
 }]);

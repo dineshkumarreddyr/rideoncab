@@ -69,18 +69,7 @@
                             <div class="pricing">{{result.chargeperkm}} /km</div>
                             <div class="col-md-12 terms-wrap">
                                 <ul>
-                                    <li>Maximum of 4 passengers allowed for Indica & Sedan.</li>
-                                    <li>
-                                        No waiting charges up to 15 mins after scheduled pickup
-                                        time. Rs. 50/30 min beyond 15 min after that.
-                                    </li>
-                                    <li>Any Toll Charges as applicable.</li>
-                                    <li>Any Parking Charges as applicable.</li>
-                                    <li>
-                                        Cancellation charges of Rs.100 applicable if cancelled
-                                        within 30 mins of pickup time.
-                                    </li>
-                                    <li>Final fare payable will include Service Tax.</li>
+                                    <li ng-repeat="item in allterms | filter:{'vid':result.vendorid} && {'cabmodel':result.cabmodel}">{{item.terms}}</li>
                                     <div class="clearfix bookcab">
                                         <a href="#" ng-click="continueaddress($index)">
                                             Book your cab

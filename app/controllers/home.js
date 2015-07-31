@@ -107,6 +107,7 @@
                             $scope.hideError = true;
                             $scope.hideSuccess = false;
                             $scope.successMsg = $roconstants.accountcreated;
+                            clearsignup();
                         }
                     }).error(function (res, status, headers, conf) {
                         switch (status) {
@@ -132,6 +133,11 @@
             catch (e) {
                 $log.error(e.message);
             }
+        }
+
+        // Clear signup form
+        var clearsignup = function(){
+            $scope.firstname = $scope.lastname = $scope.emailaddress = $scope.password = $scope.confirmpassword = $scope.number = null;
         }
 
         //Validate sign up form
@@ -200,6 +206,17 @@
         //Clearing error messages
         angular.element('#myModal2').on('hidden.bs.modal', function () {
             $scope.hidefgError = true;
+            $scope.$apply();
+        });
+
+        angular.element('#myModal1').on('hidden.bs.modal',function(){
+            $scope.hideSuccess = true;
+            $scope.hideError = true;
+            $scope.$apply();
+        });
+
+         angular.element('#myModal').on('hidden.bs.modal',function(){
+            $scope.errorhide();
             $scope.$apply();
         });
     })();

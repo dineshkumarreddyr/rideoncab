@@ -12,6 +12,7 @@
 
             $scope.fromaddress = $stateParams.from;
             $scope.toaddress = $stateParams.to;
+            $scope.bookingdatetime = new Date($roconfig.bookingdetail.bookingdatetime);
             $scope.estdistance = '';
             $scope.esttime = '';
             $scope.allcabmodels = [];
@@ -86,7 +87,6 @@
                 $roconfig.bookingdetail.esttime = $scope.esttime;
                 $roconfig.bookingdetail.approxTotal = $scope.approxTotal;
                 $cookie.put('bookingdetail',$roconfig.bookingdetail);
-                debugger;
                 
                 $state.go('home.address');
             }

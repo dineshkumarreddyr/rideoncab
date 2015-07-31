@@ -88,8 +88,8 @@
             <h2>Booking Details</h2>
             <div class="bookdetails-wrap">
                 <h3>{{fromaddress}} > {{toaddress}}</h3>
-                <p><strong>On</strong> 8 June,2015</p>
-                <p><strong>at</strong> 10:15 PM</p>
+                <p><strong>On</strong> {{bookingdatetime | date:'dd MMM,yyyy'}}</p>
+                <p><strong>at</strong> {{bookingdatetime | date:'HH:mm'}}</p>
                 <p>Estimated Distance:<strong> {{estdistance}}</strong></p>
                 <p>Estimated Duration:<strong> {{esttime}}</strong></p>
                 <div class="clearfix">&nbsp;</div>

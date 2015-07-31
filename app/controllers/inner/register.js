@@ -81,6 +81,7 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 					$scope.estdistance = $roconfig.bookingdetail.estdistance;
 					$scope.esttime = $roconfig.bookingdetail.esttime;
 					$scope.approxTotal = $roconfig.bookingdetail.approxTotal;
+					$scope.bookingdatetime = new Date($roconfig.bookingdetail.bookingdatetime);
 				}
 			},
 			this.userlogged = function(){

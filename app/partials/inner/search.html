@@ -12,7 +12,7 @@
             </div>
             <div class='col-md-3 form-group required'>
                 <label class='control-label'>Departure Date &amp; Time</label>
-                <input id="datetimepicker" ng-model="pickuptime" type="text" />
+                <input id="datetimepicker" ng-readonly="true" ng-model="pickuptime" type="text" />
             </div>
             <div class='col-md-3 form-group required'>
                 <label class='control-label'>Pickup Location</label>
@@ -149,7 +149,41 @@
     (function(){
         $('#datetimepicker').datetimepicker({
             step:30,
-            minDate:'-1970/01/01'
+            minDate:'-1970/01/01',
+            onGenerate:function(c,x){
+                var a = new Date();
+                var ind = a.dateFormat('d/m/Y').indexOf(c.dateFormat('d/m/Y'));
+                var extDate = new Date().addHours(2);
+                var currDate = new Date();
+                var extraTime = ("0"+currDate.getHours()).slice(-2)+':'+("0"+currDate.getMinutes()).slice(-2);
+                var currTime = ("0"+currDate.getHours()).slice(-2)+':'+("0"+currDate.getMinutes()).slice(-2);
+                if(ind !== -1) {
+                    $('.xdsoft_time_variant .xdsoft_time').each(function(index){
+                        if($(this).text() <= currTime){
+                          $(this).addClass('xdsoft_disabled');
+                          $(this).removeClass('xdsoft_current');
+                      }
+                      else if($(this).text().split(':')[0]=="22" || $(this).text().split(':')[0]=="23"){
+                        $(this).addClass('xdsoft_disabled');
+                        $(this).removeClass('xdsoft_current');
+                        $('.xdsoft_date.xdsoft_current').addClass('xdsoft_disabled');
+                    }
+                });
+                }
+            },
+            onChangeDateTime:function(dp,$input){
+                var a = new Date();
+                var ind = a.dateFormat('d/m/Y').indexOf(dp.dateFormat('d/m/Y'));
+                if(ind!==-1){
+                    var extDate = new Date().addHours(2);
+                    var currDate = new Date();
+                    var extraTime = ("0"+currDate.getHours()).slice(-2)+':'+("0"+currDate.getMinutes()).slice(-2);
+                    var currTime = ("0"+currDate.getHours()).slice(-2)+':'+("0"+currDate.getMinutes()).slice(-2);
+                    if(currTime.split(':')[0]=='22' || currTime.split(':')[0]=='23'){
+                        $input.val("");
+                    }
+                }
+            }
         });
-    })();
+})();
 </script>

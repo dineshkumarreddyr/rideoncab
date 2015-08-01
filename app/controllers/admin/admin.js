@@ -11,12 +11,23 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 		$scope.isedit = false;
 		$scope.cabmodel = [];
 		$scope.vtid = null;
+		$scope.cabbooking = [];
 
 		function init(){
 			this.getvendor = function(){
 				$http.get($roconfig.apiUrl+'admin/vendors').success(function(res,status,headers,conf){
 					if(status!=undefined && status===200){
 						$scope.vendorlist = res.results;
+					}
+				}).error(function(res,status,headers,conf){
+					$log.error(res);
+				});
+			},
+			this.getCabbookings = function(){
+				$http.get($roconfig.apiUrl+'/admin/bookings').success(function(res,status,headers,conf){
+					if(status!=undefined && status===200){
+						$scope.cabbooking = res.results;
+						$scope.dtbookinginstance = $scope.cabbooking;
 					}
 				}).error(function(res,status,headers,conf){
 					$log.error(res);
@@ -40,6 +51,7 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 		}
 		init();
 		(new init()).getvendor();
+		(new init()).getCabbookings();
 
 		$scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
 		.withOption('responsive',true)
@@ -383,5 +395,11 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 			}
 
 			/* --------------------- end of vendor account -----------------------------*/
+
+
+			/* --------------------- Booking info -----------------------------------------*/
+			$scope.reloadbookinginfo = function(){
+				(new init()).getCabbookings();
+			}
 
 		}]);

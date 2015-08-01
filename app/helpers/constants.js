@@ -6,7 +6,7 @@
 		invalidemail:'Invalid Email address',
 		usernotexist:'User does not exists. Please check your username or password',
 		passwordnotmatch:'Password and confirm password does not match',
-		accountcreated:'Account created successfully. Enjoy our services.',
+		accountcreated:'Account created successfully.An email has been sent to your provided email address.',
 		userexists:'User already registered with email address',
 		apiFailed:'Sorry for incovenience. API Failed.',
 		advancebook:'Please Book any cab service min 2 hrs in advance',

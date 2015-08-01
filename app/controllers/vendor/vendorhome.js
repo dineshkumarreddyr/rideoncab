@@ -51,7 +51,7 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 							"number1":""
 						};
 						$http.post($roconfig.apiUrl+'vendor/signup',data).success(function(res,status,headers,conf){
-							if(status!=undefined && status===200){
+							if(status!=undefined && status===201){
 								$scope.signuperrorMsg = $roconstants.vendorsignupsuccess;
 								$scope.signuperror = false;
 								$scope.msgtype = "success";
@@ -126,7 +126,7 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 						$http.post($roconfig.apiUrl+'vendor/login',data).success(function(res,status,headers,conf){
 							if(status!=undefined && status===200){
 								if(res!=undefined){
-									$cookies.put('vendordetail',res);
+									$cookies.put('vendordetail',res[0]);
 									$managecookies.bindvendor();
 									$managecookies.remove();
 									$state.go('vendorhome.manageaccount');

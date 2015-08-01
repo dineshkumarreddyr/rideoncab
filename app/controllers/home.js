@@ -65,6 +65,14 @@
         var validEmail = function(emailaddress){
             return $commonsvc.validateEmail(emailaddress);
         }
+        // valid phone
+        var validPhone = function(number){
+            return $commonsvc.validatePhone(number);
+        }
+        // Password validate
+        var validPassword = function(password){
+            return $commonsvc.validatePassword(password);
+        }
 
         //Sign up
         $scope.usersignup = function () {
@@ -82,7 +90,20 @@
                         $scope.hideError = false;
                         $scope.hideSuccess = true;
                         $scope.errorMsg = $roconstants.invalidemail;
+                        return false;
                     }
+                    if(!validPhone($scope.number)){
+                        $scope.hideError = false;
+                        $scope.hideSuccess = true;
+                        $scope.errorMsg = $roconstants.invalidphone;
+                        return false;
+                    }
+                    if(!validPassword($scope.password)){
+                        $scope.hideError = false;
+                        $scope.hideSuccess = true;
+                        $scope.errorMsg = $roconstants.invalidPassword;
+                        return false;
+                    }  
 
                     data.fname = $scope.firstname;
                     data.lname = $scope.lastname;

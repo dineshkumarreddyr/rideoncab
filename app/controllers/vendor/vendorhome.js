@@ -65,7 +65,7 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 									$scope.msgtype = "danger";
 									break;
 									default:
-									$scope.signuperrorMsg = $roconstants.vendoraccountexists;
+									$scope.signuperrorMsg = $roconstants.apiFailed;
 									$scope.signuperror = false;
 									$scope.msgtype = "danger";
 									break;

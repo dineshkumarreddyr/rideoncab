@@ -1,4 +1,4 @@
-var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies','roc.constants']);
+var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies','roc.constants','angular-loading-bar']);
 
 rocapp.value('$anchorScroll', angular.noop);
 

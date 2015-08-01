@@ -34,23 +34,23 @@
                     <div class="alert alert-roc hide" roc-alert>{{addrerrMsg}}</div>
                 </div>
                 <div class="clearfix form-group">
-                    <label for="firstname">First Name</label>
+                    <label for="firstname">First Name <span class="req">*</span></label>
                     <input type="text" name="name" id="firstname" ng-model='ufname' class="form-control" placeholder="First Name">
                 </div>
                 <div class="clearfix form-group">
-                    <label for="firstname">Last Name</label>
+                    <label for="firstname">Last Name <span class="req">*</span></label>
                     <input type="text" name="name" id="lastname" ng-model='ulname' class="form-control" placeholder="Last Name">
                 </div>
                 <div class="clearfix form-group">
-                    <label for="mobile number">Mobile Number</label>
+                    <label for="mobile number">Mobile Number <span class="req">*</span></label>
                     <input type="mobile" name="mobile" id="mobile" ng-model='umobilenumber' class="form-control" placeholder="Mobile Number">
                 </div>
                 <div class="clearfix form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">Email Address <span class="req">*</span></label>
                     <input type="text" name="email" id="email" class="form-control" ng-model='uemail' placeholder="Email Address">
                 </div>
                 <div class="clearfix form-group">
-                    <label for="email">Street Address</label>
+                    <label for="email">Street Address <span class="req">*</span></label>
                     <input type="text" name="streetaddress" id="streetaddress" ng-model='uaddress1' class="form-control" placeholder="Street Address">
                 </div>
                 <div class="clearfix form-group">
@@ -58,19 +58,19 @@
                     <input type="text" name="streetaddress2" id="streetaddress2" class="form-control" ng-model='uaddress2' placeholder="Street Address 2">
                 </div>
                 <div class="clearfix form-group">
-                    <label for="City">City</label><br>
+                    <label for="City">City <span class="req">*</span></label><br>
                     <select ng-model='uselectedcity' ng-options="item.cname as item.cname for item in indiancities | orderBy:'cname'" class="minimal">
                         <option value="">Select city</option>
                     </select>
                 </div>
                 <div class="clearfix form-group">
-                    <label for="state">State</label><br>
+                    <label for="state">State <span class="req">*</span></label><br>
                     <select id="state" ng-model='uselectedstate' ng-options="item.sname as item.sname for item in indianstates | orderBy:'sname'" class="minimal">
                         <option value="">Select state</option>
                     </select>
                 </div>
                 <div class="clearfix form-group">
-                    <label for="email">Postal Code</label>
+                    <label for="email">Postal Code <span class="req">*</span></label>
                     <input type="text" name="Code" id="Code" ng-model='upostalcode' class="form-control" placeholder="Postal Code">
                 </div>
                 <!-- <div class="clearfix form-group">

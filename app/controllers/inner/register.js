@@ -7,7 +7,7 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 			sname:'Andhra Pradesh'
 		},{
 			sid:2,
-			sname:'Telanga'
+			sname:'Telangana'
 		},{
 			sid:3,
 			sname:'Karnataka'

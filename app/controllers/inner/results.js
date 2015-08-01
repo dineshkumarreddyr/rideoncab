@@ -116,9 +116,9 @@
             $scope.vendornameChange = function(){
                 var filteredItems =  [];
                 if($scope.filterCabmodel!=undefined)
-                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterCabmodel,vendorname:$scope.filterVendor});
+                    filteredItems = $filter('filter')($scope.tempCabresults,{vendorname:$scope.filterCabmodel,vendorname:$scope.filterVendor});
                 else
-                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterVendor});
+                    filteredItems = $filter('filter')($scope.tempCabresults,{vendorname:$scope.filterVendor});
                 $scope.cabresults = filteredItems;
             }
 

@@ -246,70 +246,22 @@
 						</div>
 						<div class="tab-pane" id="tab2">
 							<h2>Manage Users</h2>
-							<table class="table table-responsive">
+							<table datatable="ng" dt-options="dtOptions" class="table table-responsive">
 								<thead>
 									<tr>
 										<th>Name</th>
 										<th>Email ID</th>
 										<th>Address</th>
 										<th>Phone No</th>
-										<th>Actions</th>
+										<!-- <th>Actions</th> -->
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td class="ng-binding">Aneel Kaushik</td>
-										<td class="ng-binding">aneelkaushikk@gmail.com</td>
-										<td class="ng-binding">Plot no 449, Prashanthnagar</td>
-										<td class="ng-binding">9700078025</td>
-										<td>
-											<button class="btn btn-default" ng-click="">Delete</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="ng-binding">Aneel Kaushik</td>
-										<td class="ng-binding">aneelkaushikk@gmail.com</td>
-										<td class="ng-binding">Plot no 449, Prashanthnagar</td>
-										<td class="ng-binding">9700078025</td>
-										<td>
-											<button class="btn btn-default" ng-click="">Delete</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="ng-binding">Aneel Kaushik</td>
-										<td class="ng-binding">aneelkaushikk@gmail.com</td>
-										<td class="ng-binding">Plot no 449, Prashanthnagar</td>
-										<td class="ng-binding">9700078025</td>
-										<td>
-											<button class="btn btn-default" ng-click="">Delete</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="ng-binding">Aneel Kaushik</td>
-										<td class="ng-binding">aneelkaushikk@gmail.com</td>
-										<td class="ng-binding">Plot no 449, Prashanthnagar</td>
-										<td class="ng-binding">9700078025</td>
-										<td>
-											<button class="btn btn-default" ng-click="">Delete</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="ng-binding">Aneel Kaushik</td>
-										<td class="ng-binding">aneelkaushikk@gmail.com</td>
-										<td class="ng-binding">Plot no 449, Prashanthnagar</td>
-										<td class="ng-binding">9700078025</td>
-										<td>
-											<button class="btn btn-default" ng-click="">Delete</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="ng-binding">Aneel Kaushik</td>
-										<td class="ng-binding">aneelkaushikk@gmail.com</td>
-										<td class="ng-binding">Plot no 449, Prashanthnagar</td>
-										<td class="ng-binding">9700078025</td>
-										<td>
-											<button class="btn btn-default" ng-click="">Delete</button>
-										</td>
+									<tr ng-repeat="item in allusers">
+										<td>{{item.fname}} {{item.lname}}</td>
+										<td>{{item.email}}</td>
+										<td>{{item.address1}}</td>
+										<td>{{item.mobile}}</td>
 									</tr>
 								</tbody>
 							</table>

@@ -153,7 +153,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 						vcmid:$scope.vcabmodel,
 						cpkm:$scope.vcabprice,
 						csid:$scope.vendorcabservices,
-						cunitsph:$scope.vhours	
+						cunitsph:$scope.vhours!=undefined ? $scope.vhours : ""	
 					}];
 
 					$http.post($roconfig.apiUrl+'vendor/prices',data).success(function(res,status,headers,conf){
@@ -179,7 +179,7 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 				try{
 					data.vid = $roconfig.vendordetail.vid;
 					data.content = $scope.vterms;
-					data.cabmodel = $scope.termsselectedmodel.cabmodel;
+					data.cabmodel = $scope.termsselectedmodel;
 
 					$http.post($roconfig.apiUrl+'vendor/terms',data).success(function(res,status,headers,conf){
 						if(status!=undefined && status===200){

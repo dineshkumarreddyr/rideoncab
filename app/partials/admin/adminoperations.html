@@ -314,6 +314,37 @@
 								</tbody>
 							</table>
 						</div>
+						<div class="tab-pane" id="tab3">
+						<div class="col-md-12">
+							<button class="btn btn-default pull-right" ng-click="reloadbookinginfo()">Reload</button>
+						</div>
+							<h2>View all bookings</h2>
+							<style type="text/css">
+								#DataTables_Table_2_wrapper{
+									margin-bottom: 30px;
+								}
+							</style>
+							<table datatable="ng" dt-options="dtOptions" dt-instance="dtbookinginstance" class="table table-responsive">
+								<thead>
+									<tr>
+										<th>Booking ID</th>
+										<th>Type of Service</th>
+										<th>Date &amp; time</th>
+										<th>Pickup Location</th>
+										<th>Drop Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in cabbooking">
+										<td>{{item.transid}}</td>
+										<td>{{item.servicetype}}</td>
+										<td>{{item.bdatetime}}</td>
+										<td>{{item.bfl}}</td>
+										<td>{{item.btl}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<div class="loadmore"></div>
 					</div>
 				</div>
@@ -324,6 +355,7 @@
 					<ul class="nav tabs">
 						<li class="active"><a href="#tab1" data-toggle="tab">Manage Vendors</a></li>
 						<li class=""><a href="#tab2" data-toggle="tab">Manage Users</a></li>
+						<li class=""><a href="#tab3" data-toggle="tab">All Bookings</a></li>
 					</ul>
 				</nav>
 			</div>

@@ -284,10 +284,10 @@ margin-top: 0px;}
 
 @font-face {
     font-family:'Conv_Track';
-    src: url('http://www.crestdzines.com/rocbeta/fonts/Track.eot');
-    src: url('http://www.crestdzines.com/rocbeta/fonts/Track.woff') format('woff'),
-         url('http://www.crestdzines.com/rocbeta/fonts/Track.ttf') format('truetype'),
-         url('http://www.crestdzines.com/rocbeta/fonts/Track.svg') format('svg');
+    src: url('http://www.rideoncab.com/fonts/Track.eot');
+    src: url('http://www.rideoncab.com/fonts/Track.woff') format('woff'),
+         url('http://www.rideoncab.com/fonts/Track.ttf') format('truetype'),
+         url('http://www.rideoncab.com/fonts/Track.svg') format('svg');
          font-weight: normal;font-style: normal;}
 
 
@@ -358,5 +358,6 @@ h1{font-size:30px;padding-left:15px;}
 /*Dinesh custom styles */
 .alert-roc{background: none;border: none;padding: 0px 15px;text-shadow:none;}
 .manageuser{padding-top: 100px;}
-	
-	
+.table.dataTable tfoot th, table.dataTable tfoot td{
+    padding: 8px !important;
+	}

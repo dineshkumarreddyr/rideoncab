@@ -13,17 +13,22 @@
                     <h3>Filter By</h3>
                     <div class="filter-bar">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <select class="minimal" ng-model="filterCabmodel" ng-change="cabmodelChange()" ng-options="item.cabmodel as item.cabmodel for item in tempCabresults | unique:'cabmodel'">
                                     <option value="" disabled="">Select cab model</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <select class="minimal" ng-model="filterVendor" ng-change="vendornameChange()" ng-options="item.vendorname as item.vendorname for item in tempCabresults | unique:'vendorname'">
                                     <option value="" disabled="">Select Vendor</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <select class="minimal" ng-model="filterLocality" ng-change="localityChange()" ng-options="item.vendoraddress as item.vendoraddress for item in tempCabresults | unique:'vendoraddress'">
+                                    <option value="" disabled="">Select Location</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
                                 <a href="#" ng-click="resetall()">Reset</a>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 ﻿rocapp.controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','$commonsvc','$filter',
     function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$commonsvc,$filter) {
         (function () {
-            "use strict";
+            //"use strict";
 
             //Default array
             $scope.cabresults = [];
@@ -100,7 +100,10 @@
                 $(e.currentTarget).addClass('selectedcab');
 
                 var price = parseInt($(e.currentTarget).find('.pricing').text());
-                $scope.approxTotal = price * parseInt($scope.estdistance);
+                if($roconfig.bookingdetail.servicetype!=undefined && $roconfig.bookingdetail.servicetype!='3')
+                    $scope.approxTotal = price * parseInt($scope.estdistance);
+                else
+                    $scope.approxTotal = price;
             }
 
             // Filter for cab model change
@@ -116,9 +119,19 @@
             $scope.vendornameChange = function(){
                 var filteredItems =  [];
                 if($scope.filterCabmodel!=undefined)
-                    filteredItems = $filter('filter')($scope.tempCabresults,{vendorname:$scope.filterCabmodel,vendorname:$scope.filterVendor});
+                    filteredItems = $filter('filter')($scope.tempCabresults,{cabmodel:$scope.filterCabmodel,vendorname:$scope.filterVendor});
                 else
                     filteredItems = $filter('filter')($scope.tempCabresults,{vendorname:$scope.filterVendor});
+                $scope.cabresults = filteredItems;
+            }
+            // Filter for Vendor address
+            $scope.localityChange = function(){
+                var filteredItems = [];
+                if($scope.filterLocality!=undefined){
+                    filteredItems = $filter('filter')($scope.tempCabresults,{vendoraddress:$scope.filterLocality,cabmodel:$scope.filterCabmodel,vendorname:$scope.filterVendor},true);
+                }
+                else
+                    filteredItems = $filter('filter')($scope.tempCabresults,{vendoraddress:$scope.filterLocality},true);
                 $scope.cabresults = filteredItems;
             }
 

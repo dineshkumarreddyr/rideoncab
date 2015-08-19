@@ -12,6 +12,7 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 		$scope.cabmodel = [];
 		$scope.vtid = null;
 		$scope.cabbooking = [];
+		$scope.allusers = [];
 
 		function init(){
 			this.getvendor = function(){
@@ -31,6 +32,16 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 					}
 				}).error(function(res,status,headers,conf){
 					$log.error(res);
+				});
+			},
+			this.getuserdetails = function(){
+				$http.get($roconfig.apiUrl+'/admin/users').success(function(res,status,headers,conf){
+					if(status!=undefined && status===200){
+						$scope.allusers = res.results;
+						$scope.dtuserinstace = $scope.allusers;
+					}
+				}).error(function(res,status,headers,conf){
+
 				});
 			}
 			$http.get($roconfig.apiUrl+'cabservices').success(function(res,status,headers,conf){
@@ -52,6 +63,7 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 		init();
 		(new init()).getvendor();
 		(new init()).getCabbookings();
+		(new init()).getuserdetails();
 
 		$scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
 		.withOption('responsive',true)

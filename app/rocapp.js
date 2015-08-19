@@ -1,4 +1,4 @@
-var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies','roc.constants','angular-loading-bar']);
+var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config', 'datatables', 'ngCookies', 'roc.constants', 'angular-loading-bar']);
 
 rocapp.value('$anchorScroll', angular.noop);
 
@@ -21,62 +21,62 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
         }).state('home.address', {
             url: '/address',
             templateUrl: "app/partials/inner/address.html",
-            controller:'registerController'
-        }).state('home.confirm',{
-            url:'/confirm',
-            templateUrl:'app/partials/inner/confirm.html',
-            controller:'confirmController'
-        }).state('home.manageaccount',{
-            url:'/manageaccount',
-            templateUrl:'app/partials/inner/manageuser.html',
-            controller:'manageuserController'
-        }).state('vendorhome',{
-            url:'/vendor',
-            templateUrl:'app/partials/vendorcommon.html',
-            controller:'vendorhomeController'
-        }).state('vendorhome.signin',{
-            url:'/signin',
-            templateUrl:'app/partials/vendor/signin.html',
-            controller:'vendorhomeController'
-        }).state('vendorhome.signup',{
-            url:'/signup',
-            templateUrl:'app/partials/vendor/signup.html',
-            controller:'vendorhomeController'
-        }).state('vendorhome.manageaccount',{
-            url:'/manageaccount',
-            templateUrl:'app/partials/vendor/manageservices.html',
-            controller:'vendoraccountController'
-        }).state('adminhome',{
-            url:'/admin',
-            templateUrl:'app/partials/admincommon.html',
-            controller:'adminController'
-        }).state('adminhome.manage',{
-            url:'/manageaccounts',
-            templateUrl:'app/partials/admin/adminoperations.html',
-            controller:'adminController'
-        }).state('home.about',{
-            url:'/aboutus',
-            templateUrl:'app/partials/inner/about.html'
-        }).state('home.carrers',{
-            url:'/carrers',
-            templateUrl:'app/partials/inner/careers.html'
-        }).state('home.contact',{
-            url:'/contactus',
-            templateUrl:'app/partials/inner/contact.html'
-        }).state('home.terms',{
-            url:'/termsandconditions',
-            templateUrl:'app/partials/inner/terms.html'
-        }).state('home.services',{
-            url:'/services',
-            templateUrl:'app/partials/inner/services.html'
+            controller: 'registerController'
+        }).state('home.confirm', {
+            url: '/confirm',
+            templateUrl: 'app/partials/inner/confirm.html',
+            controller: 'confirmController'
+        }).state('home.manageaccount', {
+            url: '/manageaccount',
+            templateUrl: 'app/partials/inner/manageuser.html',
+            controller: 'manageuserController'
+        }).state('vendorhome', {
+            url: '/vendor',
+            templateUrl: 'app/partials/vendorcommon.html',
+            controller: 'vendorhomeController'
+        }).state('vendorhome.signin', {
+            url: '/signin',
+            templateUrl: 'app/partials/vendor/signin.html',
+            controller: 'vendorhomeController'
+        }).state('vendorhome.signup', {
+            url: '/signup',
+            templateUrl: 'app/partials/vendor/signup.html',
+            controller: 'vendorhomeController'
+        }).state('vendorhome.manageaccount', {
+            url: '/manageaccount',
+            templateUrl: 'app/partials/vendor/manageservices.html',
+            controller: 'vendoraccountController'
+        }).state('adminhome', {
+            url: '/admin',
+            templateUrl: 'app/partials/admincommon.html',
+            controller: 'adminController'
+        }).state('adminhome.manage', {
+            url: '/manageaccounts',
+            templateUrl: 'app/partials/admin/adminoperations.html',
+            controller: 'adminController'
+        }).state('home.about', {
+            url: '/aboutus',
+            templateUrl: 'app/partials/inner/about.html'
+        }).state('home.carrers', {
+            url: '/carrers',
+            templateUrl: 'app/partials/inner/careers.html'
+        }).state('home.contact', {
+            url: '/contactus',
+            templateUrl: 'app/partials/inner/contact.html'
+        }).state('home.terms', {
+            url: '/termsandconditions',
+            templateUrl: 'app/partials/inner/terms.html'
+        }).state('home.services', {
+            url: '/services',
+            templateUrl: 'app/partials/inner/services.html'
         })
 
         $urlRouterProvider.otherwise("/home/search");
         $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 
-rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roconfig','$timeout',
-    function($rootScope, $location, $state, $timeout,$managecookies,$roconfig,$timeout){
+rocapp.run(['$rootScope', '$location', '$state', '$timeout', 'managecookies', '$roconfig', '$timeout',
+    function ($rootScope, $location, $state, $timeout, $managecookies, $roconfig, $timeout) {
 
         $rootScope.$on('$stateChangeSuccess', function () {
             document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -86,31 +86,38 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
             $managecookies.bind();
             $managecookies.bindvendor();
             $managecookies.bindbooking();
-            if((toState.name==='home.address' || toState.name==='home.results' || 
-                toState.name==='home.address' || toState.name==='home.confirm')){
+            if ((toState.name === 'home.address' || toState.name === 'home.results' ||
+                toState.name === 'home.address' || toState.name === 'home.confirm')) {
                 $managecookies.removevendor();
-                if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
-                    $timeout(function(){
+                if (!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
+                    $timeout(function () {
                         $state.go('home.search');
                     });
             }
-            else if(toState.name==='vendorhome.manageaccount'){
+            else if (toState.name === 'vendorhome.manageaccount') {
                 $managecookies.removebooking();
                 $managecookies.remove();
-                if(!$roconfig.vendordetail.hasOwnProperty('vid')){
-                    $timeout(function(){
+                if (!$roconfig.vendordetail.hasOwnProperty('vid')) {
+                    $timeout(function () {
                         $state.go('vendorhome.signin');
                     });
                 }
             }
-            else if(toState.name==='vendorhome.signin' || toState.name==='vendorhome.signup'){
+            else if (toState.name === 'vendorhome.signin' || toState.name === 'vendorhome.signup') {
                 $managecookies.remove();
             }
-            else if(toState.name==='home.search'){
+            else if (toState.name === 'home.search') {
                 $managecookies.removevendor();
             }
+            else if (toState.name === 'home.manageaccount') {
+                if (!$roconfig.userdetail.hasOwnProperty('email')) {
+                    $timeout(function () {
+                        $state.go('home.search');
+                    });
+                }
+            }
         });
-}]);
+    }]);
 
 //Directives
 rocapp.directive('gmapSearch', function () {
@@ -149,17 +156,17 @@ rocapp.directive('rocmodalActions', function () {
 });
 
 // Directive for Alert Messages
-rocapp.directive('rocAlert',function(){
-    return{
-        restrict:'A',
-        link:function(scope,element,attributes){
-            scope.success = function(){
+rocapp.directive('rocAlert', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attributes) {
+            scope.success = function () {
                 element.removeClass('hide').addClass('alert-success show');
             };
-            scope.danger = function(){
+            scope.danger = function () {
                 element.removeClass('hide').addClass('alert-danger show');
             };
-            scope.errorhide = function(){
+            scope.errorhide = function () {
                 element.removeClass('show').addClass('hide');
             };
         }
@@ -167,31 +174,31 @@ rocapp.directive('rocAlert',function(){
 });
 
 //Factory
-rocapp.factory('managecookies',['$cookieStore','$roconfig','$state',function($cookie,$roconfig,$state){
-    return{
-        bind:function(){
-            if($cookie.get('userdetail')!=undefined && $cookie.get('userdetail')!=null){
+rocapp.factory('managecookies', ['$cookieStore', '$roconfig', '$state', function ($cookie, $roconfig, $state) {
+    return {
+        bind: function () {
+            if ($cookie.get('userdetail') != undefined && $cookie.get('userdetail') != null) {
                 $roconfig.userdetail = $cookie.get('userdetail');
             }
         },
-        remove:function(){
+        remove: function () {
             $roconfig.userdetail = {};
             $cookie.remove('userdetail');
         },
-        bindvendor:function(){
-            if($cookie.get('vendordetail')!=undefined && $cookie.get('vendordetail')!=null){
+        bindvendor: function () {
+            if ($cookie.get('vendordetail') != undefined && $cookie.get('vendordetail') != null) {
                 $roconfig.vendordetail = $cookie.get('vendordetail');
             }
         },
-        removevendor:function(){
+        removevendor: function () {
             $roconfig.vendordetail = {};
             $cookie.remove('vendordetail');
         },
-        bindbooking:function(){
-            if($cookie.get('bookingdetail')!=undefined && $cookie.get('bookingdetail')!=null)
+        bindbooking: function () {
+            if ($cookie.get('bookingdetail') != undefined && $cookie.get('bookingdetail') != null)
                 $roconfig.bookingdetail = $cookie.get('bookingdetail');
         },
-        removebooking:function(){
+        removebooking: function () {
             $roconfig.bookingdetail = {};
             $cookie.remove('bookingdetail');
         }

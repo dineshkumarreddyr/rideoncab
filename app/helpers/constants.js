@@ -13,7 +13,7 @@
         passwordlink:'Your password has been sent to your email address',
         invalidphone:'Phone number should be 10 digits',
         invalidPassword:'Password should be in 6-12 range',
-        vendorsignupsuccess:"Accoutn created successfully.",
+        vendorsignupsuccess:"Account created successfully.",
         vendoraccountexists:"Account already exists. Please try sign in.",
         vendornotexist:"Account does not exists. Please create a new account and try sign in."
 	});

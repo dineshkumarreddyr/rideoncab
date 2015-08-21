@@ -414,4 +414,9 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 				(new init()).getCabbookings();
 			}
 
+			$scope.showpopup = function(index){
+				$('#managebookings').modal('show');
+				$scope.bookingtransactionid = $scope.cabbooking[index].transid;
+			}
+
 		}]);

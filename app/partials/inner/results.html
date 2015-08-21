@@ -71,7 +71,8 @@
                                 <p>User Reviews</p>
                                 <div id="star" class="starrr"></div>
                             </div>
-                            <div class="pricing">{{result.chargeperkm}} /km</div>
+                            <div class="pricing" ng-show="{{result.servicetype}}!='3'">{{result.chargeperkm}} /km</div>
+                            <div class="pricing" ng-show="{{result.servicetype}}=='3'">{{result.chargeperkm}} /{{result.chargeperhour}} hour(s)</div>
                             <div class="col-md-12 terms-wrap">
                                 <ul>
                                     <li ng-repeat="item in allterms | filter:{'vid':result.vendorid} && {'cabmodel':result.cabmodel}">{{item.terms}}</li>

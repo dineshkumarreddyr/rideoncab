@@ -267,9 +267,9 @@
 							</table>
 						</div>
 						<div class="tab-pane" id="tab3">
-						<div class="col-md-12">
-							<button class="btn btn-default pull-right" ng-click="reloadbookinginfo()">Reload</button>
-						</div>
+							<div class="col-md-12">
+								<button class="btn btn-default pull-right" ng-click="reloadbookinginfo()">Reload</button>
+							</div>
 							<h2>View all bookings</h2>
 							<style type="text/css">
 								#DataTables_Table_2_wrapper{
@@ -284,6 +284,7 @@
 										<th>Date &amp; time</th>
 										<th>Pickup Location</th>
 										<th>Drop Location</th>
+										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -293,6 +294,9 @@
 										<td>{{item.bdatetime}}</td>
 										<td>{{item.bfl}}</td>
 										<td>{{item.btl}}</td>
+										<td>
+											<button class="btn btn-default" ng-click="showpopup($index)">Enter details</button>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -312,5 +316,56 @@
 				</nav>
 			</div>
 		</div> 
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="managebookings" tabindex="-1" role="dialog" aria-labelledby="managebookingslbl">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="managebookingslbl">Enter details</h4>
+			</div>
+			<div class="modal-body">
+				<form name="cabdetails">
+					<div class="form-group">
+						<label>Booking ID : {{bookingtransactionid}}</label>
+					</div>
+					<div class="form-group">
+						<label>Cab Registration number <span class="req">*</span></label>
+						<input type="text" name="cabregno" class="form-control" ng-model="cabregno" ng-required="true" />
+					</div>
+					<div class="form-group">
+						<label>Cab driver name <span class="req">*</span></label>
+						<input type="text" name="cabdrivername" class="form-control" ng-model="cabdrivername" ng-required="true" />
+					</div>
+					<div class="form-group">
+						<label>Cab driver mobile number <span class="req">*</span></label>
+						<input type="text" name="cabdriverno" class="form-control" ng-model="cabdriverno" ng-required="true" />
+					</div>
+					<div class="form-group">
+						<label>Status <span class="req">*</span></label>
+						<select class="form-control" ng-model="cabstatus" ng-required="true">
+							<option value="">Select booking status</option>
+							<option value="Confirmed">Confirmed</option>
+							<option value="Pending">Pending</option>
+							<option value="Cancelled">Cancelled</option>
+						</select>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-4">
+							<button class="blackbtn" data-dismiss="modal">Close</button>
+						</div>
+						<div class="col-md-4">
+							<button class="bookbtn">Save changes</button>
+						</div>
+						<div class="col-md-4">
+							<button class="bookbtn">Send Email & SMS</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>

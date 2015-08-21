@@ -77,6 +77,10 @@
 
 
             $scope.continueaddress = function (index) {
+                if(!$roconfig.userdetail.hasOwnProperty('email')){
+                    $('#myModal1').modal('show');
+                    return;
+                }
                 $roconfig.bookingdetail.cabtype = $scope.cabresults[index].cabtype;
                 $roconfig.bookingdetail.cabmodel = $scope.cabresults[index].cabmodel;
                 $roconfig.bookingdetail.chargeperkm = $scope.cabresults[index].chargeperkm;

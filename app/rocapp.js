@@ -62,7 +62,8 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             templateUrl:'app/partials/inner/careers.html'
         }).state('home.contact',{
             url:'/contactus',
-            templateUrl:'app/partials/inner/contact.html'
+            templateUrl:'app/partials/inner/contact.html',
+            controller:'ContactController'
         }).state('home.terms',{
             url:'/termsandconditions',
             templateUrl:'app/partials/inner/terms.html'
@@ -89,27 +90,27 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
             if((toState.name==='home.address' || toState.name==='home.results' || 
                 toState.name==='home.address' || toState.name==='home.confirm')){
                 $managecookies.removevendor();
-                if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
-                    $timeout(function(){
-                        $state.go('home.search');
-                    });
+            if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
+                $timeout(function(){
+                    $state.go('home.search');
+                });
+        }
+        else if(toState.name==='vendorhome.manageaccount'){
+            $managecookies.removebooking();
+            $managecookies.remove();
+            if(!$roconfig.vendordetail.hasOwnProperty('vid')){
+                $timeout(function(){
+                    $state.go('vendorhome.signin');
+                });
             }
-            else if(toState.name==='vendorhome.manageaccount'){
-                $managecookies.removebooking();
-                $managecookies.remove();
-                if(!$roconfig.vendordetail.hasOwnProperty('vid')){
-                    $timeout(function(){
-                        $state.go('vendorhome.signin');
-                    });
-                }
-            }
-            else if(toState.name==='vendorhome.signin' || toState.name==='vendorhome.signup'){
-                $managecookies.remove();
-            }
-            else if(toState.name==='home.search'){
-                $managecookies.removevendor();
-            }
-        });
+        }
+        else if(toState.name==='vendorhome.signin' || toState.name==='vendorhome.signup'){
+            $managecookies.remove();
+        }
+        else if(toState.name==='home.search'){
+            $managecookies.removevendor();
+        }
+    });
 }]);
 
 //Directives
@@ -130,6 +131,26 @@ rocapp.directive('gmapSearch', function () {
         }
     }
     return mapDirective;
+});
+
+// Only numbers
+rocapp.directive('numberInput',function(){
+    function linkFn(scope,element,attributes){
+        if(element!=undefined){
+            $(element).bind('keypress',function(evt){
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            });
+        }
+    }
+    return{
+        restrict:'A',
+        link:linkFn
+    }
 });
 
 // Directive for Close Modal

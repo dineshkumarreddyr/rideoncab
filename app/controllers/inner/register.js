@@ -93,12 +93,12 @@ rocapp.controller('registerController', ['$scope', '$http', '$state', '$log', '$
 
 			},
 			this.isuserdetailsexists = function(){
-				if(($roconfig.userdetail.address1!=undefined || $roconfig.userdetail.address1!='') && 
-					($roconfig.userdetail.address2!=undefined || $roconfig.userdetail.address2!='') && 
-					($roconfig.userdetail.city!=undefined || $roconfig.userdetail.city!='') && 
-					($roconfig.userdetail.state!=undefined || $roconfig.userdetail.state!='') && 
-					($roconfig.userdetail.pincode!=undefined || $roconfig.userdetail.pincode!='') &&
-					($roconfig.userdetail.mobile!=undefined || $roconfig.userdetail.mobile))
+				if(($roconfig.userdetail.address1!=undefined && $roconfig.userdetail.address1!='') && 
+					($roconfig.userdetail.address2!=undefined && $roconfig.userdetail.address2!='') && 
+					($roconfig.userdetail.city!=undefined && $roconfig.userdetail.city!='') && 
+					($roconfig.userdetail.state!=undefined && $roconfig.userdetail.state!='') && 
+					($roconfig.userdetail.pincode!=undefined && $roconfig.userdetail.pincode!='') &&
+					($roconfig.userdetail.mobile!=undefined && $roconfig.userdetail.mobile))
 					return true;
 				return false;
 			}

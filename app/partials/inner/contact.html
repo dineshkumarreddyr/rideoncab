@@ -7,45 +7,60 @@
 </div>
 
 <div class="container careers-wrap">
-<div class="row">
-<h1 class="text-center">Reach Us</h1>
-<div class="col-md-7 contact-wrap">
-    <div class="form-area">  
-        <form role="form">
+    <div class="row">
+        <h1 class="text-center">Reach Us</h1>
+        <div class="col-md-7 contact-wrap">
+            <div class="form-area">  
+                <form role="form" name="contactus" novalidate>
+                    <div class="alert alert-roc alert-{{alertType}}" ng-show="alertShow">{{alertMsg}}</div>
                     <div class="form-group">
                        <label class='control-label'>Name <span class="req">*</span></label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label class='control-label'>Email Address <span class="req">*</span></label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                       <label class='control-label'>Mobile Number <span class="req">*</span></label>
-                        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
-                    </div>
-                    <div class="form-group">
-                        <label class='control-label'>Subject <span class="req">*</span></label>
-                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                    <label class='control-label'>Message <span class="req">*</span></label>
-                    <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>                   
-                    </div>
+                       <input type="text" class="form-control" id="name" name="name" ng-model="name" required>
+                   </div>
+                   <div class="form-group">
+                    <label class='control-label'>Email Address <span class="req">*</span></label>
+                    <input type="text" class="form-control" id="email" name="email" ng-model="email" required>
+                </div>
+                <div class="form-group">
+                   <label class='control-label'>Mobile Number <span class="req">*</span></label>
+                   <input type="text" class="form-control" id="mobile" maxlength="10" number-input name="mobile" ng-model="phone" required>
+               </div>
+               <div class="form-group">
+                <label class='control-label'>Subject <span class="req">*</span></label>
+                <input type="text" class="form-control" id="subject" name="subject" ng-model="subject" required>
+            </div>
+            <div class="form-group">
+                <label class='control-label'>Message <span class="req">*</span></label>
+                <textarea class="form-control" type="textarea" id="message" ng-model="message" maxlength="140" rows="7"></textarea>                   
+            </div>
             
-         <div class="col-md-5"><button type="button" id="submit" name="submit" class="bookbtn pull-right">Submit</button></div>
+            <div class="col-md-5"><button type="button" id="submit" name="submit" ng-click="submit(contactus.$invalid)" class="bookbtn pull-right">Submit</button></div>
         </form>
     </div>
 </div>
 <div class="col-md-1"></div>
 <div class="col-md-4 text-right">
-<div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d121823.62588435788!2d78.40804554999998!3d17.412348700000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1438332265670" width="" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+<div id="map" class="map"></div>
+    <!-- <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d121823.62588435788!2d78.40804554999998!3d17.412348700000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1438332265670" width="" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div> -->
+    <h2>Address</h2>
+    <p>A 32,2nd Floor, Road No:5 Filimnagar</p>
+    <p>Jubliee Hills, Hyderabad-5000033</p>
+    <p>Email: info@rideoncab.com</p>  
 </div>
- <h2>Address</h2>
- <p>A 32,2nd Floor, Road No:5 Filimnagar</p>
- <p>Jubliee Hills, Hyderabad-5000033</p>
- <p>Email: info@rideoncab.com</p>  
 </div>
 </div>
-</div>
+<script type="text/javascript">
+    function initialize() {
+        debugger;
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+          center: new google.maps.LatLng(17.416288, 78.411104),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>

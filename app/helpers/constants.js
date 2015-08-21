@@ -15,6 +15,7 @@
         invalidPassword:'Password should be in 6-12 range',
         vendorsignupsuccess:"Accoutn created successfully.",
         vendoraccountexists:"Account already exists. Please try sign in.",
-        vendornotexist:"Account does not exists. Please create a new account and try sign in."
+        vendornotexist:"Account does not exists. Please create a new account and try sign in.",
+        contactussuccess:'Thanks for contact us. Our executives will reach you soon.'
 	});
 })();

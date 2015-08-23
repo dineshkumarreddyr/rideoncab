@@ -1,10 +1,12 @@
-var rocapp = angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies','roc.constants','angular-loading-bar']);
+(function(){
+    //"use strict";
 
-rocapp.value('$anchorScroll', angular.noop);
+    angular.module('rocapp', ['ui.router', 'ui.bootstrap', 'roc.config','datatables','ngCookies','roc.constants','angular-loading-bar']);
 
-// Configure angular routing
-rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
-    function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    angular.module('rocapp').value('$anchorScroll', angular.noop);
+
+    angular.module('rocapp').config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
+        function ($locationProvider, $stateProvider, $urlRouterProvider) {
         // Actual routing
         $stateProvider.state('home', {
             url: "/home",
@@ -50,6 +52,10 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
             url:'/admin',
             templateUrl:'app/partials/admincommon.html',
             controller:'adminController'
+        }).state('adminlogin',{
+            url:'/adminsignin',
+            templateUrl:'app/partials/admin/adminlogin.html',
+            controller:'adminController'
         }).state('adminhome.manage',{
             url:'/manageaccounts',
             templateUrl:'app/partials/admin/adminoperations.html',
@@ -76,7 +82,7 @@ rocapp.config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
         $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 
-rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roconfig','$timeout',
+angular.module('rocapp').run(['$rootScope','$location', '$state', '$timeout','managecookies','$roconfig','$timeout',
     function($rootScope, $location, $state, $timeout,$managecookies,$roconfig,$timeout){
 
         $rootScope.$on('$stateChangeSuccess', function () {
@@ -87,17 +93,21 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
             $managecookies.bind();
             $managecookies.bindvendor();
             $managecookies.bindbooking();
+            $managecookies.bindadmin();
             if((toState.name==='home.address' || toState.name==='home.results' || 
                 toState.name==='home.address' || toState.name==='home.confirm')){
                 $managecookies.removevendor();
-            if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress'))
+            $managecookies.removeadmin();
+            if(!$roconfig.bookingdetail.hasOwnProperty('fromaddress')){
                 $timeout(function(){
                     $state.go('home.search');
                 });
+            }
         }
         else if(toState.name==='vendorhome.manageaccount'){
             $managecookies.removebooking();
             $managecookies.remove();
+            $managecookies.removeadmin();
             if(!$roconfig.vendordetail.hasOwnProperty('vid')){
                 $timeout(function(){
                     $state.go('vendorhome.signin');
@@ -110,11 +120,22 @@ rocapp.run(['$rootScope','$location', '$state', '$timeout','managecookies','$roc
         else if(toState.name==='home.search'){
             $managecookies.removevendor();
         }
+        else if(toState.name==='adminlogin'){
+            $managecookies.removebooking();
+            $managecookies.remove();
+            $managecookies.removevendor();
+        }
+        else if(toState.name==='adminhome.manage'){
+            if(!$roconfig.admindetail.hasOwnProperty('username')){
+                $timeout(function(){
+                    $state.go('adminlogin');
+                });
+            }
+        }
     });
 }]);
 
-//Directives
-rocapp.directive('gmapSearch', function () {
+angular.module('rocapp').directive('gmapSearch', function () {
     var mapDirective = {
         restrict: 'AEC',
         link: function (scope, element, attributes) {
@@ -133,8 +154,7 @@ rocapp.directive('gmapSearch', function () {
     return mapDirective;
 });
 
-// Only numbers
-rocapp.directive('numberInput',function(){
+angular.module('rocapp').directive('numberInput',function(){
     function linkFn(scope,element,attributes){
         if(element!=undefined){
             $(element).bind('keypress',function(evt){
@@ -153,8 +173,7 @@ rocapp.directive('numberInput',function(){
     }
 });
 
-// Directive for Close Modal
-rocapp.directive('rocmodalActions', function () {
+angular.module('rocapp').directive('rocmodalActions', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -169,8 +188,7 @@ rocapp.directive('rocmodalActions', function () {
     }
 });
 
-// Directive for Alert Messages
-rocapp.directive('rocAlert',function(){
+angular.module('rocapp').directive('rocAlert',function(){
     return{
         restrict:'A',
         link:function(scope,element,attributes){
@@ -187,8 +205,7 @@ rocapp.directive('rocAlert',function(){
     }
 });
 
-//Factory
-rocapp.factory('managecookies',['$cookieStore','$roconfig','$state',function($cookie,$roconfig,$state){
+angular.module('rocapp').factory('managecookies',['$cookieStore','$roconfig','$state',function($cookie,$roconfig,$state){
     return{
         bind:function(){
             if($cookie.get('userdetail')!=undefined && $cookie.get('userdetail')!=null){
@@ -215,7 +232,18 @@ rocapp.factory('managecookies',['$cookieStore','$roconfig','$state',function($co
         removebooking:function(){
             $roconfig.bookingdetail = {};
             $cookie.remove('bookingdetail');
+        },
+        bindadmin:function(){
+            if($cookie.get('admindetail')!=undefined && $cookie.get('admindetail')!=null)
+                $roconfig.admindetail = $cookie.get('admindetail');
+        },
+        removeadmin:function(){
+            $roconfig.admindetail = {};
+            $cookie.remove('admindetail');
         }
     }
 }]);
+
+
+})();
 

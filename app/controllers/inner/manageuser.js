@@ -1,34 +1,39 @@
-rocapp.controller('manageuserController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','managecookies','$roconstants','$commonsvc','DTOptionsBuilder',
-	'DTColumnBuilder','DTColumnDefBuilder','DTInstances',
-	function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$managecookies,$roconstants,$commonsvc,DTOptionsBuilder,DTColumnBuilder,DTColumnDefBuilder,DTInstances) {
+(function(){
+	"use strict";
+
+	angular
+	.module('rocapp')
+	.controller('manageuserController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','managecookies','$roconstants','$commonsvc','DTOptionsBuilder',
+		'DTColumnBuilder','DTColumnDefBuilder','DTInstances',
+		function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$managecookies,$roconstants,$commonsvc,DTOptionsBuilder,DTColumnBuilder,DTColumnDefBuilder,DTInstances) {
 
 
-		$scope.statelist = [{
-			"name":"Andhra Pradesh"
-		},{
-			"name":"Telangana"
-		},{
-			"name":"Karnataka"
-		}];
+			$scope.statelist = [{
+				"name":"Andhra Pradesh"
+			},{
+				"name":"Telangana"
+			},{
+				"name":"Karnataka"
+			}];
 
-		$scope.citylist = [{
-			"name":"Hyderbad"
-		},{
-			"name":"Visakapatnam"
-		},{
-			"name":"Warangal"
-		},{
-			"name":"Khammam"
-		},{
-			"name":"Guntur"
-		},{
-			"name":"Kadapa"
-		}]
-		$scope.userdetails = [];
-		$scope.mybookings = [];
-		function init(){
-			this.getuserinfo = function(){
-				$scope.userdetails = $roconfig.userdetail;
+			$scope.citylist = [{
+				"name":"Hyderbad"
+			},{
+				"name":"Visakapatnam"
+			},{
+				"name":"Warangal"
+			},{
+				"name":"Khammam"
+			},{
+				"name":"Guntur"
+			},{
+				"name":"Kadapa"
+			}]
+			$scope.userdetails = [];
+			$scope.mybookings = [];
+			function init(){
+				this.getuserinfo = function(){
+					$scope.userdetails = $roconfig.userdetail;
 				// Binding city and state
 				$scope.userdetails.state = {"name":$roconfig.userdetail.state};
 				$scope.userdetails.city = {"name":$roconfig.userdetail.city};
@@ -141,3 +146,4 @@ rocapp.controller('manageuserController', ['$scope', '$http', '$state', '$log', 
 		}
 
 	}]);
+})();

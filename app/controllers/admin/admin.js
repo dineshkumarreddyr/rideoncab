@@ -1,76 +1,134 @@
-rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','DTOptionsBuilder',
-	'DTColumnBuilder','DTColumnDefBuilder','DTInstances',
-	function ($scope, $http, $state, $log, $stateParams, $roconfig,DTOptionsBuilder,DTColumnBuilder,DTColumnDefBuilder,DTInstances) {
+(function(){
+
+	"use strict";
+
+	angular
+	.module('rocapp')
+	.controller('adminController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','DTOptionsBuilder',
+		'DTColumnBuilder','DTColumnDefBuilder','DTInstances','managecookies','$cookieStore',
+		function ($scope, $http, $state, $log, $stateParams, $roconfig,DTOptionsBuilder,DTColumnBuilder,DTColumnDefBuilder,DTInstances,managecookies,$cookies) {
 
 
-		$scope.vendorlist = [];
-		$scope.cabprices = [];
-		$scope.cabservices = [];
-		$scope.cabtypes = [];
-		$scope.termscond = [];
-		$scope.isedit = false;
-		$scope.cabmodel = [];
-		$scope.vtid = null;
-		$scope.cabbooking = [];
-		$scope.allusers = [];
+			$scope.vendorlist = [];
+			$scope.cabprices = [];
+			$scope.cabservices = [];
+			$scope.cabtypes = [];
+			$scope.termscond = [];
+			$scope.isedit = false;
+			$scope.cabmodel = [];
+			$scope.vtid = null;
+			$scope.cabbooking = [];
+			$scope.allusers = [];
+			$scope.signinerror = false;
 
-		function init(){
-			this.getvendor = function(){
-				$http.get($roconfig.apiUrl+'admin/vendors').success(function(res,status,headers,conf){
-					if(status!=undefined && status===200){
-						$scope.vendorlist = res.results;
-					}
-				}).error(function(res,status,headers,conf){
-					$log.error(res);
-				});
-			},
-			this.getCabbookings = function(){
-				$http.get($roconfig.apiUrl+'/admin/bookings').success(function(res,status,headers,conf){
-					if(status!=undefined && status===200){
-						$scope.cabbooking = res.results;
-						$scope.dtbookinginstance = $scope.cabbooking;
-					}
-				}).error(function(res,status,headers,conf){
-					$log.error(res);
-				});
-			},
-			this.getuserdetails = function(){
-				$http.get($roconfig.apiUrl+'/admin/users').success(function(res,status,headers,conf){
-					if(status!=undefined && status===200){
-						$scope.allusers = res.results;
-						$scope.dtuserinstace = $scope.allusers;
-					}
-				}).error(function(res,status,headers,conf){
+			function init(){
+				this.getvendor = function(){
+					$http.get($roconfig.apiUrl+'admin/vendors').success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.vendorlist = res.results;
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				};
+				this.getCabbookings = function(){
+					$http.get($roconfig.apiUrl+'/admin/bookings').success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.cabbooking = res.results;
+							$scope.dtbookinginstance = $scope.cabbooking;
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				};
+				this.getuserdetails = function(){
+					$http.get($roconfig.apiUrl+'/admin/users').success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.allusers = res.results;
+							$scope.dtuserinstace = $scope.allusers;
+						}
+					}).error(function(res,status,headers,conf){
 
-				});
+					});
+				};
+				this.getCabservices = function(){
+					$http.get($roconfig.apiUrl+'cabservices').success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.cabservices = res;
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				};
+
+				this.getCabTypes = function(){
+					$http.get($roconfig.apiUrl+'cabtypes').success(function(res,status,headers,conf){
+						if(status!=undefined && status===200){
+							$scope.cabtypes = res;
+						}
+					}).error(function(res,status,headers,conf){
+						$log.error(res);
+					});
+				};
 			}
-			$http.get($roconfig.apiUrl+'cabservices').success(function(res,status,headers,conf){
-				if(status!=undefined && status===200){
-					$scope.cabservices = res;
-				}
-			}).error(function(res,status,headers,conf){
-				$log.error(res);
-			});
+			if($roconfig.admindetail.hasOwnProperty('username')){
+				(new init()).getvendor();
+				(new init()).getCabbookings();
+				(new init()).getuserdetails();
+				(new init()).getCabservices();
+				(new init()).getCabTypes();
 
-			$http.get($roconfig.apiUrl+'cabtypes').success(function(res,status,headers,conf){
-				if(status!=undefined && status===200){
-					$scope.cabtypes = res;
+			}
+
+			$scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
+			.withOption('responsive',true)
+			.withOption('autoWidth',false)
+			.withOption('bLengthChange',false)
+			.withOption('bInfo',false)
+
+			/* ----------------------------- Sign in --------------------------------------*/
+
+			$scope.signin = function(invalid){
+				if(invalid){
+					$scope.signinerror = true;
+					$scope.singinalerttype = 'danger';
+					$scope.signinerrorMsg = 'Please fill all the mandatory fields';
+					return;
 				}
-			}).error(function(res,status,headers,conf){
-				$log.error(res);
-			});
+				var data = {};
+
+				data.username = $scope.adminusername;
+				data.password = $scope.adminpassword;
+
+				if(data.username=='rocadmin' && data.password=='R0C@99'){
+					$cookies.put('admindetail',{username:data.username});
+					managecookies.bindadmin();
+					$state.go('adminhome.manage');
+				}
+
+			// $http.post($roconfig.apiUrl+'adminlogin').success(function(res,status){
+			// 	if(status!=undefined && status===200){
+			// 		$scope.signinerror = false;
+			// 		$state.go('adminhome.manage');
+			// 	}
+			// 	else{
+			// 		$scope.signinerror = true;
+			// 		$scope.singinalerttype = 'danger';
+			// 		$scope.signinerrorMsg = 'Invalid username or password';
+			// 	}
+			// })
+			// .error(function(res){
+			// 	$log.error(res);
+			// });
+}
+
+		// Sign out
+		$scope.signout = function(){
+			managecookies.removeadmin();
+			$state.go('adminlogin');
 		}
-		init();
-		(new init()).getvendor();
-		(new init()).getCabbookings();
-		(new init()).getuserdetails();
 
-		$scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
-		.withOption('responsive',true)
-		.withOption('autoWidth',false)
-		.withOption('bLengthChange',false)
-		.withOption('bInfo',false)
-
+		/* -------------------------------- End of Sign in section ------------------------*/
 
 		/* -------------- Terms and Conditions ----------------------------------- */
 		// Add terms
@@ -417,6 +475,39 @@ rocapp.controller('adminController', ['$scope', '$http', '$state', '$log', '$sta
 			$scope.showpopup = function(index){
 				$('#managebookings').modal('show');
 				$scope.bookingtransactionid = $scope.cabbooking[index].transid;
+				$scope.bookingsystemid = $scope.cabbooking[index].bid;
+			}
+
+			$scope.confirmbooking = function(){
+				var data = {
+					"bookingid":$scope.bookingsystemid,
+					"cabregno":$scope.cabregno,
+					"drivername":$scope.cabdrivername,
+					"drivermobile":$scope.cabdriverno,
+					"bookingstatus":$scope.cabstatus
+				}
+
+				$http.post($roconfig.apiUrl+'bookconf',data).success(function(res,status){
+					if(status!=undefined && status===200){
+						alert($scope.bookingtransactionid+' - Booking confirmed');
+						$scope.cleardetaisform();
+						$('#managebookings').modal('hide');
+						$scope.bookingtransactionid = null;
+						$scope.bookingsystemid = null;
+					}
+				})
+				.error(function(res){
+					$log.error(res);
+				});
+			}
+
+			$scope.cleardetaisform = function(){
+				$scope.cabregno = null;
+				$scope.cabdrivername = null;
+				$scope.cabdriverno = null;
+				$scope.cabstatus = null;
 			}
 
 		}]);
+
+})();

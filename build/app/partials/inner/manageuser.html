@@ -1,0 +1,141 @@
+<div class="container details-wrap manageuser">
+	<div class="row">
+		<div class="container">
+			<div class="col-md-9 myaccount-left">
+				<div class="row">
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab1">
+							<h2>My Account</h2>
+							<form>
+								<div class="row">
+									<div class='form-row'>
+										<div class='col-xs-6 form-group'>
+											<label class='control-label'>First Name</label>
+											<input class='form-control' ng-model='userdetails.fname' type='text' />
+										</div>
+										<div class='col-xs-6 form-group'>
+											<label class='control-label'>Last Name</label>
+											<input class='form-control' ng-model='userdetails.lname' type='text' />
+										</div>  
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Email Address</label>
+											<input class='form-control' readonly="readonly" ng-model="userdetails.email" type='text'>
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Mobile Number</label>
+											<input class='form-control' ng-model="userdetails.mobile" type='text'>
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Street Address 1</label>
+											<input class='form-control' ng-model="userdetails.address1" type='text'>
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Street Address 2</label>
+											<input class='form-control' ng-model="userdetails.address2" type='text'>
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>City</label>
+											<select ng-model="userdetails.city" class="minimal" ng-options="item.name as item.name for item in citylist">
+												<option value="">Select City</option>
+											</select>
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>State</label>
+											<select ng-model="userdetails.state"  class="minimal" ng-options="item.name as item.name for item in statelist">
+												<option value="">Select State</option>
+											</select>
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Pin code</label>
+											<input class='form-control'  ng-model="userdetails.pincode" type='text'>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<button ng-click="udpateprofile()" class="btn btn-default">Update &amp; Save</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="tab2">
+							<h2>My Bookings</h2>
+							<table datatable="ng" dt-options="dtOptions" dt-instances="dtInstance" class="table table-responsive">
+								<thead>
+									<tr>
+										<th>Booking ID</th>
+										<th>Service Type</th>
+										<th>Date &amp; Time</th>
+										<th>Pickup Location</th>
+										<th>Drop Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in mybookings">
+										<td>{{item.transid}}</td>
+										<td>{{item.servicetype}}</td>
+										<td>{{item.bdatetime}}</td>
+										<td>{{item.bfl}}</td>
+										<td>{{item.btl}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane" id="tab4">
+							<h2>Change Password</h2>
+							<div class="row">
+								<div class="col-md-12 col-lg-12 col-sm-12 no-pad">
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Old Password</label>
+											<input class='form-control' ng-model="useroldpassword" type='password' />
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>New Password</label>
+											<input class='form-control' ng-model="usernewpassword" type='password' />
+										</div>
+									</div>
+									<div class='form-row'>
+										<div class='col-xs-12 form-group'>
+											<label class='control-label'>Confirm new password</label>
+											<input class='form-control' ng-model="userconfirmpassword" type='text' />
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="row">
+								<button class="btn btn-default" ng-click="udaptepassword()">Update Password</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<nav class="nav-sidebar">
+					<ul class="nav tabs">
+						<li class="active"><a href="#tab1" data-toggle="tab">My Account</a></li>
+						<li class=""><a href="#tab2" data-toggle="tab">My Bookings</a></li>
+						<li class=""><a href="#tab4" data-toggle="tab">Change Password</a></li>				  
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,9 +1,10 @@
-﻿rocapp.controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','$commonsvc','$filter',
-    function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$commonsvc,$filter) {
-        (function () {
-            //"use strict";
+﻿(function(){
+    "use strict";
 
-            //Default array
+    angular
+    .module('rocapp')
+    .controller('resultsController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','$commonsvc','$filter',
+        function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$commonsvc,$filter) {
             $scope.cabresults = [];
             $scope.tempCabresults = [];
 
@@ -159,6 +160,5 @@
                 });
                 $scope.cabresults = $filter('orderBy')($scope.cabresults,'+chargeperkm');
             }
-
-        })();
-    }]);
+        }]);
+})();

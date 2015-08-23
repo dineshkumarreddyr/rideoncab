@@ -1,0 +1,28 @@
+  <div class="container-fluid vendor">
+    <div class="container vendor-main">
+    	<div class="row">
+       <div class="vendor-main-wrap">
+       <h2>Login to admin account</h2>
+        <div class="checks"></div>
+        <div class="form-main clearfix">
+          <form name="adminlogin">
+            <div class="alert alert-roc alert-{{singinalerttype}}" ng-show="signinerror">{{signinerrorMsg}}</div>
+            <div class='form-row'>
+              <div class='col-xs-12 form-group required'>
+                <label class='control-label'>User name <span class="req">*</span></label>
+                <input class='form-control' name="adminusername" ng-model="adminusername" type='text' ng-required="true">
+              </div>    
+            </div>
+            <div class='form-row'>
+              <div class='col-xs-12 form-group required'>
+                <label class='control-label'>Password <span class="req">*</span></label>
+                <input class='form-control' name="adminpassword" ng-model="adminpassword" type='password' ng-required="true">
+              </div>
+            </div>
+            <div class="col-md-6"><button type="button" ng-click="signin(adminlogin.$invalid)" class="bookbtn">Sign In</button></div>
+          </form>
+        </div> <!-- /.col-xs-12 -->
+      </div> <!-- /.row -->
+      <!-- <div class="car hidden-xs"><img src="app/assets/images/car.png"></div> -->
+    </div>
+  </div>

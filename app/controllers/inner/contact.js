@@ -3,9 +3,7 @@
 
 	angular
 	.module('rocapp')
-	.controller('ContactController',contactController);
-
-	function contactController($scope,$http,$log,$roconfig,$roconstants){
+	.controller('ContactController',['$scope','$http','$log','$roconfig','$roconstants',function ($scope,$http,$log,$roconfig,$roconstants){
 		// Default
 		$scope.alertShow = false;
 		$scope.submit = function(invalid){
@@ -48,5 +46,5 @@
 		var clearform = function(){
 			$scope.name = $scope.email = $scope.phone = $scope.subject = $scope.message = null;
 		}
-	}
+	}]);
 })();

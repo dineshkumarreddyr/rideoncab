@@ -1,7 +1,10 @@
-﻿rocapp.controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state','$roconstants','$commonsvc','$timeout',
- function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state,$roconstants,$commonsvc,$timeout) {
-    (function () {
-        "use strict";
+﻿(function(){
+    "use strict";
+
+    angular
+    .module('rocapp')
+    .controller('homeController', ['$scope', '$http', '$log', '$roconfig','$cookieStore','managecookies','$state','$roconstants','$commonsvc','$timeout',
+       function ($scope, $http, $log, $roconfig,$cookie,$managecookies,$state,$roconstants,$commonsvc,$timeout) {
         
         //Default display none for messages
         $scope.hideSuccess = true;
@@ -236,9 +239,9 @@
             $scope.$apply();
         });
 
-         angular.element('#myModal').on('hidden.bs.modal',function(){
+        angular.element('#myModal').on('hidden.bs.modal',function(){
             $scope.errorhide();
             $scope.$apply();
         });
-    })();
-}]);
+    }]);
+})();

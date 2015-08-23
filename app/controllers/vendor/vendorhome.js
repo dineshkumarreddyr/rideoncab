@@ -1,8 +1,10 @@
-rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$state','$cookieStore','managecookies','$roconstants','$commonsvc',
-	function($scope,$http,$log,$roconfig,$state,$cookies,$managecookies,$roconstants,$commonsvc){
-		(function(){
-			"use strict";
+(function(){
+	"use strict";
 
+	angular
+	.module('rocapp')
+	.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$state','$cookieStore','managecookies','$roconstants','$commonsvc',
+		function($scope,$http,$log,$roconfig,$state,$cookies,$managecookies,$roconstants,$commonsvc){
 			$scope.$parent.vendorloggedin = $roconfig.vendordetail.hasOwnProperty('vid') ? true : false;
 			$scope.$parent.vendorfullname = $roconfig.vendordetail.name;
 
@@ -191,6 +193,5 @@ rocapp.controller('vendorhomeController',['$scope','$http','$log','$roconfig','$
 				$managecookies.removevendor();
 				$state.go('vendorhome.signin');
 			}
-
-		})();
-	}]);
+		}]);
+})();

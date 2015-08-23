@@ -1,8 +1,10 @@
-﻿rocapp.controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig','$cookieStore','managecookies','$roconstants',
-   function ($scope, $http, $state, $log, $roconfig,$cookie,$managecookies,$roconstants) {
-    (function () {
-        "use strict";
+﻿(function(){
+    "use strict";
 
+    angular
+    .module('rocapp')
+    .controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig','$cookieStore','managecookies','$roconstants',
+       function ($scope, $http, $state, $log, $roconfig,$cookie,$managecookies,$roconstants) {
         $scope.cabservicetype = [];
 
         // $scope.errorhide();
@@ -62,7 +64,5 @@
                 return true;
             return false;
         }
-
-
-    })();
-}]);
+    }]);
+})();

@@ -6,6 +6,7 @@
 		vendordetail:{},
 		userdetail:{},
 		bookingdetail:{},
-		navstate:''
+		navstate:'',
+		admindetail:{}
 	});
 })();

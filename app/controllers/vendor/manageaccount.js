@@ -1,9 +1,11 @@
-rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig','$state','DTOptionsBuilder',
-	'DTColumnBuilder','DTColumnDefBuilder','DTInstances',
-	function($scope,$http,$log,$roconfig,$state,DTOptionsBuilder,DTColumnBuilder,DTColumnDefBuilder,DTInstances){
-		(function(){
-			"use strict";
+(function(){
+	"use strict";
 
+	angular
+	.module('rocapp')
+	.controller('vendoraccountController',['$scope','$http','$log','$roconfig','$state','DTOptionsBuilder',
+		'DTColumnBuilder','DTColumnDefBuilder','DTInstances',
+		function($scope,$http,$log,$roconfig,$state,DTOptionsBuilder,DTColumnBuilder,DTColumnDefBuilder,DTInstances){
 			$scope.$parent.vendorloggedin = $roconfig.vendordetail.hasOwnProperty('vid') ? true : false;
 			$scope.$parent.vendorfullname = $roconfig.vendordetail.name;
 			$scope.isedit = false,$scope.istermsupdate = false;
@@ -375,5 +377,5 @@ rocapp.controller('vendoraccountController',['$scope','$http','$log','$roconfig'
 					$log.error(e.message);
 				}
 			}
-		})();
-	}]);
+		}]);
+})();

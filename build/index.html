@@ -7,17 +7,17 @@
 	<title>Ride on Cab | Book your favourite service</title>
 	
 	<!--CSS References -->
-	<link type="text/css" rel="stylesheet" href="http://rideoncab.com/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-	<link type="text/css" rel="stylesheet" href="http://rideoncab.com/bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
+	<link type="text/css" rel="stylesheet" href="http://rideoncab.com/libs/bootstrap/dist/css/bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="http://rideoncab.com/libs/angular-bootstrap/ui-bootstrap-csp.css" />
 	<link type="text/css" rel="stylesheet" href="http://www.rideoncab.com/app/assets/css/rocstyles.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,600italic,700italic,900,400italic,300italic,700' rel='stylesheet' type='text/css'>
 
 	<!--Other Libraries-->
 	<link type="text/css" rel="stylesheet" href="http://rideoncab.com/app/assets/css/jquery.datetimepicker.css" />
-	<link rel="stylesheet" type="text/css" href="http://rideoncab.com/bower_components/datatables/media/css/jquery.dataTables.css" />
-	<link rel="stylesheet" type="text/css" href="http://rideoncab.com/bower_components/components-font-awesome/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="http://www.rideoncab.com/bower_components/angular-loading-bar/build/loading-bar.css" />
+	<link rel="stylesheet" type="text/css" href="http://rideoncab.com/libs/datatables/media/css/jquery.dataTables.css" />
+	<link rel="stylesheet" type="text/css" href="http://rideoncab.com/libs/components-font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.rideoncab.com/libs/angular-loading-bar/build/loading-bar.css" />
 	
 	<!--Setting base-->
 	<base href="/" />
@@ -26,23 +26,40 @@
 <body>
 	<div ui-view></div>
 	<!--Script References-->
-	<script type="text/javascript" src="libs/jquery/dist/jquery.js"></script>
-	<script type="text/javascript" src="libs/datatables/media/js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="libs/angular/angular.js"></script>
-	<script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.js"></script>
-	<script type="text/javascript" src="libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-	<script type="text/javascript" src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-	<script type="text/javascript" src="libs/less/dist/less.js"></script>
-	<script type="text/javascript" src="libs/underscore/underscore.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&sensor=false"></script>
-	<script type="text/javascript" src="libs/angular-datatables/dist/angular-datatables.js"></script>
-	<script type="text/javascript" src="libs/angular-cookies/angular-cookies.min.js"></script>
-	<script type="text/javascript" src="libs/angular-loading-bar/build/loading-bar.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/datatables/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/angular/angular.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/less/dist/less.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/underscore/underscore.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/angular-datatables/dist/angular-datatables.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/angular-cookies/angular-cookies.js"></script>
+	<script type="text/javascript" src="http://www.rideoncab.com/libs/angular-loading-bar/build/loading-bar.js"></script>
 
 	<!--Other Libraries-->
 	<script type="text/javascript" src="app/assets/js/jquery.datetimepicker.js"></script>
+	<!--Common Javascript/Jquery functionalities-->
+	<script type="text/javascript" src="app/helpers/common.js"></script>
 	
 	<!--Angular components -->
-	<script type="text/javascript" src="app/controllers/app.min.js"></script>
+	<script type="text/javascript" src="app/rocapp.js"></script>
+	<script type="text/javascript" src="app/helpers/config.js"></script>
+	<script type="text/javascript" src="app/helpers/constants.js"></script>
+	<script type="text/javascript" src="app/factory/roc.factory.js"></script>
+	<script type="text/javascript" src="app/filters/roc.filters.js"></script>
+	<!--Controllers-->
+	<script type="text/javascript" src="app/controllers/home.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/search.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/results.js"></script>
+	<script type="text/javascript" src="app/controllers/vendor/vendorhome.js"></script>
+	<script type="text/javascript" src="app/controllers/vendor/manageaccount.js"></script>
+	<script type="text/javascript" src="app/controllers/admin/admin.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/register.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/confirm.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/manageuser.js"></script>
+	<script type="text/javascript" src="app/controllers/inner/contact.js"></script>
 </body>
 </html>

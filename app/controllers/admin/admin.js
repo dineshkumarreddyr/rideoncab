@@ -164,7 +164,8 @@
 				}
 			})
 			.error(function(res,status,headers,conf){
-
+				$scope.termscond = [];
+				$scope.termsinstance = $scope.termscond;
 			});	
 		}
 
@@ -266,6 +267,7 @@
 							getCabpirces();
 							alert('price updated successfully');
 							$scope.clearprices();
+							getcabmodel();
 						}
 					}).error(function(res,status,headers,conf){
 						$log.error(res);

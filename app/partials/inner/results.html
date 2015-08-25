@@ -75,7 +75,7 @@
                             <div class="pricing" ng-show="{{result.servicetype}}=='3'">{{result.chargeperkm}} /{{result.chargeperhour}} hour(s)</div>
                             <div class="col-md-12 terms-wrap">
                                 <ul>
-                                    <li ng-repeat="item in allterms | filter:{'vid':result.vendorid} && {'cabmodel':result.cabmodel}">{{item.terms}}</li>
+                                    <li ng-repeat="item in allterms | filter:{'vid':result.vendorid}:true | filter:{'cabmodel':result.cabmodel}:true">{{item.terms}}</li>
                                     <div class="clearfix bookcab">
                                         <a href="#" ng-click="continueaddress($index)">
                                             Book your cab

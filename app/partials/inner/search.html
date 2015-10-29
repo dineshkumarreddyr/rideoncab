@@ -1,3 +1,20 @@
+<!-- MODAL POPUP FOR CITY SELECTION -->
+<div class="modal fade signin-pop" id="cityselectionpop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Select your city</h4>
+            </div>
+            <div class="checks"></div>
+            <div class="modal-body clearfix">
+                <form>
+                    <a href="javascript:void(0)" data-ng-click="selectedcity('Hyderbad')">Hyderabad</a>  <a href="javascript:void(0)" data-ng-click="selectedcity('Waragal')">Warangal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid homebg">
     <div class="container home-filters">
         <div class="row"><h1>Anytime,<br>Anywhere</h1></div>
@@ -6,7 +23,7 @@
             <div class="alert alert-roc hide" roc-alert>{{errMsg}}</div>
             <div class='col-md-3 form-group required'>
                 <label class='control-label'>Type of Service</label>
-                <select class="minimal" ng-model="servicetype" ng-options="item.sid as item.service for item in cabservicetype track by item.sid">
+                <select class="minimal" data-ng-change="changeservicetype()" ng-model="servicetype" ng-options="item.sid as item.service for item in cabservicetype track by item.sid">
                     <option value="">Select cab service type</option>
                 </select>
             </div>
@@ -38,22 +55,22 @@
         <div class="process">
             <div class="process-row">
                 <div class="process-step">
-                    <div class="yellow-circle"><img src="app/assets/images/destination.png" alt=""/></div>
+                    <div class="yellow-circle"><img src="app/assets/images/destination.png" alt="" /></div>
                     <h3>Set your destination</h3>
                     <p>from the pickup place</p>
                 </div>
                 <div class="process-step">
-                    <div class="yellow-circle"><img src="app/assets/images/select_cab.png" alt=""/></div>
+                    <div class="yellow-circle"><img src="app/assets/images/select_cab.png" alt="" /></div>
                     <h3>Select a cab which you like</h3>
                     <p>from the list of results</p>
                 </div>
                 <div class="process-step">
-                    <div class="yellow-circle"><img src="app/assets/images/details.png" alt=""/></div>
+                    <div class="yellow-circle"><img src="app/assets/images/details.png" alt="" /></div>
                     <h3>Send your details</h3>
                     <p>for the security</p>
                 </div>
                 <div class="process-step">
-                    <div class="yellow-circle"><img src="app/assets/images/confirm.png" alt=""/></div>
+                    <div class="yellow-circle"><img src="app/assets/images/confirm.png" alt="" /></div>
                     <h3>Confirm the cab &amp; enjoy</h3>
                     <p>for the ride</p>
                 </div>

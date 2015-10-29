@@ -19,6 +19,8 @@
             $scope.allcabmodels = [];
             $scope.allterms = [];
 
+            $scope.hourly = false;
+
             function init(){
                 this.getCabmodel = function(){
                     $commonsvc.getCabmodel().then(function(response){
@@ -38,12 +40,20 @@
             (new init()).getCabmodel();
             (new init()).getTermsConditions();
 
+            if ($stateParams.stype && $stateParams.stype == '3') {
+                $scope.hourly = true;
+            }
+            else {
+                $scope.hourly = false;
+            }
+
             //Search results page
             var getResults = function () {
                 var data = {};
                 try {
                     if ($stateParams.stype != undefined && $stateParams.stype != null) {
                         data.servicetype = $stateParams.stype;
+                        data.base_loc = $stateParams.c;
                         $http.post($roconfig.apiUrl + 'search', data).success(function (res, status, headers, conf) {
                             $scope.cabresults = res.results;
                             $scope.tempCabresults = res.results;

@@ -28,8 +28,14 @@
                                     <option value="" disabled="">Select Location</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <a href="#" ng-click="resetall()">Reset</a>
+                            <div class="col-md-3" data-ng-show="hourly">
+                                <select class="minimal" data-ng-model="filterhours" data-ng-change="hoursChange()">
+                                    <option value="">Select Hours</option>
+                                    <option value="2"> < 2</option>
+                                    <option value="4"> < 4</option>
+                                    <option value="8"> < 8</option>
+                                    <option value="10">< 10</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -40,13 +46,13 @@
                     <div class="sort-bar">
                         <div class="row">
                             <div class="col-md-4">
-                                <a href="#" ng-click="sortratings()">Ratings <i class="glyphicon glyphicon-chevron-down"></i></a>
-                            </div>
-                            <div class="col-md-4">
                                 <a href="#" ng-click="sortprice()">High to low <i class="glyphicon glyphicon-chevron-down"></i></a>
                             </div>
                             <div class="col-md-4">
                                 <a href="#" ng-click="sortlowprice()">Low to high <i class="glyphicon glyphicon-chevron-up"></i></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#" ng-click="resetall()">Reset</a>
                             </div>
                         </div>
                     </div>

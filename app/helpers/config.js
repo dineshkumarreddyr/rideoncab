@@ -7,6 +7,7 @@
 		userdetail:{},
 		bookingdetail:{},
 		navstate:'',
-		admindetail:{}
+		admindetail: {},
+        city:''
 	});
 })();

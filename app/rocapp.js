@@ -17,7 +17,7 @@
             templateUrl: "app/partials/inner/search.html",
             controller: 'searchController'
         }).state('home.results', {
-            url: '/results/:stype/:from/:to',
+            url: '/results/:stype/:from/:to/:c',
             templateUrl: "app/partials/inner/results.html",
             controller: 'resultsController'
         }).state('home.address', {

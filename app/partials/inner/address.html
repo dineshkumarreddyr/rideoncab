@@ -26,10 +26,17 @@
 
                     <label>Payment Mode: Cash On Delivery</label>
                 </div>
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="form-group">
+                        <div class="col-md-6"><input class="form-control" autocomplete="on" data-ng-model="couponcode" placeholder="Coupon Code" type="text" name="couponcode" /></div>
+                        <div class="col-md-3"><button data-ng-click="applyCoupon()" class="btn btn-default">Apply</button></div>
+                        <div class="col-md-12"><span class="couponmsg">{{couponmsg}}</span></div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6 col-xs-6"><button id="btn-login" ng-click='editaddress()' class="blckbtn">Edit Address</button></div>
                     <div class="col-md-6 col-xs-6 no-pad"><button type="submit" id="btn-login" ng-click="confirmbooking()" class="bookbtn">Confirm Booking</button></div>
-                </div>
+                </div>                
             </div>
             <div class="col-md-9 col-sm-12 no-pad" ng-show="!isuserloggedin">
                 <div class="row">

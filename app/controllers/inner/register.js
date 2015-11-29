@@ -6,6 +6,7 @@
 	.controller('registerController', ['$scope', '$http', '$state', '$log', '$stateParams', '$roconfig','$cookieStore','managecookies','$roconstants','$commonsvc',
 		function ($scope, $http, $state, $log, $stateParams, $roconfig,$cookie,$managecookies,$roconstants,$commonsvc) {
 
+		    $scope.couponmsg = '';
 
 			$scope.indianstates = [{
 				sid:1,
@@ -199,6 +200,27 @@
 			catch(e){
 				$log.error(e.message);
 			}
+		}
+
+		    // Reedem Coupon
+		$scope.applyCoupon = function () {
+		    var data = {};
+		    try{
+		        data.user = $roconfig.userdetail.uid;
+		        data.code = $scope.couponcode;
+
+		        $http.post($roconfig.apiUrl + 'coupon/validate', data).success(function (res) {
+		            if (res != undefined && res.result.indexOf('success') > -1) {
+		                $scope.couponmsg = $roconstants.couponsuccess;
+		            }
+		        })
+                .error(function (res) {
+
+                });
+		    }
+		    catch (e) {
+		        $log.error(e.message);
+		    }
 		}
 	}]);
 

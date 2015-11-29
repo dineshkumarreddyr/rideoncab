@@ -3,8 +3,8 @@
 
     angular
     .module('rocapp')
-    .controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig', '$cookieStore', 'managecookies', '$roconstants', '$timeout',
-       function ($scope, $http, $state, $log, $roconfig, $cookie, $managecookies, $roconstants, $timeout) {
+    .controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig', '$cookieStore', 'managecookies', '$roconstants', '$timeout','$rootScope',
+       function ($scope, $http, $state, $log, $roconfig, $cookie, $managecookies, $roconstants, $timeout,$rootScope) {
            $scope.cabservicetype = [];
 
            // $scope.errorhide();
@@ -18,14 +18,6 @@
                }).error(function (res, status, headers, conf) {
                    $log.error(res);
                });
-
-               $timeout(function () {
-                   angular.element('#cityselectionpop').modal({
-                       backdrop: 'static',
-                       keyboard: false,
-                       show: true
-                   });
-               });
            }
            init();
 
@@ -36,6 +28,12 @@
                        if (!validDateandTime()) {
                            $scope.danger();
                            $scope.errMsg = $roconstants.advancebook;
+                           return;
+                       }
+
+                       if ($rootScope.currentcity == undefined || $rootScope.currentcity == null || $rootScope.currentcity == '') {
+                           $scope.danger();
+                           $scope.errMsg = $roconstants.city;
                            return;
                        }
                        // Hide the error msg
@@ -80,9 +78,9 @@
                }
            };
 
-           $scope.selectedcity = function (c) {
-               $scope.currentcity = c;
-               angular.element('#cityselectionpop').modal('hide');
-           }
+           $rootScope.$watch('currentcity', function () {
+               if ($rootScope.currentcity)
+                   $scope.currentcity = $rootScope.currentcity;
+           });
        }]);
 })();

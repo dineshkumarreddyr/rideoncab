@@ -31,10 +31,14 @@
 										</div>
 									</div>
 									<div class='form-row'>
-										<div class='col-md-12 form-group'>
+										<div class='col-md-6 form-group'>
 											<label class='control-label'>Email Address</label>
 											<input autocomplete='off' class='form-control' size='20' type='text' ng-model="vemailaddress" />
 										</div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">Vendor phone number</label>
+                                            <input autocomplete='off' class='form-control' ng-model='vofficenumber' size='20' type='text'>
+                                        </div>
 									</div>
 									<div class='form-row'>
 										<div class='col-md-12 form-group'>
@@ -42,6 +46,34 @@
 											<input autocomplete='off' class='form-control' size='20' type='text' ng-model="vaddress" />
 										</div>
 									</div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">City</label>
+                                            <select class="minimal" data-ng-model="vendorcity">
+                                                <option value="">Select city</option>
+                                                <option value="hyderabad">Hyderabad</option>
+                                                <option value="warangal">Warangal</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">State</label>
+                                            <select class="minimal" data-ng-model="vendorstate">
+                                                <option value="">Select state</option>
+                                                <option value="hyderabad">Andhra Pradesh</option>
+                                                <option value="warangal">Telangana</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">Service Location</label>
+                                            <input autocomplete='off' class='form-control' size='20' type='text' ng-model='vlocation' />
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="control-label">Pin code</label>
+                                            <input autocomplete='on'  class='form-control' maxlength="6" type='text' data-ng-model="vendorpincode" />
+                                        </div>
+                                    </div>
 									<div class="form-row">
 										<div class="col-md-6 form-group">
 											<label class="control-label">Experience</label>
@@ -64,18 +96,6 @@
 										<div class="col-md-6 form-group">
 											<label class="control-label">Founder email address</label>
 											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vfemail' />
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="col-md-6 form-group">
-											<label class="control-label">Service Location</label>
-											<input autocomplete='off' class='form-control' size='20' type='text' ng-model='vlocation' />
-										</div>
-									</div>
-									<div class="form-row">
-										<div class="col-md-6 form-group">
-											<label class="control-label">Vendor phone number</label>
-											<input autocomplete='off' class='form-control' ng-model='vofficenumber' size='20' type='text'>
 										</div>
 									</div>
 									<div class='form-row'>
@@ -213,6 +233,7 @@
 												<tr>
 													<th>Cab Model</th>
 													<th>Terms and Conditions</th>
+                                                    <th>Service Type</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -221,6 +242,7 @@
 													<td>
 														{{item.cabmodel}}
 													</td>
+                                                    <td>{{item.cabservice}}</td>
 													<td>{{item.terms}}</td>
 													<td>
 														<div class="col-md-6">
@@ -238,6 +260,11 @@
 																<option value="">Cab Model</option>
 															</select>
 														</td>
+                                                        <td>
+                                                            <select class="minimal" ng-model='vendortermscabservices' ng-options='item.sid as item.service for item in cabservices'>
+                                                                <option value="">Service Type</option>
+                                                            </select>
+                                                        </td>
 														<td>
 															<input type="text" class="form-control" ng-model="vterms" placeholder='Terms and Conditions' />
 														</td>

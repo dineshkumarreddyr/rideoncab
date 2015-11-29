@@ -149,6 +149,17 @@
                     filteredItems = $filter('filter')($scope.tempCabresults,{vendoraddress:$scope.filterLocality},true);
                 $scope.cabresults = filteredItems;
             }
+            //Filter for Vendor Hours
+            $scope.hoursChange = function () {
+                var filteredItems = [];
+                if ($scope.filterhours != undefined) {
+                    filteredItems = $filter('filter')($scope.tempCabresults, { chargeperhour: $scope.filterhours, vendoraddress: $scope.filterLocality, cabmodel: $scope.filterCabmodel, vendorname: $scope.filterVendor }, true);
+                }
+                else {
+                    filteredItems = $filter('filter')($scope.tempCabresults, { chargeperhour: $scope.filterhours }, true);
+                }
+                $scope.cabresults = filteredItems;
+            }
 
             // Reset filters
             $scope.resetall = function(){

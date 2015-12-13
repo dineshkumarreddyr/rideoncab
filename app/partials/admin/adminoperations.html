@@ -135,6 +135,28 @@
 																	<input autocomplete="off" ng-model='evphonenumber' class="form-control" size="20" type="text">
 																</div>
 															</div>
+                                                            <div class="form-row">
+                                                                <div class="col-md-6 form-group">
+                                                                    <label class="control-label">Vendor City</label>
+                                                                    <select class="minimal" data-ng-options="item.key as item.value for item in citylist track by item.key" data-ng-model="selectedcity">
+                                                                        <option value="">Select City</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="col-md-6 form-group">
+                                                                    <label class="control-label">Vendor State</label>
+                                                                    <select class="minimal" data-ng-options="item.key as item.value for item in statelist track by item.key" data-ng-model="selectedstate">
+                                                                        <option value="">Select State</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="col-md-12 form-group">
+                                                                    <label class="control-label">Vendor Pincode</label>
+                                                                   <input autocomplete="on" data-ng-model="vendorpincode" class="form-control" maxlength="6" />
+                                                                </div>
+                                                            </div>
 															<div class="form-row">
 																<div class="col-md-4 form-group">
 																	<button class="btn btn-default" ng-click='updatesavevendor()'>Update &amp; Save</button>

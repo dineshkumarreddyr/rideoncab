@@ -3,12 +3,20 @@
 
     angular
     .module('rocapp')
-    .controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig', '$cookieStore', 'managecookies', '$roconstants', '$timeout','$rootScope',
-       function ($scope, $http, $state, $log, $roconfig, $cookie, $managecookies, $roconstants, $timeout,$rootScope) {
+    .controller('searchController', ['$scope', '$http', '$state', '$log', '$roconfig', '$cookieStore', 'managecookies', '$roconstants', '$timeout', '$rootScope',
+       function ($scope, $http, $state, $log, $roconfig, $cookie, $managecookies, $roconstants, $timeout, $rootScope) {
            $scope.cabservicetype = [];
 
            // $scope.errorhide();
            // $scope.errMsg = null;
+
+           $scope.citylist = [{
+               'key': 'hyderabad',
+               'value': 'Hyderbad'
+           }, {
+               'key': 'warangal',
+               'value': 'Warangal'
+           }];
 
            var init = function () {
                $http.get($roconfig.apiUrl + 'cabservices').success(function (res, status, headers, conf) {
@@ -82,5 +90,9 @@
                if ($rootScope.currentcity)
                    $scope.currentcity = $rootScope.currentcity;
            });
+
+           $scope.changecity = function () {
+               $rootScope.currentcity = $scope.cityselection;
+           }
        }]);
 })();

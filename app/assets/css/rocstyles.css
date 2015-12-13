@@ -310,7 +310,7 @@ width: 15px;height: 15px;}
 
 .menu-main ul li a{width:50%;height:30px;}
 .menu-main ul li{margin:0 !important;width:50% !important;float:left !important;}
-.menu-main .navbar-nav{float:left !important;}
+.menu-main .navbar-nav{float:left !important; position: fixed; z-index: 999; background: #000;}
 .menu-main .nav .open>li{border-bottom: none !important;}
 .menu-main .nav .open>a{color:#fff !important;}
 .signin-pop .modal-header .close{margin-top:20px;margin-right:20px;}
@@ -340,7 +340,7 @@ margin-top:0px;margin-right: 15px;margin-bottom: 8px;background-color:none;borde
 border-radius:0px;height: 23px;width:35px;}
 .home-filters h1{font-size:30px;margin-top:0;}
 h1{font-size:30px;padding-left:15px;}
-
+.home-filters{}
 }
 
 	

@@ -21,6 +21,12 @@
         <div class="row checks"></div>
         <div class="row home-filters-main">
             <div class="alert alert-roc hide" roc-alert>{{errMsg}}</div>
+            <div class="col-md-3 visible-xs form-group required">
+                <label class="control-label">Select City</label>
+                <select class="minimal" data-ng-change="changecity()" data-ng-model="cityselection" data-ng-options="item.key as item.value for item in citylist track by item.key">
+                    <option value="">Select City</option>
+                </select>
+            </div>
             <div class='col-md-3 form-group required'>
                 <label class='control-label'>Type of Service</label>
                 <select class="minimal" data-ng-change="changeservicetype()" ng-model="servicetype" ng-options="item.sid as item.service for item in cabservicetype track by item.sid">
